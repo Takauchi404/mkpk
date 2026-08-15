@@ -1,18 +1,21 @@
 # Prediksi MKPK
 
-Kalkulator prediksi SKS mandiri untuk mahasiswa Universitas Hasanuddin, berdasarkan Rubrik MKPK Edisi 3.
+An independent credit-recognition prediction tool for MKPK activities, built around Universitas Hasanuddin's Rubrik MKPK Edisi 3. It exists to give students a reliable estimate before they submit an actual claim through Sipakamase.
 
-Situs statis satu file (`index.html`), tidak butuh build step maupun backend. Data disimpan lokal di browser masing-masing pengguna (`localStorage`), tidak ada server.
+The workflow is straightforward: select an activity you've completed, enter the relevant coefficients and achievements, and the tool calculates the resulting credit and distributes it across eligible MKPK courses, prioritising whichever course has the smallest remaining requirement so that more courses reach completion overall. As new activities are added, the tool also checks whether a better distribution across previously saved activities has become possible, and surfaces that as a suggestion.
 
-## Menjalankan lokal
-Buka `index.html` langsung di browser, atau jalankan server statis sederhana:
+The entire application runs as a single HTML file, with no backend or database involved. All data is stored locally in the browser (via localStorage), which means it does not persist across devices or browsers.
+
+This is not an official university system. Actual MKPK claims must still be submitted through Sipakamase; this tool is only meant to support the estimation that precedes it.
+
+## Running locally
+
+Open `index.html` directly in a browser, or serve it locally:
 
 ```
 python3 -m http.server 8000
 ```
 
-## Deploy
-Repo ini bisa langsung dihubungkan ke Cloudflare Pages tanpa build command (situs statis murni).
+## Deployment
 
----
-Bukan sistem resmi Universitas Hasanuddin. Alat bantu prediksi mandiri, bukan pengganti pengajuan klaim MKPK lewat Sipakamase.
+The repository can be connected directly to Cloudflare Pages with no build command required, as the site is entirely static.
