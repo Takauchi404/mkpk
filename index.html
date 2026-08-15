@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Prediksi MKPK — Rubrik MKPK Edisi 3</title>
+<title>Prediksi MKPK: Rubrik MKPK Edisi 3</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
   :root{
     --navy:#1A2C56; --navy-deep:#0B0C10; --blue:#2563EB; --border:#DDE2E8; --text:#1B2131;
@@ -39,13 +39,19 @@
   h1.title{font-size:34px; font-weight:800; margin:0 0 10px; color:var(--navy); letter-spacing:-0.02em;}
   .export-btn{display:flex; align-items:center; gap:6px; background:#FFFFFF; color:var(--navy); border:1px solid var(--border); border-radius:5px; padding:9px 14px; font-size:14.5px; font-weight:600; cursor:pointer; flex-shrink:0; margin-top:2px; transition:background .15s, border-color .15s;}
   .export-btn:hover{background:var(--surface-alt); border-color:var(--blue);}
-  .lang-toggle{background:#FFFFFF; color:var(--navy); border:1px solid var(--border); border-radius:5px; padding:9px 12px; font-size:14.5px; font-weight:700; cursor:pointer; flex-shrink:0; margin-top:2px; transition:background .15s, border-color .15s;}
-  .lang-toggle:hover{background:var(--surface-alt); border-color:var(--blue);}
+  .guide-btn{display:flex; align-items:center; gap:6px; background:#FFFFFF; color:var(--navy); border:1px solid var(--border); border-radius:5px; padding:9px 14px; font-size:14.5px; font-weight:600; cursor:pointer; flex-shrink:0; margin-top:2px; transition:background .15s, border-color .15s;}
+  .guide-btn:hover{background:var(--surface-alt); border-color:var(--blue);}
+  .lang-switch{display:flex; border:1px solid var(--border); border-radius:5px; overflow:hidden; flex-shrink:0; margin-top:2px;}
+  .lang-switch-btn{background:#FFFFFF; color:var(--muted); border:none; padding:9px 13px; font-size:13.5px; font-weight:700; cursor:pointer; transition:background .15s, color .15s;}
+  .lang-switch-btn + .lang-switch-btn{border-left:1px solid var(--border);}
+  .lang-switch-btn:hover{background:var(--surface-alt);}
+  .lang-switch-btn.active{background:var(--navy); color:#FFFFFF;}
+  .lang-switch-btn.active:hover{background:var(--navy);}
   .subtitle{font-size:16px; line-height:1.6; color:var(--muted); max-width:680px; margin:0 0 24px;}
 
   .stat-row{display:flex; gap:12px; flex-wrap:wrap;}
   .stat-card{background:var(--surface-alt); border:1px solid var(--border); border-radius:6px; padding:12px 18px; min-width:140px;}
-  .stat-value{font-family:'IBM Plex Mono',monospace; font-size:22px; font-weight:700; color:var(--navy);}
+  .stat-value{font-size:22px; font-weight:700; color:var(--navy); font-variant-numeric:tabular-nums;}
   .stat-of{font-size:15.5px; font-weight:500; color:var(--faint);}
   .stat-label{font-size:13px; color:var(--muted); margin-top:2px;}
 
@@ -61,23 +67,11 @@
   .target-progress-outer{height:10px; background:var(--surface-alt); border-radius:5px; overflow:hidden; border:1px solid var(--border);}
   .target-progress-inner{height:100%; background:linear-gradient(90deg, var(--blue), var(--navy)); transition:width .3s;}
   .target-progress-labels{display:flex; justify-content:space-between; margin-top:8px; font-size:14px;}
-  .target-progress-done{font-weight:700; color:var(--navy); font-family:'IBM Plex Mono',monospace;}
+  .target-progress-done{font-weight:700; color:var(--navy); font-variant-numeric:tabular-nums;}
   .target-progress-remaining{color:var(--faint);}
 
   /* ---------- nav ---------- */
   /* nav dihapus - navigasi cukup lewat scroll halaman satu kolom */
-
-  /* ---------- site nav (navigasi antar halaman) ---------- */
-  .site-nav{background:#FFFFFF; border-bottom:1px solid var(--border);}
-  .site-nav-inner{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 20px; flex-wrap:wrap;}
-  .site-brand{font-size:16px; font-weight:800; color:var(--navy); text-decoration:none; letter-spacing:-0.01em;}
-  .site-nav-links{display:flex; align-items:center; gap:24px;}
-  .site-nav-link{
-    background:none; border:none; padding:4px 0; font-size:14.5px; font-weight:600; color:var(--muted);
-    text-decoration:none; cursor:pointer; border-bottom:2px solid transparent; transition:color .15s, border-color .15s;
-  }
-  .site-nav-link:hover{color:var(--navy);}
-  .site-nav-link.active{color:var(--navy); border-bottom-color:var(--blue);}
 
   /* ---------- overlay ---------- */
   .overlay-backdrop{
@@ -98,28 +92,42 @@
   .overlay-title{font-size:17px; font-weight:700; color:var(--navy); margin:0 0 8px;}
   .overlay-text{font-size:14px; color:var(--muted); line-height:1.55; margin:0;}
 
-  /* ---------- dosen pembimbing page ---------- */
-  .notice-box{background:var(--warn-bg); border:1px solid #F0CFA8; border-radius:6px; padding:14px 16px; margin-bottom:20px;}
-  .notice-box-head{font-size:14.5px; font-weight:700; color:#8A3F08; margin-bottom:6px;}
-  .notice-box-text{font-size:13.5px; color:#8A3F08; line-height:1.55; margin:0 0 10px;}
-  .dosen-lead-row{display:flex; align-items:center; justify-content:space-between; gap:10px; background:#FFFFFF; border:1px solid #F0CFA8; border-radius:5px; padding:10px 12px; flex-wrap:wrap;}
-  .dosen-lead-name{font-size:13.5px; font-weight:700; color:var(--navy);}
-  .dosen-lead-btn{display:flex; align-items:center; gap:5px; font-size:12.5px; font-weight:600; color:var(--blue); background:none; border:none; cursor:pointer; padding:4px 0;}
+  /* ---------- banner re-optimasi ---------- */
+  .reopt-banner{
+    display:flex; align-items:center; gap:10px; background:#FFF7E8; border:1px solid #F0D9A8; color:#7A4E0A;
+    border-radius:8px; padding:12px 14px; margin-top:20px; font-size:14px; font-weight:600;
+  }
+  .reopt-banner svg{flex-shrink:0; color:#B4530A;}
+  .reopt-banner span{flex:1;}
+  .reopt-banner-btn{background:#7A4E0A; color:#FFFFFF; border:none; border-radius:5px; padding:7px 14px; font-size:13px; font-weight:700; cursor:pointer; white-space:nowrap; transition:background .15s;}
+  .reopt-banner-btn:hover{background:#5C3B08;}
+  .reopt-banner-dismiss{background:none; border:none; color:#B4530A; cursor:pointer; padding:4px; border-radius:5px; flex-shrink:0; transition:background .15s;}
+  .reopt-banner-dismiss:hover{background:#F0D9A8;}
 
-  .dosen-group{margin-bottom:22px;}
-  .dosen-group-title{font-size:13px; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:.03em; margin-bottom:10px; padding-bottom:6px; border-bottom:1px solid var(--border);}
-  .dosen-row{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 12px; border:1px solid var(--border); border-radius:6px; background:var(--surface-alt); margin-bottom:6px;}
-  .dosen-row-name{font-size:14.5px; font-weight:600; color:var(--text);}
-  .dosen-lookup-btn{display:flex; align-items:center; gap:6px; background:#FFFFFF; border:1px solid var(--border); border-radius:5px; padding:7px 12px; font-size:13px; font-weight:600; color:var(--navy); cursor:pointer; transition:background .15s, border-color .15s; flex-shrink:0;}
-  .dosen-lookup-btn:hover{background:var(--surface-alt); border-color:var(--blue);}
+  /* ---------- overlay re-optimasi ---------- */
+  .overlay-card-wide{max-width:520px; text-align:left;}
+  .overlay-card-wide .overlay-icon{margin-left:auto; margin-right:auto; display:flex;}
+  .overlay-card-wide .overlay-title{text-align:center;}
+  .reopt-summary{font-size:14px; color:var(--text); background:var(--success-bg); border:1px solid #BFE3CC; border-radius:6px; padding:11px 13px; margin-bottom:16px; line-height:1.5;}
+  .reopt-changes{display:flex; flex-direction:column; gap:8px; max-height:280px; overflow-y:auto; margin-bottom:18px;}
+  .reopt-change-row{background:var(--surface-alt); border:1px solid var(--border); border-radius:7px; padding:11px 13px;}
+  .reopt-change-name{font-size:13.5px; font-weight:600; color:var(--text); margin-bottom:6px;}
+  .reopt-change-path{display:flex; align-items:center; gap:8px; font-size:12.5px; color:var(--muted); flex-wrap:wrap;}
+  .reopt-change-old{color:var(--faint); text-decoration:line-through;}
+  .reopt-change-new{color:var(--blue); font-weight:600;}
+  .reopt-actions{display:flex; justify-content:flex-end; gap:10px; flex-wrap:wrap;}
+  .reopt-cancel-btn{background:#FFFFFF; border:1px solid var(--border); border-radius:5px; padding:10px 16px; font-size:14px; font-weight:600; color:var(--muted); cursor:pointer; transition:background .15s;}
+  .reopt-cancel-btn:hover{background:var(--surface-alt);}
 
-  .dosen-avatar{background:#EAF0FD; color:var(--blue);}
-  .dosen-lookup-category{font-size:12.5px; color:var(--faint); margin-bottom:14px;}
-  .dosen-lookup-phone{font-family:'IBM Plex Mono',monospace; font-size:15px; font-weight:600; color:var(--navy); background:var(--surface-alt); border:1px solid var(--border); border-radius:5px; padding:9px 12px; margin-bottom:16px;}
-  .dosen-chat-btn{display:flex; align-items:center; justify-content:center; gap:8px; background:#25D366; color:#FFFFFF; border-radius:6px; padding:11px 18px; font-size:14.5px; font-weight:700; text-decoration:none; transition:background .15s;}
-  .dosen-chat-btn:hover{background:#1DA851;}
-  .dosen-chat-btn.disabled{background:#C7CCD4; pointer-events:none;}
-  .dosen-empty{font-size:13.5px; color:var(--faint); text-align:center; padding:16px 0;}
+  /* ---------- overlay panduan ---------- */
+  .guide-steps{display:flex; flex-direction:column; gap:14px;}
+  .guide-step{display:flex; gap:12px; align-items:flex-start;}
+  .guide-step-num{
+    display:flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%;
+    background:var(--navy); color:#FFFFFF; font-size:12.5px; font-weight:700; flex-shrink:0; font-variant-numeric:tabular-nums;
+  }
+  .guide-step-text{font-size:14px; color:var(--text); line-height:1.55; padding-top:2px;}
+
 
   /* ---------- toast ---------- */
   .toast{
@@ -147,6 +155,11 @@
   select.field-select{width:100%; appearance:none; background:#FFFFFF; border:1px solid var(--border); border-radius:5px; padding:10px 34px 10px 12px; font-size:15px; color:var(--text); cursor:pointer;}
   .select-wrap svg.chevron{position:absolute; right:11px; top:11px; color:var(--faint); pointer-events:none;}
   input[type=number].field-input, input[type=text].field-input{width:100%; background:#FFFFFF; border:1px solid var(--border); border-radius:5px; padding:10px 12px; font-size:15px; color:var(--text);}
+  .tambahan-checklist{display:flex; flex-direction:column; gap:7px;}
+  .tambahan-check-row{display:flex; align-items:center; gap:10px; background:#FFFFFF; border:1px solid var(--border); border-radius:6px; padding:10px 12px;}
+  .tambahan-check-row input[type=checkbox]{width:17px; height:17px; flex-shrink:0; accent-color:var(--blue); cursor:pointer;}
+  .tambahan-check-label{flex:1; font-size:14px; color:var(--text);}
+  .tambahan-check-value{font-size:13px; font-weight:700; color:var(--blue); background:#EAF0FD; border-radius:20px; padding:3px 10px; white-space:nowrap; font-variant-numeric:tabular-nums;}
   input[type=number].narrow{width:140px;}
   .nilai-fixed{font-size:14.5px; color:var(--muted); background:var(--surface-alt); border:1px solid var(--border); border-radius:5px; padding:10px 12px;}
 
@@ -155,27 +168,33 @@
   .syarat-text{color:var(--muted);}
 
   .docs-box{display:flex; gap:8px; background:var(--surface-alt); border:1px solid var(--border); border-radius:5px; padding:11px 13px; margin-bottom:18px;}
-  .docs-label{font-size:13.5px; font-weight:700; color:var(--navy); margin-bottom:3px;}
+  .docs-label{font-size:15px; font-weight:700; color:var(--navy); margin-bottom:4px;}
   .docs-text{font-size:14px; color:var(--muted); line-height:1.55;}
 
-  .alloc-box{background:var(--surface-alt); border:1px solid var(--border); border-radius:6px; padding:14px 16px; margin-bottom:18px;}
-  .met-note{font-size:13px; color:var(--success); background:var(--success-bg); border:1px solid #BFE3CC; border-radius:5px; padding:7px 10px; margin:10px 0;}
-  .reco-text{font-size:14px; color:var(--navy); font-weight:600; background:#FFFFFF; border:1px solid var(--border); border-radius:5px; padding:9px 11px; margin:10px 0;}
-  .alloc-list{display:flex; flex-direction:column; gap:6px; margin:10px 0;}
-  .alloc-row{display:flex; align-items:center; gap:10px; background:#FFFFFF; border:1px solid var(--border); border-radius:5px; padding:8px 11px;}
-  .alloc-row input[type=checkbox]{width:15px; height:15px; flex-shrink:0; accent-color:var(--blue);}
-  .alloc-name{flex:1; font-size:14px; color:var(--text);}
-  .alloc-req{color:var(--faint); font-size:13px;}
-  .alloc-amount{font-family:'IBM Plex Mono',monospace; font-size:14.5px; font-weight:700; color:var(--navy); white-space:nowrap;}
-  .alloc-summary{display:flex; justify-content:space-between; font-size:13px; color:var(--muted); flex-wrap:wrap; gap:6px; border-top:1px solid var(--border); padding-top:10px; margin-top:4px;}
+  .alloc-box{background:var(--surface-alt); border:1px solid var(--border); border-radius:8px; padding:20px 22px; margin-bottom:20px;}
+  .alloc-box > .docs-label{margin-bottom:6px;}
+  .alloc-box > .hint-text{margin-bottom:2px;}
+  .met-note{font-size:13px; color:var(--success); background:var(--success-bg); border:1px solid #BFE3CC; border-radius:6px; padding:10px 13px; margin:14px 0; line-height:1.5;}
+  .reco-box{background:#FFFFFF; border:1px solid var(--border); border-radius:6px; padding:14px 15px; margin:14px 0;}
+  .reco-label{font-size:12.5px; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:.03em; margin-bottom:10px;}
+  .reco-list{display:flex; flex-direction:column; gap:8px; margin-bottom:10px;}
+  .reco-item{display:flex; align-items:center; justify-content:space-between; gap:10px; background:var(--surface-alt); border-radius:6px; padding:9px 12px;}
+  .reco-item-name{font-size:14px; font-weight:600; color:var(--text);}
+  .reco-item-amount{font-size:13.5px; font-weight:700; color:var(--blue); background:#EAF0FD; border-radius:20px; padding:3px 10px; white-space:nowrap; font-variant-numeric:tabular-nums;}
+  .reco-note{font-size:12.5px; color:var(--faint); line-height:1.5;}
+  .alloc-list{display:flex; flex-direction:column; gap:10px; margin:14px 0;}
+  .alloc-row{display:flex; align-items:center; gap:12px; background:#FFFFFF; border:1px solid var(--border); border-radius:7px; padding:13px 15px; transition:opacity .15s;}
+  .alloc-row input[type=checkbox]{width:18px; height:18px; flex-shrink:0; accent-color:var(--blue); cursor:pointer;}
+  .alloc-name{flex:1; font-size:14.5px; color:var(--text); font-weight:500; line-height:1.4;}
+  .alloc-req{display:block; color:var(--faint); font-size:12.5px; margin-top:3px; font-weight:400;}
+  .alloc-amount{font-size:14px; font-weight:700; color:var(--blue); white-space:nowrap; font-variant-numeric:tabular-nums; background:#EAF0FD; border-radius:20px; padding:5px 12px; flex-shrink:0;}
+  .alloc-amount.empty{color:var(--faint); background:var(--surface-alt);}
+  .alloc-summary{display:flex; justify-content:space-between; align-items:center; font-size:13.5px; color:var(--muted); flex-wrap:wrap; gap:8px; border-top:1px solid var(--border); padding-top:14px; margin-top:2px;}
   .alloc-summary-warn{color:var(--warn); font-weight:600;}
 
   .result-row{display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--border); padding-top:18px; flex-wrap:wrap; gap:12px;}
-  .result-btn-group{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
-  .memo-btn{display:flex; align-items:center; gap:6px; background:#FFFFFF; color:var(--navy); border:1px solid var(--border); border-radius:5px; padding:10px 16px; font-size:14.5px; font-weight:600; cursor:pointer; transition:background .15s, border-color .15s;}
-  .memo-btn:hover{background:var(--surface-alt); border-color:var(--blue);}
   .result-label{font-size:13px; color:var(--faint); margin-bottom:3px;}
-  .result-value{font-family:'IBM Plex Mono',monospace; font-size:26px; font-weight:700; color:var(--navy); font-variant-numeric:tabular-nums;}
+  .result-value{font-size:26px; font-weight:700; color:var(--navy); font-variant-numeric:tabular-nums;}
   .add-btn{display:flex; align-items:center; gap:6px; background:var(--navy); color:#FFFFFF; border:none; border-radius:5px; padding:11px 18px; font-size:15px; font-weight:700; cursor:pointer; transition:background .15s;}
   .add-btn:hover:not(:disabled){background:var(--blue);}
   .add-btn:disabled{opacity:.5; cursor:not-allowed;}
@@ -184,7 +203,7 @@
   .course-row{display:flex; align-items:center; gap:12px; background:var(--surface-alt); border:1px solid var(--border); border-radius:6px; padding:11px 14px; flex-wrap:wrap;}
   .course-name{font-weight:600; font-size:15px; color:var(--text);}
   .course-sub{font-size:13px; color:var(--faint);}
-  .course-sks{text-align:right; font-family:'IBM Plex Mono',monospace; font-size:15.5px; white-space:nowrap; margin-left:auto;}
+  .course-sks{text-align:right; font-size:15.5px; white-space:nowrap; margin-left:auto; font-variant-numeric:tabular-nums;}
   .badge{font-size:12.5px; font-weight:700; border-radius:20px; padding:4px 10px; white-space:nowrap;}
   .badge-success{color:var(--success); background:var(--success-bg); border:1px solid #BFE3CC;}
   .badge-pending{color:var(--warn); background:var(--warn-bg); border:1px solid #F0CFA8;}
@@ -199,10 +218,8 @@
   .td-cat{font-size:12px; color:var(--blue); text-transform:uppercase; letter-spacing:.04em; margin-bottom:2px; font-weight:700;}
   .td-name{font-weight:600; color:var(--text);}
   .td-spesifik{font-size:13px; color:var(--faint); font-style:italic; margin-top:2px;}
-  .sks-pill{font-family:'IBM Plex Mono',monospace; font-weight:700; color:var(--navy);}
-  .row-actions{display:flex; align-items:center; gap:4px;}
+  .sks-pill{font-weight:700; color:var(--navy); font-variant-numeric:tabular-nums;}
   .row-icon-btn{display:flex; align-items:center; justify-content:center; background:transparent; border:none; color:#9AA2B1; cursor:pointer; padding:6px; border-radius:5px; transition:background .15s, color .15s;}
-  .memo-icon-btn:hover{background:#EAF0FD; color:var(--blue);}
   .del-btn:hover{background:var(--warn-bg); color:var(--warn);}
 
   /* ---------- footer ---------- */
@@ -218,10 +235,37 @@
   .footer-link-btn{font-size:13px; color:#D4D4D9; background:none; border:none; padding:0; cursor:pointer; text-decoration:underline; transition:color .15s;}
   .footer-link-btn:hover{color:#FFFFFF;}
 
-  /* ---------- print ---------- */
+  /* ---------- laporan cetak (PDF) ---------- */
+  .print-only{display:none;}
   @media print{
-    .no-print{display:none !important;}
+    body > *:not(#printReport){display:none !important;}
+    #printReport{display:block !important;}
     body{background:#FFFFFF !important;}
+    @page{margin:16mm 14mm;}
+  }
+  .pr-page{font-family:'Inter', system-ui, sans-serif; color:var(--text); max-width:720px; margin:0 auto;}
+  .pr-header{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:3px solid var(--navy); padding-bottom:14px; margin-bottom:6px;}
+  .pr-title{font-size:22px; font-weight:800; color:var(--navy); margin:0;}
+  .pr-subtitle{font-size:12.5px; color:var(--muted); margin-top:3px;}
+  .pr-meta{font-size:11px; color:var(--faint); text-align:right; line-height:1.6;}
+  .pr-stats{display:flex; gap:0; border:1px solid var(--border); border-radius:6px; overflow:hidden; margin:18px 0;}
+  .pr-stat{flex:1; padding:12px 14px; border-right:1px solid var(--border);}
+  .pr-stat:last-child{border-right:none;}
+  .pr-stat-value{font-size:20px; font-weight:800; color:var(--navy); font-variant-numeric:tabular-nums;}
+  .pr-stat-label{font-size:10.5px; color:var(--muted); margin-top:2px;}
+  .pr-section-title{font-size:13px; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:.04em; margin:22px 0 10px; padding-bottom:6px; border-bottom:1.5px solid var(--navy);}
+  .pr-table{width:100%; border-collapse:collapse; font-size:11.5px; margin-bottom:6px;}
+  .pr-table th{text-align:left; font-size:10px; letter-spacing:.03em; text-transform:uppercase; color:var(--muted); border-bottom:1.5px solid var(--border); padding:6px 8px;}
+  .pr-table td{padding:7px 8px; border-bottom:1px solid var(--border); vertical-align:top;}
+  .pr-badge{display:inline-block; font-size:9.5px; font-weight:700; border-radius:10px; padding:2px 8px;}
+  .pr-badge-met{color:#177A4C; background:#E7F5EC;}
+  .pr-badge-pending{color:#B4530A; background:#FDF0E4;}
+  .pr-empty{font-size:11.5px; color:var(--faint); padding:8px 0; font-style:italic;}
+  .pr-footer{margin-top:28px; padding-top:12px; border-top:1px solid var(--border); font-size:9.5px; color:var(--faint); line-height:1.6;}
+  @media print{
+    .pr-table{page-break-inside:auto;}
+    .pr-table tr{page-break-inside:avoid;}
+    .pr-section-title{page-break-after:avoid;}
   }
 </style>
 </head>
@@ -247,27 +291,9 @@
         <div class="identify-col-head"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span data-i18n="identify2Head">Data tersimpan lokal di perangkat Anda</span></div>
         <p class="identify-col-text" data-i18n="identify2Text">Daftar kegiatan yang Anda tambahkan tersimpan untuk Anda sendiri di browser ini, tidak dikirim atau dibagikan ke server universitas atau pihak lain.</p>
       </div>
-      <div class="identify-col">
-        <div class="identify-col-head"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span data-i18n="identify3Head">Sebatas Prediksi</span></div>
-        <p class="identify-col-text" data-i18n="identify3Text">Sebagian mata kuliah membatasi jumlah kegiatan sejenis yang bisa diklaim (misalnya volunteer maksimal 2 MKPK). Selalu cek syarat detail di rubrik sebelum mengandalkan angka di sini.</p>
-      </div>
     </div>
   </div>
 </div>
-
-<!-- ============ SITE NAV (navigasi antar halaman) ============ -->
-<nav class="site-nav no-print">
-  <div class="container site-nav-inner">
-    <a href="#" class="site-brand">Prediksi MKPK</a>
-    <div class="site-nav-links">
-      <a href="#" class="site-nav-link active" id="siteNavPrediksiLink" data-i18n="siteNavPrediksi">Prediksi SKS</a>
-      <button type="button" class="site-nav-link" id="dosenNavBtn" data-i18n="siteNavDosen">Dosen Pembimbing</button>
-    </div>
-  </div>
-</nav>
-
-<!-- ============ PAGE: PREDIKSI SKS ============ -->
-<div id="page-prediksi">
 
 <!-- ============ MASTHEAD ============ -->
 <header class="masthead">
@@ -275,14 +301,21 @@
     <div class="masthead-top">
       <h1 class="title">Prediksi MKPK</h1>
       <div style="display:flex; gap:8px; align-items:center;">
-        <button class="lang-toggle no-print" id="langToggle" type="button">EN</button>
+        <button class="guide-btn no-print" id="guideBtn" type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <span data-i18n="guideBtn">Panduan</span>
+        </button>
+        <div class="lang-switch no-print" role="group" aria-label="Bahasa">
+          <button class="lang-switch-btn" id="langBtnId" type="button" data-lang="id">ID</button>
+          <button class="lang-switch-btn" id="langBtnEn" type="button" data-lang="en">EN</button>
+        </div>
         <button class="export-btn no-print" onclick="window.print()">
           <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           <span data-i18n="exportBtn">Ekspor PDF</span>
         </button>
       </div>
     </div>
-    <p class="subtitle" data-i18n="subtitle">Setiap kegiatan hanya berhak dikonversi ke mata kuliah MKPK tertentu sesuai tabel pemetaan resmi. SKS total kegiatan dialokasikan otomatis ke mata kuliah berhak yang sisa kebutuhannya paling kecil, supaya lebih banyak mata kuliah selesai.</p>
+    <p class="subtitle" data-i18n="subtitle">Setiap kegiatan hanya berhak dikonversi ke mata kuliah MKPK tertentu sesuai tabel pemetaan resmi. SKS total kegiatan dialokasikan otomatis ke mata kuliah berhak yang sisa kebutuhannya paling kecil, supaya lebih banyak mata kuliah selesai. Hasilnya sebatas prediksi; sebagian mata kuliah membatasi jumlah kegiatan sejenis yang bisa diklaim, jadi selalu cek syarat detail di rubrik.</p>
 
     <div class="stat-row">
       <div class="stat-card"><div class="stat-value" id="statMet">0<span class="stat-of" id="statMetOf"> / 0</span></div><div class="stat-label" data-i18n="statMetLabel">Mata kuliah terpenuhi</div></div>
@@ -308,20 +341,6 @@
     </div>
   </div>
 </header>
-
-<!-- ============ OVERLAY: MEMO DOSEN PEMBIMBING (belum tersedia) ============ -->
-<div class="overlay-backdrop no-print" id="memoOverlay">
-  <div class="overlay-card" role="dialog" aria-modal="true" aria-labelledby="memoOverlayTitle">
-    <button type="button" class="overlay-close" id="memoOverlayClose" aria-label="Tutup">
-      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-    <div class="overlay-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-    </div>
-    <h3 class="overlay-title" id="memoOverlayTitle" data-i18n="memoOverlayTitle">Segera Hadir</h3>
-    <p class="overlay-text" id="memoOverlayTextEl" data-i18n="memoOverlayText">Akan ada sistem memo baru. Silakan tunggu informasi terbaru.</p>
-  </div>
-</div>
 
 <!-- ============ TOAST NOTIFIKASI ============ -->
 <div class="toast no-print" id="toast">
@@ -359,14 +378,17 @@
     <div class="field">
       <label class="field-label" data-i18n="labelSpesifik">Nama atau Judul Kegiatan Spesifik (opsional)</label>
       <input type="text" class="field-input" id="namaSpesifikInput" placeholder='mis. "Coursera: Data Analysis Specialization", "Juara 2 GEMASTIK Bidang V 2025"' data-i18n-placeholder="spesifikPlaceholder" />
-      <div class="hint-text" data-i18n="spesifikHint">Diisi supaya daftar kegiatan Anda mudah dibedakan. Ini bukan bagian dari perhitungan SKS.</div>
+      <div class="hint-text" data-i18n="spesifikHint">Diisi supaya daftar kegiatan Anda mudah dibedakan.</div>
     </div>
 
     <div class="form-grid" id="coeffGrid"></div>
 
     <div class="field" id="tambahanField" style="display:none">
       <label class="field-label" id="tambahanLabel"></label>
-      <input type="number" min="0" step="0.1" value="0" class="field-input narrow" id="tambahanInput" />
+      <input type="number" min="0" step="0.1" value="0" class="field-input narrow" id="tambahanInput" style="display:none" />
+      <div id="tambahanChecklist" class="tambahan-checklist" style="display:none"></div>
+      <div class="hint-text" id="tambahanNote" style="display:none"></div>
+      <div class="hint-text" id="tambahanSum" style="display:none"></div>
     </div>
 
     <div class="field">
@@ -388,7 +410,7 @@
       <div class="docs-label" data-i18n="allocTitle">Alokasi Otomatis ke Mata Kuliah MKPK</div>
       <div class="hint-text" data-i18n="allocHint">Sistem mengisi dulu mata kuliah dengan sisa kebutuhan paling kecil, supaya lebih banyak mata kuliah selesai dan tidak ada penumpukan SKS berlebih di satu mata kuliah saja. Mata kuliah yang sudah penuh otomatis dilewati.</div>
       <div class="met-note" id="metNote" style="display:none"></div>
-      <div class="reco-text" id="recoText" style="display:none"></div>
+      <div class="reco-box" id="recoText" style="display:none"></div>
       <div class="empty-state" id="allocEmptyState" style="display:none" data-i18n="allocEmpty">Semua mata kuliah yang berhak untuk kegiatan ini sudah terpenuhi dari kegiatan lain. Tidak ada tempat lagi untuk mengalokasikan SKS ini.</div>
       <div class="alloc-list" id="allocList"></div>
       <div class="alloc-summary">
@@ -399,18 +421,22 @@
 
     <div class="result-row">
       <div><div class="result-label" data-i18n="resultLabel">Prediksi total SKS kegiatan ini</div><div class="result-value" id="resultValue">0.00 SKS</div></div>
-      <div class="result-btn-group">
-        <button class="memo-btn" type="button" id="memoBtnForm">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
-          <span data-i18n="memoBtn">Buat Memo</span>
-        </button>
-        <button class="add-btn" id="addBtn">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          <span data-i18n="addBtn">Tambah ke Daftar</span>
-        </button>
-      </div>
+      <button class="add-btn" id="addBtn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        <span data-i18n="addBtn">Tambah ke Daftar</span>
+      </button>
     </div>
   </section>
+
+  <!-- ============ BANNER RE-OPTIMASI ============ -->
+  <div class="reopt-banner no-print" id="reoptBanner" style="display:none">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+    <span id="reoptBannerText"></span>
+    <button type="button" class="reopt-banner-btn" id="reoptBannerBtn" data-i18n="reoptViewDetail">Lihat Detail</button>
+    <button type="button" class="reopt-banner-dismiss" id="reoptBannerDismiss" aria-label="Tutup">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
 
   <!-- ============ LANGKAH 2 ============ -->
   <section id="langkah-2" class="card">
@@ -425,53 +451,36 @@
   </section>
 </main>
 
-</div><!-- /page-prediksi -->
-
-<!-- ============ PAGE: DOSEN PEMBIMBING ============ -->
-<div id="page-dosen" style="display:none">
-  <header class="masthead">
-    <div class="container">
-      <h1 class="title" data-i18n="dosenPageTitle">Dosen Pembimbing</h1>
-      <p class="subtitle" data-i18n="dosenPageSubtitle">Cari kontak dosen pembimbing berdasarkan basis kegiatan MKPK Anda, lalu hubungi langsung lewat WhatsApp.</p>
-    </div>
-  </header>
-
-  <main class="container">
-    <section class="card">
-      <div class="notice-box">
-        <div class="notice-box-head" data-i18n="dosenNoticeHead">Nama dosen yang belum bisa diinput ke Sipakamase</div>
-        <p class="notice-box-text" data-i18n="dosenNoticeText">
-          Silakan hubungi dr. Aswadi dan tim (dr. Rasiha dan dr. Pahista). Diharap juga menghubungi dokter yang bersangkutan jika namanya tidak bisa diinput.
-        </p>
-        <div class="dosen-lead-row" id="dosenLeadRow"></div>
-      </div>
-
-      <div class="field">
-        <label class="field-label" data-i18n="dosenSearchLabel">Cari Nama Dosen</label>
-        <input type="text" class="field-input" id="dosenSearchInput" data-i18n-placeholder="dosenSearchPlaceholder" placeholder="Ketik nama dosen..." />
-      </div>
-
-      <div id="dosenListArea"></div>
-    </section>
-  </main>
-</div><!-- /page-dosen -->
-
-<!-- ============ OVERLAY: LOOKUP DOSEN ============ -->
-<div class="overlay-backdrop no-print" id="dosenLookupOverlay">
-  <div class="overlay-card" role="dialog" aria-modal="true" aria-labelledby="dosenLookupName">
-    <button type="button" class="overlay-close" id="dosenLookupClose" aria-label="Tutup">
+<!-- ============ OVERLAY: DETAIL RE-OPTIMASI ============ -->
+<div class="overlay-backdrop no-print" id="reoptOverlay">
+  <div class="overlay-card overlay-card-wide" role="dialog" aria-modal="true" aria-labelledby="reoptOverlayTitle">
+    <button type="button" class="overlay-close" id="reoptOverlayClose" aria-label="Tutup">
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
-    <div class="overlay-icon dosen-avatar">
-      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <div class="overlay-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
     </div>
-    <h3 class="overlay-title" id="dosenLookupName">-</h3>
-    <div class="dosen-lookup-category" id="dosenLookupCategory">-</div>
-    <div class="dosen-lookup-phone" id="dosenLookupPhone">-</div>
-    <a href="#" target="_blank" rel="noopener" class="dosen-chat-btn" id="dosenLookupChatBtn">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-      <span data-i18n="dosenStartChat">Mulai Chat</span>
-    </a>
+    <h3 class="overlay-title" id="reoptOverlayTitle" data-i18n="reoptOverlayTitle">Optimasi Alokasi Ditemukan</h3>
+    <div class="reopt-summary" id="reoptSummary"></div>
+    <div class="reopt-changes" id="reoptChanges"></div>
+    <div class="reopt-actions">
+      <button type="button" class="reopt-cancel-btn" id="reoptCancelBtn" data-i18n="reoptCancel">Nanti Saja</button>
+      <button type="button" class="add-btn" id="reoptApplyBtn" data-i18n="reoptApply">Terapkan Alokasi Baru</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ OVERLAY: PANDUAN PENGGUNAAN ============ -->
+<div class="overlay-backdrop no-print" id="guideOverlay">
+  <div class="overlay-card overlay-card-wide" role="dialog" aria-modal="true" aria-labelledby="guideOverlayTitle">
+    <button type="button" class="overlay-close" id="guideOverlayClose" aria-label="Tutup">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="overlay-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    </div>
+    <h3 class="overlay-title" id="guideOverlayTitle" data-i18n="guideTitle">Panduan Penggunaan</h3>
+    <div class="guide-steps" id="guideSteps"></div>
   </div>
 </div>
 
@@ -488,15 +497,18 @@
     </div>
     <div class="footer-divider"></div>
     <div class="footer-bottom">
-      <div class="footer-copy" data-i18n="footerCopy">Dibuat mandiri oleh mahasiswa &middot; Terakhir diperbarui 14 Agustus 2026</div>
+      <div class="footer-copy" data-i18n="footerCopy">Dibuat mandiri oleh mahasiswa &middot; Terakhir diperbarui 15 Agustus 2026</div>
       <button class="footer-link-btn" id="footerIdentifyBtn" data-i18n="footerIdentifyBtn">Cara mengenali alat ini</button>
     </div>
   </div>
 </footer>
 
+<!-- ============ LAPORAN CETAK (hanya tampil saat print / ekspor PDF) ============ -->
+<div id="printReport" class="print-only"></div>
+
 <script>
 // ===========================================================================
-// DATA — RUBRIK MKPK EDISI 3 (Universitas Hasanuddin)
+// DATA: RUBRIK MKPK EDISI 3 (Universitas Hasanuddin)
 // ===========================================================================
 const COURSES = [
   {id:1,name:"Komunikasi dan Kerjasama",sksRequired:2},{id:2,name:"Manajemen Kegiatan",sksRequired:2},
@@ -529,7 +541,7 @@ const NILAI_MAGANG_SI = [
 
 const DATA = [
   // ================= KOMPETISI =================
-  {cat:"Kompetisi",name:"Olimpiade Nasional MIPA (ONMIPA)",base:3.09,syarat:"Lolos ke Tahap Nasional",tambahanMax:8,mkpk:[4,12,13,15,16,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook & dokumentasi tiap tahap seleksi, sertifikat atau SK capaian."},
+  {cat:"Kompetisi",name:"Olimpiade Nasional MIPA (ONMIPA)",base:3.09,syarat:"Lolos ke Tahap Nasional",tambahanMax:8,tambahanOptions:[{label:"Juara 1, 2, atau 3 tingkat Nasional",value:2},{label:"Juara Harapan",value:1},{label:"Mewakili Universitas ke ajang Internasional",value:2},{label:"Memperoleh penghargaan di ajang Internasional",value:3}],mkpk:[4,12,13,15,16,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook & dokumentasi tiap tahap seleksi, sertifikat atau SK capaian."},
   {cat:"Kompetisi",name:"NUDC & KDMI",base:3.29,syarat:"Lolos ke Tahap Nasional",tambahanMax:3,mkpk:[1,3,4,11,12,13,16,17],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, dokumentasi, sertifikat atau SK capaian."},
   {cat:"Kompetisi",name:"PILMAPRES",base:4.76,syarat:"Lolos ke Tahap Nasional",tambahanMax:3,mkpk:[4,5,11,13,15,16,17,18,19,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, portofolio, sertifikat atau SK capaian."},
   {cat:"Kompetisi",name:"PKM – PIMNAS",base:6.32,syarat:"Lolos Pendanaan",tambahanMax:4,coeff:[TEAM_ROLE],mkpk:[1,2,3,5,8,9,10,12,13,15,16,18,19,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Proposal & bukti submit, logbook, laporan kemajuan, dokumentasi karya, sertifikat atau SK."},
@@ -540,21 +552,21 @@ const DATA = [
   {cat:"Kompetisi",name:"Kompetisi Bangunan Gedung Indonesia (KBGI)",base:5.58,syarat:"Lolos ke Tingkat Nasional",tambahanMax:3,coeff:[TEAM_ROLE],mkpk:[1,5,13,15,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, proposal, dokumentasi karya, sertifikat atau SK."},
   {cat:"Kompetisi",name:"Kontes Robot Terbang Indonesia (KRTI)",base:5.11,syarat:"Lolos ke Tingkat Wilayah",tambahanMax:7,coeff:[TEAM_ROLE],mkpk:[1,5,13,15,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, proposal, dokumentasi karya, sertifikat atau SK."},
   {cat:"Kompetisi",name:"Lomba Inovasi Digital Mahasiswa (LIDM)",base:3.4,syarat:"Lolos ke Tingkat Nasional",desc:"Kompetisi Kemendikbud di bidang inovasi digital untuk pendidikan atau pembelajaran.",tambahanMax:1,mkpk:[1,4,5,15,16,17],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, proposal atau karya, sertifikat atau SK."},
-  {cat:"Kompetisi",name:"Satria Data – NSC",base:4.0,syarat:"Lolos ke Tingkat Nasional",desc:"Kompetisi statistika nasional oleh BPS, kategori analisis statistik umum (National Statistics Competition).",tambahanMax:2,mkpk:[1,4,5,12,13,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
-  {cat:"Kompetisi",name:"Satria Data – SEC",base:2.61,syarat:"Lolos ke Tingkat Nasional",desc:"Kompetisi statistika BPS, kategori penulisan esai berbasis data (Statistics Essay Competition).",tambahanMax:2,mkpk:[1,4,5,12,13,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
-  {cat:"Kompetisi",name:"Satria Data – SIC",base:2.61,syarat:"Lolos ke Tingkat Nasional",desc:"Kompetisi statistika BPS, kategori infografis data (Statistics Infographic Competition).",tambahanMax:2,mkpk:[1,4,5,12,13,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
-  {cat:"Kompetisi",name:"Satria Data – BDC",base:3.83,syarat:"Lolos ke Tingkat Nasional",desc:"Kompetisi statistika BPS, kategori pengolahan big data (Big Data Challenge).",tambahanMax:2,mkpk:[1,4,5,12,13,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
+  {cat:"Kompetisi",name:"Satria Data – NSC",base:4.0,syarat:"Lolos ke Tingkat Nasional",desc:"Kompetisi statistika nasional oleh BPS, kategori analisis statistik umum (National Statistics Competition).",tambahanMax:2,tambahanOptions:[{label:"Memperoleh penghargaan khusus tingkat nasional",value:1},{label:"Memperoleh medali emas, perak, atau perunggu tingkat nasional",value:2}],mkpk:[1,4,5,12,13,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
+  {cat:"Kompetisi",name:"Satria Data – SEC",base:2.61,syarat:"Lolos ke Tingkat Nasional",desc:"Kompetisi statistika BPS, kategori penulisan esai berbasis data (Statistics Essay Competition).",tambahanMax:2,tambahanOptions:[{label:"Memperoleh penghargaan khusus tingkat nasional",value:1},{label:"Memperoleh medali emas, perak, atau perunggu tingkat nasional",value:2}],mkpk:[1,4,5,12,13,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
+  {cat:"Kompetisi",name:"Satria Data – SIC",base:2.61,syarat:"Lolos ke Tingkat Nasional",desc:"Kompetisi statistika BPS, kategori infografis data (Statistics Infographic Competition).",tambahanMax:2,tambahanOptions:[{label:"Memperoleh penghargaan khusus tingkat nasional",value:1},{label:"Memperoleh medali emas, perak, atau perunggu tingkat nasional",value:2}],mkpk:[1,4,5,12,13,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
+  {cat:"Kompetisi",name:"Satria Data – BDC",base:3.83,syarat:"Lolos ke Tingkat Nasional",desc:"Kompetisi statistika BPS, kategori pengolahan big data (Big Data Challenge).",tambahanMax:2,tambahanOptions:[{label:"Memperoleh penghargaan khusus tingkat nasional",value:1},{label:"Memperoleh medali emas, perak, atau perunggu tingkat nasional",value:2}],mkpk:[1,4,5,12,13,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
   {cat:"Kompetisi",name:"PPK Ormawa – Tim Pelaksana",base:6.93,syarat:"Lolos pendanaan & selesai kegiatan",desc:"Program Penguatan Kapasitas Ormawa, yaitu pendanaan Kemendikbud untuk organisasi mahasiswa menjalankan proyek pemberdayaan masyarakat.",tambahanMax:2,mkpk:[1,2,3,5,6,8,9,10,12,13,16,18,19,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Proposal, laporan kemajuan, laporan akhir, dokumentasi, SK."},
   {cat:"Kompetisi",name:"PPK Ormawa – Perwakilan Ormawa",base:1.6,syarat:"Lolos pendanaan & selesai kegiatan",desc:"Anggota ormawa yang ditugaskan mewakili organisasi dalam program PPK Ormawa, bukan bagian tim pelaksana inti.",tambahanMax:5,mkpk:[1,2,3,5,6,8,9,10,12,13,16,18,19,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"SK penugasan, logbook, dokumentasi."},
   {cat:"Kompetisi",name:"PPK Ormawa – Pendanaan Internal",base:6.4,syarat:"Dapat pendanaan internal & selesai kegiatan",desc:"PPK Ormawa yang didanai internal kampus (bukan lolos pendanaan Kemendikbud).",tambahanMax:0,mkpk:[1,2,3,5,6,8,9,10,12,13,16,18,19,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"SK pendanaan, laporan, dokumentasi."},
-  {cat:"Kompetisi",name:"Musabaqah Tilawatil Qur'an (MTQ)",base:1.0,syarat:"Juara 1–3 Provinsi atau Nasional atau lolos Tahap Nasional",desc:"Lomba tilawah, hafalan, atau pemahaman Al-Qur'an tingkat provinsi hingga nasional.",tambahanMax:5.75,mkpk:[1,15,16,18,19,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Sertifikat atau SK, dokumentasi."},
-  {cat:"Kompetisi",name:"GEMASTIK Bidang I & II",base:3.15,syarat:"Lolos ke Tingkat Nasional",tambahanMax:1.5,mkpk:[1,4,5,12,13,14,15,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
+  {cat:"Kompetisi",name:"Musabaqah Tilawatil Qur'an (MTQ)",base:1.0,syarat:"Juara 1–3 Provinsi atau Nasional atau lolos Tahap Nasional",desc:"Lomba tilawah, hafalan, atau pemahaman Al-Qur'an tingkat provinsi hingga nasional.",tambahanMax:5.75,tambahanOptions:[{label:"Juara 1, 2, atau 3 MTQM tingkat Unhas",value:0.5},{label:"Juara 1, 2, atau 3 MTQ tingkat Provinsi",value:0.75},{label:"Juara 1, 2, atau 3 MTQM tingkat Nasional",value:1},{label:"Juara 1, 2, atau 3 MTQ tingkat Nasional",value:1.5},{label:"Juara 1, 2, atau 3 MTQ tingkat Internasional",value:2}],mkpk:[1,15,16,18,19,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Sertifikat atau SK, dokumentasi."},
+  {cat:"Kompetisi",name:"GEMASTIK Bidang I & II",base:3.15,syarat:"Lolos ke Tingkat Nasional",tambahanMax:1.5,tambahanOptions:[{label:"Memperoleh penghargaan khusus tingkat nasional",value:0.5},{label:"Memperoleh medali emas, perak, atau perunggu tingkat nasional",value:1}],mkpk:[1,4,5,12,13,14,15,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
   {cat:"Kompetisi",name:"GEMASTIK Bidang III, IV, V, VI, VII, X, XI",base:3.15,syarat:"Lolos ke Tingkat Nasional",tambahanMax:3,mkpk:[1,4,5,12,13,14,15,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
   {cat:"Kompetisi",name:"GEMASTIK Bidang VIII & IX",base:3.15,syarat:"Lolos ke Tingkat Nasional",tambahanMax:5,mkpk:[1,4,5,12,13,14,15,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
   {cat:"Kompetisi",name:"KBMK (Bisnis, Manajemen, Keuangan)",base:3.0,syarat:"Lolos ke Babak Final",desc:"Kompetisi Mahasiswa Nasional Bidang Ilmu Bisnis, Manajemen, dan Keuangan.",tambahanMax:1,mkpk:[1,9,10,16,17],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
-  {cat:"Kompetisi",name:"Kompetisi Kemaritiman Mahasiswa Nasional (KKMN)",base:2.02,syarat:"Lolos sebagai Finalis",desc:"Kompetisi nasional bertema kemaritiman (kelautan, perikanan, kepelabuhan, dll.).",tambahanMax:1.5,mkpk:[1,16],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
+  {cat:"Kompetisi",name:"Kompetisi Kemaritiman Mahasiswa Nasional (KKMN)",base:2.02,syarat:"Lolos sebagai Finalis",desc:"Kompetisi nasional bertema kemaritiman (kelautan, perikanan, kepelabuhan, dll.).",tambahanMax:1.5,tambahanOptions:[{label:"Juara 1, 2, atau 3 kategori Presentasi",value:1},{label:"Juara 1, 2, atau 3 kategori Poster",value:0.5}],mkpk:[1,16],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
   {cat:"Kompetisi",name:"PORPROV, POMNAS, PON, atau Lomba Olahraga Regional-Internasional",base:1.93,syarat:"Memenangkan lomba (rentang SKS 1,93–19,30 tergantung capaian)",tambahanMax:0,mkpk:[1,3,4,7,11,12,13,14,18,19],nilai:NILAI_KOMPETISI_GENERIK,docs:"Sertifikat atau SK, dokumentasi."},
-  {cat:"Kompetisi",name:"PEKSIMINAS atau PEKSIMIDA",base:1.64,syarat:"Lolos ke Tingkat Nasional",tambahanMax:1,mkpk:[1,7,18,19],nilai:NILAI_KOMPETISI_GENERIK,docs:"Sertifikat atau SK, dokumentasi."},
+  {cat:"Kompetisi",name:"PEKSIMINAS atau PEKSIMIDA",base:1.64,syarat:"Lolos ke Tingkat Nasional",tambahanMax:1,tambahanOptions:[{label:"Memperoleh juara pada PEKSIMINAS",value:1}],mkpk:[1,7,18,19],nilai:NILAI_KOMPETISI_GENERIK,docs:"Sertifikat atau SK, dokumentasi."},
   {cat:"Kompetisi",name:"Lomba Paduan Suara Mahasiswa (LPSM)",base:1.38,syarat:"Lolos ke Tingkat Nasional",tambahanMax:1,mkpk:[1,18,19],nilai:NILAI_KOMPETISI_GENERIK,docs:"Sertifikat atau SK, dokumentasi."},
   {cat:"Kompetisi",name:"Pesta Paduan Suara Gerejawi (PESPARAWI)",base:0.85,syarat:"Lolos ke Tingkat Nasional",tambahanMax:1,mkpk:[1,18,19],nilai:NILAI_KOMPETISI_GENERIK,docs:"Sertifikat atau SK, dokumentasi."},
   {cat:"Kompetisi",name:"Juri atau Wasit Penalaran, Seni, Olahraga",base:1.0,syarat:"Sertifikat atau SK dari pejabat berwenang",tambahanMax:0,mkpk:[12,14],nilai:NILAI_KOMPETISI_GENERIK,docs:"Sertifikat atau SK dari pejabat berwenang, dokumentasi saat bertugas."},
@@ -565,7 +577,7 @@ const DATA = [
 
   // ================= KEWIRAUSAHAAN =================
   {cat:"Kewirausahaan",name:"Program Mahasiswa Wirausaha (PMW)",base:3.18,syarat:"Lolos pendanaan & selesai kegiatan",desc:"Program pendanaan usaha rintisan dari kampus (internal Unhas).",tambahanMax:1,coeff:[TEAM_ROLE],mkpk:[1,2,3,4,9,10],docs:"Proposal ide & usaha, BMC, laporan bulanan usaha, laporan kemajuan, laporan akhir & sertifikat."},
-  {cat:"Kewirausahaan",name:"Program Pembinaan Mahasiswa Wirausaha (P2MW)",base:4.18,syarat:"Lolos pendanaan & selesai kegiatan dengan baik",desc:"Program pendanaan wirausaha dari Kemendikbud (Belmawa), jenjang lebih tinggi dari PMW, bermuara ke KMI Award.",tambahanMax:1,coeff:[TEAM_ROLE],mkpk:[1,2,3,4,5,9,10,12,13],docs:"Proposal, laporan kemajuan, laporan akhir, dokumen KMI Award (jika ada)."},
+  {cat:"Kewirausahaan",name:"Program Pembinaan Mahasiswa Wirausaha (P2MW)",base:4.18,syarat:"Lolos pendanaan & selesai kegiatan dengan baik",desc:"Program pendanaan wirausaha dari Kemendikbud (Belmawa), jenjang lebih tinggi dari PMW, bermuara ke KMI Award.",tambahanMax:1,tambahanOptions:[{label:"Mendapatkan penghargaan KMI Award",value:1}],coeff:[TEAM_ROLE],mkpk:[1,2,3,4,5,9,10,12,13],docs:"Proposal, laporan kemajuan, laporan akhir, dokumen KMI Award (jika ada)."},
   {cat:"Kewirausahaan",name:"Wirausaha Mandiri",base:2.08,syarat:"Usia usaha ≥3 bulan, margin keuntungan ≥15%",desc:"Usaha pribadi yang berjalan tanpa pendanaan program kampus (modal sendiri).",tambahanMax:0,mkpk:[2,9,10],docs:"Dokumen kelengkapan usaha minimal NIB, bukti cashflow atau margin keuntungan."},
 
   // ================= KEORGANISASIAN =================
@@ -638,6 +650,11 @@ const DATA = [
 
   // ================= PENGABDIAN MASYARAKAT =================
   {cat:"Pengabdian Masyarakat",name:"Pemberdayaan Masyarakat Terprogram",base:1.02,syarat:"Menyelesaikan kegiatan pemberdayaan masyarakat terprogram",tambahanMax:5,coeff:[TEAM_ROLE],mkpk:[1,2,6,7,8,13,14],
+    tambahanOptions:[
+      {label:"Pendanaan ≤10 juta",value:0.5},{label:"Pendanaan 11-50 juta",value:1.5},{label:"Pendanaan >50 juta",value:2},
+      {label:"Skala Internal Unhas",value:1},{label:"Skala Nasional",value:2.5},{label:"Skala Internasional",value:3},
+    ],
+    tambahanNote:"Ini dua dimensi terpisah (pendanaan dan skala). Pilih maksimal satu dari tiap kelompok, sesuai capaian tertinggi Anda.",
     nilai:[{label:"Ada proposal + laporan atau logbook + publikasi media massa",value:100},{label:"Ada proposal + laporan atau logbook, TANPA publikasi media massa",value:95}],
     docs:"Proposal, laporan kegiatan atau logbook, publikasi media massa (jika ada), SK pendanaan (jika ada)."},
   {cat:"Pengabdian Masyarakat",name:"Bakti Sosial",base:0.24,syarat:"Menyelesaikan kegiatan bakti sosial",tambahanMax:0,mkpk:[2,6],nilai:NILAI_DOKUMEN_90,docs:"Dokumentasi, logbook, laporan, sertifikat atau SK."},
@@ -707,81 +724,6 @@ const DATA = [
 
 const CATEGORIES = [...new Set(DATA.map(d => d.cat))];
 
-// ===========================================================================
-// DATA DOSEN PEMBIMBING
-// ===========================================================================
-const DOSEN_TEAM_LEAD = { name: "Aswadi", phone: "6285242274424" };
-const DOSEN_DATA = [
-  { category: "Basis Kompetisi", advisors: [
-    { name: "Isharyah Sunarno", phone: "62811461814" },
-    { name: "Amalia Mulia Utami", phone: "31621921929" },
-    { name: "Monika Fitria Farid", phone: "6281343511353" },
-    { name: "Triani Hastuti H.", phone: "6281342696197" },
-    { name: "Zakiah", phone: "6281342406051" },
-    { name: "Fathimah Azzahra", phone: "6285242662622" },
-    { name: "Febyan Rasmin Kotto", phone: "6282190797012" },
-    { name: "Ainun Aniah Hasyim", phone: "6281354553199" },
-  ] },
-  { category: "Basis Kewirausahaan, Magang dan Publikasi Ilmiah", advisors: [
-    { name: "Gita Vita Soraya", phone: "628114600114" },
-    { name: "Citra Rosyidah", phone: "6281242421112" },
-    { name: "Nuria Iftitah Dedikasih Dachlan", phone: "628114451885" },
-    { name: "Hedi Kuswanto", phone: "62895618739904" },
-    { name: "Yusfiana Majid", phone: "6281527159324" },
-    { name: "Rasiha", phone: "6285190030430" },
-    { name: "Indah Nurul Khairunnisa", phone: "6281242444664" },
-  ] },
-  { category: "Basis Keorganisasian", advisors: [
-    { name: "Sultan Hasanuddin", phone: "6285242275029" },
-    { name: "Reski Ayu Anzar", phone: "6281242767601" },
-    { name: "Zulfikar Yahya", phone: "6287845277928" },
-    { name: "Andi Aisyah Putri Al Syafre", phone: "6282271546440" },
-    { name: "Miftahul Ulum Muktamar", phone: "6285342491100" },
-    { name: "Amila Saliha Mustarin", phone: "6281342242435" },
-    { name: "Andi Izza Qarimah", phone: "6282385719648" },
-    { name: "Tria Gita Octaviani", phone: "6282190363303" },
-  ] },
-  { category: "Basis Kepesertaan", advisors: [
-    { name: "Yenni Yusuf", phone: "6281289114106" },
-    { name: "Andriany Qanitha", phone: "628114442501" },
-    { name: "Yunialthy Dwia Pertiwi", phone: "628114919216" },
-    { name: "Nurul Rifqiani Djerman", phone: "6287819850815" },
-    { name: "Fadhil Kurniawan", phone: "6285242697879" },
-    { name: "Ira Mukarramah", phone: "6281342962777" },
-    { name: "Sisca", phone: "6282346390500" },
-    { name: "Filza Salsabila", phone: "6282296250230" },
-  ] },
-  { category: "Basis Pengembangan Minat dan Bakat Pendukung", advisors: [
-    { name: "Adelina Titirina Poli", phone: "628114442806" },
-    { name: "Nurul Qalby", phone: "6281342143588" },
-    { name: "Jaury Prawiro Sutjianto", phone: "6282188801899" },
-    { name: "Nadhifah Nurul Muthiah", phone: null },
-    { name: "Ismi Nuranggraeni Guntur", phone: "6282339927795" },
-    { name: "Retno Nurul Latifah", phone: "6282187494607" },
-    { name: "Andi St Nurul Haerunnisa Nasser", phone: "6282187780450" },
-    { name: "Nirmalasari", phone: "6281257323573" },
-  ] },
-  { category: "Basis Kegiatan Fakultas", advisors: [
-    { name: "Suryani Tawali", phone: "6281343774458" },
-    { name: "Kartika Paramita", phone: "6281334398940" },
-    { name: "Ainan Raena Nas", phone: "6282187052893" },
-    { name: "Andi Ika Hikmah Apriyanti Syam", phone: "6282187726056" },
-    { name: "Muhammad Rizky Malik Budu", phone: "6282188197100" },
-    { name: "Wirdah Ulfahaini Mappalotteng", phone: "628114140132" },
-    { name: "Fitriani Taufik", phone: "6282396505041" },
-  ] },
-  { category: "Basis Kegiatan Pengabdian Masyarakat", advisors: [
-    { name: "Rani Yunita Patong", phone: "6285299390910" },
-    { name: "Andi Ratih Radiah Iskandar", phone: "6281241927377" },
-    { name: "Rezky Fajrianti Umar", phone: "628114140603" },
-    { name: "Pahista Pamberiaski", phone: "6281345981559" },
-    { name: "Alma Aulia Rivanti", phone: "6282293081595" },
-    { name: "Farid Firmansyah", phone: "6282187132553" },
-    { name: "Muh. Fathurrozi Idar", phone: "6282192191675" },
-    { name: "Rifqi Wardana", phone: "6285397224861" },
-  ] },
-];
-
 function computeSKS(item, coeffValues, tambahan){
   let mult = 1;
   if (item.coeff) for (const g of item.coeff) mult *= coeffValues[g.key] ?? g.options[0].value;
@@ -789,7 +731,7 @@ function computeSKS(item, coeffValues, tambahan){
 }
 
 // ===========================================================================
-// I18N — lapisan terjemahan (chrome antarmuka saja; nama kegiatan atau mata kuliah
+// I18N: lapisan terjemahan (chrome antarmuka saja; nama kegiatan atau mata kuliah
 // resmi tetap Bahasa Indonesia karena itu istilah asli di rubrik & Sipakamase)
 // ===========================================================================
 const I18N = {
@@ -800,10 +742,8 @@ const I18N = {
     identify1Text: "Dibuat mandiri oleh mahasiswa untuk membantu prediksi SKS berdasarkan Rubrik MKPK Edisi 3. Pengisian activity hours dan klaim MKPK yang sesungguhnya tetap lewat Sipakamase.",
     identify2Head: "Data tersimpan lokal di perangkat Anda",
     identify2Text: "Daftar kegiatan yang Anda tambahkan tersimpan untuk Anda sendiri di browser ini, tidak dikirim atau dibagikan ke server universitas atau pihak lain.",
-    identify3Head: "Sebatas Prediksi",
-    identify3Text: "Sebagian mata kuliah membatasi jumlah kegiatan sejenis yang bisa diklaim (volunteer maksimal 2 MKPK). Selalu cek syarat detail di rubrik sebelum mengandalkan angka di sini.",
     exportBtn: "Ekspor PDF",
-    subtitle: "Setiap kegiatan hanya berhak dikonversi ke mata kuliah MKPK tertentu sesuai tabel pemetaan resmi. SKS total kegiatan dialokasikan otomatis ke mata kuliah berhak yang sisa kebutuhannya paling kecil, supaya lebih banyak mata kuliah selesai.",
+    subtitle: "Setiap kegiatan hanya berhak dikonversi ke mata kuliah MKPK tertentu sesuai tabel pemetaan resmi. SKS total kegiatan dialokasikan otomatis ke mata kuliah berhak yang sisa kebutuhannya paling kecil, supaya lebih banyak mata kuliah selesai. Hasilnya sebatas prediksi; sebagian mata kuliah membatasi jumlah kegiatan sejenis yang bisa diklaim, jadi selalu cek syarat detail di rubrik.",
     statMetLabel: "Mata kuliah terpenuhi",
     statSKSLabel: "SKS terekognisi",
     statSavedLabel: "Kegiatan tersimpan",
@@ -814,30 +754,14 @@ const I18N = {
     targetDoneTemplate: (done, target) => `${done} / ${target} SKS`,
     targetRemainingShort: (r) => `Kurang ${r} SKS`,
     targetReached: "Target tercapai",
-    navMemo: "Memo Dosen Pembimbing",
-    memoBtn: "Buat Memo",
     toastAdded: "Kegiatan berhasil ditambahkan",
-    memoOverlayTitle: "Segera Hadir",
-    memoOverlayText: "Akan ada sistem memo baru. Silakan tunggu informasi terbaru.",
-    siteNavPrediksi: "Prediksi SKS",
-    siteNavDosen: "Dosen Pembimbing",
-    dosenPageTitle: "Dosen Pembimbing",
-    dosenPageSubtitle: "Cari kontak dosen pembimbing berdasarkan basis kegiatan MKPK Anda, lalu hubungi langsung lewat WhatsApp.",
-    dosenNoticeHead: "Nama dosen yang belum bisa diinput ke Sipakamase",
-    dosenNoticeText: "Silakan hubungi dr. Aswadi dan tim (dr. Rasiha dan dr. Pahista). Diharap juga menghubungi dokter yang bersangkutan jika namanya tidak bisa diinput.",
-    dosenSearchLabel: "Cari Nama Dosen",
-    dosenSearchPlaceholder: "Ketik nama dosen...",
-    dosenStartChat: "Mulai Chat",
-    dosenLeadLabel: "Tim penanganan",
-    dosenNoPhone: "Nomor belum tersedia",
-    dosenEmpty: "Tidak ada dosen yang cocok dengan pencarian Anda.",
     cardAddTitle: "Tambah Kegiatan",
     labelCategory: "Kategori",
     labelActivity: "Nama Kegiatan",
     syaratLabel: "Syarat pengakuan",
     labelSpesifik: "Nama atau Judul Kegiatan Spesifik (opsional)",
     spesifikPlaceholder: 'mis. "Coursera: Data Analysis Specialization", "Juara 2 GEMASTIK Bidang V 2025"',
-    spesifikHint: "Diisi supaya daftar kegiatan Anda mudah dibedakan. Ini bukan bagian dari perhitungan SKS.",
+    spesifikHint: "Diisi supaya daftar kegiatan Anda mudah dibedakan.",
     labelNilai: "Estimasi Nilai (dari Rubrik Penilaian)",
     nilaiFixed: "100 (menyelesaikan kegiatan = nilai penuh, tidak bertingkat pada rubrik)",
     nilaiKompetisiHint: "Tingkatan nilai kompetisi mengikuti pola umum di rubrik (Juara 100 atau Harapan 95 atau Finalis 90). Sebagian kompetisi punya rentang berbeda. Cek tabel rubrik penilaian spesifik kompetisi ini untuk kepastian.",
@@ -850,13 +774,55 @@ const I18N = {
     addBtn: "Tambah ke Daftar",
     cardStatusTitle: "Status per Mata Kuliah MKPK",
     footerRefHead: "Referensi",
-    footerCopy: "Dibuat mandiri oleh mahasiswa &middot; Terakhir diperbarui 14 Agustus 2026",
+    footerCopy: "Dibuat mandiri oleh mahasiswa &middot; Terakhir diperbarui 15 Agustus 2026",
     footerIdentifyBtn: "Cara mengenali alat ini",
+    reoptBannerText: (n) => `Optimasi terdeteksi. Berpotensi menyelesaikan ${n} mata kuliah tambahan.`,
+    reoptViewDetail: "Lihat Detail",
+    reoptOverlayTitle: "Optimasi Alokasi Ditemukan",
+    reoptSummaryTemplate: (current, next, names) => `Saat ini ${current} mata kuliah selesai. Dengan alokasi ulang, ${next} mata kuliah bisa selesai, termasuk: ${names}.`,
+    reoptChangeArrow: "dialokasikan ulang ke",
+    reoptCancel: "Nanti Saja",
+    reoptApply: "Terapkan Alokasi Baru",
+    reoptAppliedToast: "Alokasi berhasil dioptimasi ulang",
+    prTitle: "Prediksi MKPK",
+    prSubtitle: "Laporan Prediksi Rekognisi SKS MKPK",
+    prPrintedOn: "Dicetak pada",
+    prSource: "Sumber: Rubrik MKPK Edisi 3",
+    prStatMet: "Mata Kuliah Terpenuhi",
+    prStatSKS: "SKS Terekognisi",
+    prStatTarget: "Target Kelulusan",
+    prCourseStatusTitle: "Status per Mata Kuliah",
+    prSavedTitle: "Daftar Kegiatan",
+    prColMataKuliah: "Mata Kuliah",
+    prColSKS: "SKS",
+    prColKebutuhan: "Kebutuhan",
+    prColStatus: "Status",
+    prColKegiatan: "Kegiatan",
+    prColTujuan: "Tujuan",
+    prColNilai: "Nilai",
+    prMet: "Terpenuhi",
+    prPending: "Belum",
+    prEmptyCourses: "Belum ada mata kuliah yang tersentuh.",
+    prEmptySaved: "Belum ada kegiatan tersimpan.",
+    prDisclaimer: "Laporan ini alat bantu prediksi mandiri berdasarkan Rubrik MKPK Edisi 3, bukan dokumen resmi Universitas Hasanuddin. Pengisian activity hours dan pengajuan klaim MKPK yang sesungguhnya tetap lewat Sipakamase.",
+    guideBtn: "Panduan",
+    guideTitle: "Panduan Penggunaan",
+    guideSteps: [
+      "Pilih kategori dan nama kegiatan yang sesuai dengan yang sudah Anda lakukan.",
+      "Isi koefisien, estimasi nilai, dan SKS tambahan sesuai capaian nyata Anda; sistem otomatis menghitung total SKS kegiatan itu.",
+      "Sistem otomatis mengalokasikan SKS ke mata kuliah MKPK yang paling sedikit sisa kebutuhannya, supaya lebih banyak mata kuliah selesai.",
+      "Klik \"Tambah ke Daftar\" untuk menyimpan kegiatan tersebut.",
+      "Cek status penyelesaian tiap mata kuliah di bagian \"Status per Mata Kuliah MKPK\".",
+      "Pantau progres menuju target kelulusan Anda di bagian atas halaman.",
+      "Kalau sistem menemukan susunan alokasi yang lebih baik dari kegiatan-kegiatan yang sudah tersimpan, notifikasi kuning akan muncul; klik untuk lihat detail sebelum menerapkannya.",
+      "Ekspor laporan PDF kapan saja lewat tombol \"Ekspor PDF\" di pojok kanan atas.",
+    ],
     tambahanLabelTemplate: (max) => `SKS tambahan (prestasi atau pendanaan, dsb, maks. ${max} SKS, cek syarat detail di rubrik)`,
+    tambahanSumTemplate: (sum, max) => `Terpilih: ${sum} dari maksimal ${max} SKS.`,
+    tambahanCappedNote: "Kelebihan dari maksimal tidak dihitung.",
     metNoteTemplate: (names) => `Sudah penuh (dilewati): ${names}.`,
-    recoSingle: (allocated, name, remaining) => `Rekomendasi: arahkan seluruh ${allocated} SKS ke "${name}" (sisa kebutuhannya ${remaining} SKS).`,
-    recoMulti: (parts) => `Rekomendasi: pecah SKS kegiatan ini ke ${parts}. Urutan ini dipilih supaya mata kuliah dengan sisa kebutuhan terkecil selesai lebih dulu.`,
-    laluKe: ", lalu ke ",
+    recoLabel: "Rekomendasi Alokasi",
+    recoNote: "Diurutkan dari sisa kebutuhan terkecil, supaya lebih banyak mata kuliah selesai lebih dulu.",
     allocSudah: (already, req) => `sudah ${already} / ${req} SKS`,
     allocWastedTemplate: (w) => `${w} SKS tidak terpakai (semua mata kuliah berhak sudah penuh)`,
     emptyCourseSummary: "Belum ada mata kuliah yang tersentuh. Tambahkan kegiatan terlebih dahulu.",
@@ -878,10 +844,8 @@ const I18N = {
     identify1Text: "Built independently by a student to help predict credit (SKS) outcomes based on the Rubrik MKPK Edisi 3. Logging activity hours and filing an MKPK claim is still done through Sipakamase.",
     identify2Head: "Your data stays on your own device",
     identify2Text: "The activities you add are stored for you alone, in this browser. Nothing is sent or shared with the university's servers or any third party.",
-    identify3Head: "Prediction Only",
-    identify3Text: "Some courses cap how many similar activities may be claimed (a maximum of two MKPK for volunteering). Always check the detailed requirements in the rubric before relying on the figures shown here.",
     exportBtn: "Export PDF",
-    subtitle: "Each activity is only eligible to convert into specific MKPK courses, per the official mapping table. Total credit is allocated automatically to whichever eligible course has the smallest remaining requirement, so more courses get completed overall.",
+    subtitle: "Each activity is only eligible to convert into specific MKPK courses, per the official mapping table. Total credit is allocated automatically to whichever eligible course has the smallest remaining requirement, so more courses get completed overall. Results are predictions only; some courses cap how many similar activities may be claimed, so always check the detailed requirements in the rubric.",
     statMetLabel: "Courses completed",
     statSKSLabel: "Credits recognised",
     statSavedLabel: "Activities saved",
@@ -892,33 +856,17 @@ const I18N = {
     targetDoneTemplate: (done, target) => `${done} / ${target} credits`,
     targetRemainingShort: (r) => `${r} credits remaining`,
     targetReached: "Target reached",
-    navMemo: "Supervisor Memo",
-    memoBtn: "Create Memo",
     toastAdded: "Activity added successfully",
-    memoOverlayTitle: "Coming Soon",
-    memoOverlayText: "A new memo system is on its way. Please check back for updates.",
-    siteNavPrediksi: "Credit Prediction",
-    siteNavDosen: "Supervisor",
-    dosenPageTitle: "Find a Supervisor",
-    dosenPageSubtitle: "Search for a supervisor's contact by your MKPK activity category, then reach out directly on WhatsApp.",
-    dosenNoticeHead: "Advisor names not yet listed in Sipakamase",
-    dosenNoticeText: "Please contact dr. Aswadi and team (dr. Rasiha and dr. Pahista). You're also asked to contact the relevant doctor directly if their name can't be entered.",
-    dosenSearchLabel: "Search Supervisor Name",
-    dosenSearchPlaceholder: "Type a supervisor's name...",
-    dosenStartChat: "Start Chat",
-    dosenLeadLabel: "Coordination team",
-    dosenNoPhone: "Number not available",
-    dosenEmpty: "No supervisor matches your search.",
     cardAddTitle: "Add an Activity",
     labelCategory: "Category",
     labelActivity: "Activity Name",
     syaratLabel: "Recognition requirement",
     labelSpesifik: "Specific Activity Title (optional)",
     spesifikPlaceholder: 'e.g. "Coursera: Data Analysis Specialization", "2nd Place, GEMASTIK Category V 2025"',
-    spesifikHint: "This helps you tell your saved activities apart. It doesn't affect the credit calculation.",
+    spesifikHint: "This helps you tell your saved activities apart.",
     labelNilai: "Estimated Grade (from the Assessment Rubric)",
-    nilaiFixed: "100 (completing the activity earns full marks — this activity has no graded tiers in the rubric)",
-    nilaiKompetisiHint: "Competition grade tiers follow the common pattern in the rubric (Winner 100 / Honourable mention 95 / Finalist 90). Some competitions use different tiers — check that specific competition's assessment table to be sure.",
+    nilaiFixed: "100 (completing the activity earns full marks; this activity has no graded tiers in the rubric)",
+    nilaiKompetisiHint: "Competition grade tiers follow the common pattern in the rubric (Winner 100 / Honourable mention 95 / Finalist 90). Some competitions use different tiers, so check that specific competition's assessment table to be sure.",
     docsLabel: "Supporting documents required",
     allocTitle: "Automatic Allocation to MKPK Courses",
     allocHint: "The system fills whichever eligible course has the smallest remaining requirement first, so more courses get completed and credit isn't overstacked into a single course. Courses that are already full are skipped automatically.",
@@ -928,13 +876,55 @@ const I18N = {
     addBtn: "Add to List",
     cardStatusTitle: "Status by MKPK Course",
     footerRefHead: "Reference",
-    footerCopy: "Built independently by a student &middot; Last updated 14 August 2026",
+    footerCopy: "Built independently by a student &middot; Last updated 15 August 2026",
     footerIdentifyBtn: "How to recognise this tool",
-    tambahanLabelTemplate: (max) => `Additional credit (achievement/funding, etc — max. ${max} credits; check the rubric for exact conditions)`,
+    reoptBannerText: (n) => `Optimisation found. Could complete ${n} more course${n === 1 ? '' : 's'}.`,
+    reoptViewDetail: "View Details",
+    reoptOverlayTitle: "Allocation Optimisation Found",
+    reoptSummaryTemplate: (current, next, names) => `Currently ${current} course${current === 1 ? '' : 's'} complete. Reallocating could complete ${next}, including: ${names}.`,
+    reoptChangeArrow: "reallocated to",
+    reoptCancel: "Not Now",
+    reoptApply: "Apply New Allocation",
+    reoptAppliedToast: "Allocation successfully re-optimised",
+    prTitle: "Prediksi MKPK",
+    prSubtitle: "MKPK Credit Recognition Prediction Report",
+    prPrintedOn: "Printed on",
+    prSource: "Source: Rubrik MKPK Edisi 3",
+    prStatMet: "Courses Completed",
+    prStatSKS: "Credits Recognised",
+    prStatTarget: "Graduation Target",
+    prCourseStatusTitle: "Status by Course",
+    prSavedTitle: "Activity List",
+    prColMataKuliah: "Course",
+    prColSKS: "Credits",
+    prColKebutuhan: "Required",
+    prColStatus: "Status",
+    prColKegiatan: "Activity",
+    prColTujuan: "Target",
+    prColNilai: "Grade",
+    prMet: "Complete",
+    prPending: "Pending",
+    prEmptyCourses: "No courses touched yet.",
+    prEmptySaved: "No activities saved yet.",
+    prDisclaimer: "This report is an independent prediction tool based on the Rubrik MKPK Edisi 3, not an official Universitas Hasanuddin document. Logging activity hours and filing an actual MKPK claim is still done through Sipakamase.",
+    guideBtn: "Guide",
+    guideTitle: "How to Use This Tool",
+    guideSteps: [
+      "Choose the category and activity name that matches what you actually did.",
+      "Fill in the coefficient, estimated grade, and additional credit based on your real achievement; the system works out the total credit automatically.",
+      "The system automatically allocates credit to whichever eligible course has the smallest remaining requirement, so more courses get completed.",
+      "Click \"Add to List\" to save the activity.",
+      "Check each course's completion status under \"Status by MKPK Course\".",
+      "Track your progress towards your graduation target near the top of the page.",
+      "If the system finds a better allocation across your saved activities, a yellow notification appears; click it to review the details before applying.",
+      "Export a PDF report at any time using the \"Export PDF\" button in the top right.",
+    ],
+    tambahanLabelTemplate: (max) => `Additional credit (achievement/funding, etc, max. ${max} credits; check the rubric for exact conditions)`,
+    tambahanSumTemplate: (sum, max) => `Selected: ${sum} out of a maximum ${max} credits.`,
+    tambahanCappedNote: "Anything above the maximum isn't counted.",
     metNoteTemplate: (names) => `Already complete (skipped): ${names}.`,
-    recoSingle: (allocated, name, remaining) => `Recommendation: put all ${allocated} credits towards "${name}" (it still needs ${remaining} credits).`,
-    recoMulti: (parts) => `Recommendation: split this activity's credit across ${parts}. This order fills the course with the smallest remaining gap first.`,
-    laluKe: ", then ",
+    recoLabel: "Allocation Recommendation",
+    recoNote: "Ordered from the smallest remaining requirement first, so more courses get completed sooner.",
     allocSudah: (already, req) => `already ${already} / ${req} credits`,
     allocWastedTemplate: (w) => `${w} credits unused (every eligible course is already complete)`,
     emptyCourseSummary: "No courses touched yet. Add an activity above first.",
@@ -966,8 +956,10 @@ function applyStaticTranslations(){
     const key = elm.dataset.i18nPlaceholder;
     elm.placeholder = I18N[lang][key];
   });
-  document.getElementById('langToggle').textContent = lang === 'id' ? 'EN' : 'ID';
+  el('langBtnId').classList.toggle('active', lang === 'id');
+  el('langBtnEn').classList.toggle('active', lang === 'en');
   document.documentElement.lang = lang;
+  if (typeof renderGuideSteps === 'function' && el('guideOverlay')?.classList.contains('show')) renderGuideSteps();
 }
 
 // ===========================================================================
@@ -975,6 +967,8 @@ function applyStaticTranslations(){
 // ===========================================================================
 let lang = localStorage.getItem('mkpk-lang') || 'id';
 let saved = JSON.parse(localStorage.getItem('mkpk-saved-v3') || '[]');
+// migrasi data lama yang belum punya field groupId eksplisit
+saved.forEach(e => { if (!e.groupId) e.groupId = String(e.id).replace(/-\d+$/, ''); });
 let coeffValues = {};
 let tambahan = 0;
 let nilaiValue = 100;
@@ -993,6 +987,7 @@ const descNote = el('descNote'), descText = el('descText');
 const namaSpesifikInput = el('namaSpesifikInput');
 const coeffGrid = el('coeffGrid');
 const tambahanField = el('tambahanField'), tambahanLabel = el('tambahanLabel'), tambahanInput = el('tambahanInput');
+const tambahanChecklist = el('tambahanChecklist'), tambahanNote = el('tambahanNote'), tambahanSum = el('tambahanSum');
 const nilaiVariableWrap = el('nilaiVariableWrap'), nilaiSelect = el('nilaiSelect');
 const nilaiFixedText = el('nilaiFixedText'), nilaiKompetisiHint = el('nilaiKompetisiHint');
 const docsText = el('docsText');
@@ -1050,6 +1045,18 @@ function populateItems(){
   itemSelect.innerHTML = list.map(d => `<option value="${d.name}">${d.name}</option>`).join('');
 }
 
+function updateTambahanFromChecklist(){
+  const item = currentItem();
+  if (!item || !Array.isArray(item.tambahanOptions)) return;
+  const checked = [...tambahanChecklist.querySelectorAll('input[type=checkbox]:checked')];
+  const rawSum = checked.reduce((s, cb) => s + Number(cb.dataset.value), 0);
+  const capped = Math.min(item.tambahanMax, Math.round(rawSum * 100) / 100);
+  tambahan = capped;
+  tambahanSum.style.display = 'block';
+  tambahanSum.textContent = t('tambahanSumTemplate', capped.toFixed(2), item.tambahanMax) + (rawSum > item.tambahanMax ? ' ' + t('tambahanCappedNote') : '');
+  renderAllocationAndResult();
+}
+
 function renderItemDetails(){
   const item = currentItem();
   if (!item) return;
@@ -1082,10 +1089,37 @@ function renderItemDetails(){
 
   // tambahan
   tambahan = 0; tambahanInput.value = 0;
+  tambahanChecklist.innerHTML = '';
   if (item.tambahanMax > 0){
     tambahanField.style.display = 'flex';
     tambahanLabel.textContent = t('tambahanLabelTemplate', item.tambahanMax);
     tambahanInput.max = item.tambahanMax;
+
+    if (Array.isArray(item.tambahanOptions)){
+      tambahanInput.style.display = 'none';
+      tambahanChecklist.style.display = 'flex';
+      tambahanChecklist.innerHTML = item.tambahanOptions.map((opt, idx) => `
+        <label class="tambahan-check-row">
+          <input type="checkbox" data-value="${opt.value}" id="tambahanOpt${idx}" />
+          <span class="tambahan-check-label">${opt.label}</span>
+          <span class="tambahan-check-value">+${opt.value.toFixed(2)} SKS</span>
+        </label>`).join('');
+      tambahanChecklist.querySelectorAll('input[type=checkbox]').forEach(cb => {
+        cb.addEventListener('change', updateTambahanFromChecklist);
+      });
+      if (item.tambahanNote){
+        tambahanNote.style.display = 'block';
+        tambahanNote.textContent = item.tambahanNote;
+      } else {
+        tambahanNote.style.display = 'none';
+      }
+      updateTambahanFromChecklist();
+    } else {
+      tambahanInput.style.display = 'block';
+      tambahanChecklist.style.display = 'none';
+      tambahanNote.style.display = 'none';
+      tambahanSum.style.display = 'none';
+    }
   } else {
     tambahanField.style.display = 'none';
   }
@@ -1135,13 +1169,15 @@ function renderAllocationAndResult(){
   } else {
     allocEmptyState.style.display = 'none';
     recoText.style.display = 'block';
-    if (auto.rows.length === 1){
-      const r = auto.rows[0];
-      recoText.textContent = t('recoSingle', r.allocated.toFixed(2), r.name, r.remainingNeed.toFixed(2));
-    } else {
-      const parts = auto.rows.map(r => `"${r.name}" (+${r.allocated.toFixed(2)} SKS)`);
-      recoText.textContent = t('recoMulti', parts.join(t('laluKe')));
-    }
+    const itemsHtml = auto.rows.map(r => `
+      <div class="reco-item">
+        <span class="reco-item-name">${r.name}</span>
+        <span class="reco-item-amount">+${r.allocated.toFixed(2)} SKS</span>
+      </div>`).join('');
+    recoText.innerHTML = `
+      <div class="reco-label">${t('recoLabel')}</div>
+      <div class="reco-list">${itemsHtml}</div>
+      <div class="reco-note">${t('recoNote')}</div>`;
 
     allocList.innerHTML = elig.filter(c => (earned[c.id] || 0) < c.sksRequired).map(c => {
       const row = auto.rows.find(r => r.id === c.id);
@@ -1149,8 +1185,8 @@ function renderAllocationAndResult(){
       const excluded = !!excludedCourses[c.id];
       return `<div class="alloc-row" style="opacity:${excluded ? 0.5 : 1}">
         <input type="checkbox" ${excluded ? '' : 'checked'} data-course="${c.id}" class="alloc-check" />
-        <div class="alloc-name">${c.name}<span class="alloc-req"> &middot; ${t('allocSudah', already.toFixed(2), c.sksRequired)}</span></div>
-        <div class="alloc-amount">${row ? '+' + row.allocated.toFixed(2) + ' SKS' : '-'}</div>
+        <div class="alloc-name">${c.name}<span class="alloc-req">${t('allocSudah', already.toFixed(2), c.sksRequired)}</span></div>
+        <div class="alloc-amount${row ? '' : ' empty'}">${row ? '+' + row.allocated.toFixed(2) + ' SKS' : '-'}</div>
       </div>`;
     }).join('');
 
@@ -1196,10 +1232,13 @@ function addEntry(){
   });
   const groupId = Date.now() + '-' + Math.random().toString(36).slice(2,5);
   const namaSpesifik = namaSpesifikInput.value.trim();
+  const groupTotalSKS = Math.round((addBtn._currentSKS || 0) * 100) / 100; // total SKS asli kegiatan ini, termasuk yang mungkin belum/tidak teralokasi
 
   auto.rows.forEach((r, idx) => {
     saved.push({
       id: `${groupId}-${idx}`,
+      groupId,
+      groupTotalSKS,
       category: item.cat,
       name: item.name,
       namaSpesifik,
@@ -1220,11 +1259,15 @@ function addEntry(){
 }
 
 let toastTimer = null;
-function showToast(){
+function showToast(message){
   const toast = el('toast');
+  if (message) el('toastText').textContent = message;
   toast.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove('show'), 2800);
+  toastTimer = setTimeout(() => {
+    toast.classList.remove('show');
+    el('toastText').textContent = t('toastAdded'); // kembalikan ke pesan default
+  }, 2800);
 }
 
 function removeEntry(id){
@@ -1247,6 +1290,96 @@ function computeCourseSummary(){
     const avgNilai = c.earned > 0 ? Math.round((c.nilaiWeighted / c.earned) * 10) / 10 : 0;
     return {...c, earned, met: earned >= c.required, avgNilai};
   }).sort((a,b) => a.id - b.id);
+}
+
+// ===========================================================================
+// RE-OPTIMASI GLOBAL: hitung ulang alokasi lintas semua kegiatan tersimpan,
+// coba maksimalkan jumlah mata kuliah yang selesai (bukan cuma per-kegiatan
+// saat ditambahkan, tapi mempertimbangkan gabungan semua kegiatan sekaligus).
+// ===========================================================================
+function findDataItem(category, name){
+  return DATA.find(d => d.cat === category && d.name === name);
+}
+
+function computeGlobalReoptimization(){
+  if (saved.length === 0) return null;
+
+  // kelompokkan entri tersimpan berdasarkan groupId (1 kegiatan asli = 1 group,
+  // meski SKS-nya sempat dipecah ke beberapa mata kuliah)
+  const groupsMap = new Map();
+  saved.forEach((e, idx) => {
+    if (!groupsMap.has(e.groupId)){
+      groupsMap.set(e.groupId, {
+        groupId: e.groupId, category: e.category, name: e.name, namaSpesifik: e.namaSpesifik,
+        coeffLabel: e.coeffLabel, tambahan: e.tambahan, nilai: e.nilai, docs: e.docs,
+        totalSKS: 0, allocatedSum: 0, firstSeenIdx: idx, currentRows: [],
+      });
+    }
+    const g = groupsMap.get(e.groupId);
+    // pakai groupTotalSKS (total asli kegiatan, termasuk yang dulu kebuang) kalau ada;
+    // fallback ke jumlah sks teralokasi untuk data lama sebelum field ini ditambahkan
+    g.totalSKS = e.groupTotalSKS != null ? e.groupTotalSKS : g.totalSKS;
+    g.allocatedSum = Math.round((g.allocatedSum + e.sks) * 100) / 100;
+    g.currentRows.push({ courseId: e.courseId, courseName: e.courseName, allocated: e.sks });
+  });
+  // fallback: kalau groupTotalSKS tidak pernah terisi (data lama), pakai jumlah teralokasi
+  groupsMap.forEach(g => { if (!g.totalSKS) g.totalSKS = g.allocatedSum; });
+
+  const groups = [...groupsMap.values()].map(g => {
+    const dataItem = findDataItem(g.category, g.name);
+    const eligibleIds = dataItem ? dataItem.mkpk : [...new Set(g.currentRows.map(r => r.courseId))];
+    return { ...g, eligibleIds };
+  });
+
+  if (groups.some(g => !g.eligibleIds || g.eligibleIds.length === 0)) return null;
+
+  // proses kegiatan paling terbatas (paling sedikit pilihan mata kuliah) duluan
+  const ordered = [...groups].sort((a, b) => a.eligibleIds.length - b.eligibleIds.length || a.firstSeenIdx - b.firstSeenIdx);
+
+  const simEarned = {}; // courseId -> SKS terpakai di simulasi
+  const newRowsByGroup = new Map();
+
+  for (const g of ordered){
+    const candidates = g.eligibleIds
+      .map(id => courseById(id))
+      .filter(Boolean)
+      .map(c => ({ ...c, remainingNeed: Math.max(0, Math.round((c.sksRequired - (simEarned[c.id] || 0)) * 100) / 100) }))
+      .filter(c => c.remainingNeed > 0)
+      .sort((a, b) => a.remainingNeed - b.remainingNeed || a.id - b.id);
+
+    let leftover = g.totalSKS;
+    const rows = [];
+    for (const c of candidates){
+      if (leftover <= 0) break;
+      const amt = Math.round(Math.min(c.remainingNeed, leftover) * 100) / 100;
+      if (amt > 0){
+        rows.push({ courseId: c.id, courseName: c.name, courseRequired: c.sksRequired, allocated: amt });
+        simEarned[c.id] = Math.round(((simEarned[c.id] || 0) + amt) * 100) / 100;
+      }
+      leftover = Math.round((leftover - amt) * 100) / 100;
+    }
+    newRowsByGroup.set(g.groupId, rows);
+  }
+
+  const newCompletedIds = new Set(Object.keys(simEarned).map(Number).filter(id => simEarned[id] >= courseById(id).sksRequired));
+  const currentSummary = computeCourseSummary();
+  const currentCompletedCount = currentSummary.filter(c => c.met).length;
+  const newCompletedCount = newCompletedIds.size;
+
+  if (newCompletedCount <= currentCompletedCount) return null; // tidak ada perbaikan
+
+  // deteksi kegiatan yang alokasinya benar-benar berubah
+  const changedGroups = groups.filter(g => {
+    const oldRows = g.currentRows.map(r => `${r.courseId}:${r.allocated}`).sort().join('|');
+    const newRows = (newRowsByGroup.get(g.groupId) || []).map(r => `${r.courseId}:${r.allocated}`).sort().join('|');
+    return oldRows !== newRows;
+  }).map(g => ({ ...g, newRows: newRowsByGroup.get(g.groupId) || [] }));
+
+  const newlyCompletedCourses = [...newCompletedIds]
+    .filter(id => !currentSummary.some(c => c.id === id && c.met))
+    .map(id => courseById(id).name);
+
+  return { changedGroups, newlyCompletedCourses, currentCompletedCount, newCompletedCount, newRowsByGroup, groups };
 }
 
 function renderCourseSummary(){
@@ -1287,21 +1420,15 @@ function renderTable(){
       <td style="text-align:right; font-variant-numeric:tabular-nums; color:#4A5162">${e.nilai ?? 100}</td>
       <td style="color:#71788A; font-size:14px">${e.docs}</td>
       <td class="no-print">
-        <div class="row-actions">
-          <button class="row-icon-btn memo-icon-btn" data-id="${e.id}" aria-label="${t('memoBtn')}" title="${t('memoBtn')}">
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
-          </button>
-          <button class="row-icon-btn del-btn" data-id="${e.id}" aria-label="${t('hapusLabel')}" title="${t('hapusLabel')}">
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-          </button>
-        </div>
+        <button class="row-icon-btn del-btn" data-id="${e.id}" aria-label="${t('hapusLabel')}" title="${t('hapusLabel')}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+        </button>
       </td>
     </tr>`).join('');
   tableArea.innerHTML = `<div class="table-wrap"><table>
     <thead><tr><th>${t('thKegiatan')}</th><th>${t('thMataKuliah')}</th><th>${t('thCakupan')}</th><th style="text-align:right">${t('thSKS')}</th><th style="text-align:right">${t('thNilai')}</th><th>${t('thDokumen')}</th><th class="no-print"></th></tr></thead>
     <tbody>${rows}</tbody></table></div>`;
   tableArea.querySelectorAll('.del-btn').forEach(btn => btn.addEventListener('click', () => removeEntry(btn.dataset.id)));
-  tableArea.querySelectorAll('.memo-icon-btn').forEach(btn => btn.addEventListener('click', () => openComingSoonOverlay('memoOverlayTitle', 'memoOverlayText')));
 }
 
 function renderStatsAndTarget(summary){
@@ -1322,11 +1449,166 @@ function renderStatsAndTarget(summary){
   targetRemaining.textContent = remaining > 0 ? t('targetRemainingShort', remaining.toFixed(2)) : t('targetReached');
 }
 
+let reoptDismissedFor = null; // signature saved[] terakhir kali banner ini di-dismiss
+
+function savedSignature(){
+  return saved.map(e => `${e.id}:${e.courseId}:${e.sks}`).sort().join('|');
+}
+
+function renderReoptBanner(){
+  const banner = el('reoptBanner');
+  const result = computeGlobalReoptimization();
+  window._lastReoptResult = result;
+
+  const sig = savedSignature();
+  if (!result || sig === reoptDismissedFor){
+    banner.style.display = 'none';
+    return;
+  }
+  banner.style.display = 'flex';
+  el('reoptBannerText').textContent = t('reoptBannerText', result.newlyCompletedCourses.length);
+}
+
+function openReoptOverlay(){
+  const result = window._lastReoptResult;
+  if (!result) return;
+
+  el('reoptSummary').textContent = t(
+    'reoptSummaryTemplate',
+    result.currentCompletedCount,
+    result.newCompletedCount,
+    result.newlyCompletedCourses.join(', ')
+  );
+
+  el('reoptChanges').innerHTML = result.changedGroups.map(g => {
+    const oldPath = g.currentRows.map(r => `${r.courseName} (+${r.allocated.toFixed(2)})`).join(', ');
+    const newPath = g.newRows.map(r => `${r.courseName} (+${r.allocated.toFixed(2)})`).join(', ');
+    return `<div class="reopt-change-row">
+      <div class="reopt-change-name">${g.name}${g.namaSpesifik ? ` &middot; <span style="font-style:italic; font-weight:400;">${g.namaSpesifik}</span>` : ''}</div>
+      <div class="reopt-change-path">
+        <span class="reopt-change-old">${oldPath}</span>
+        <span>&rarr; ${t('reoptChangeArrow')}</span>
+        <span class="reopt-change-new">${newPath}</span>
+      </div>
+    </div>`;
+  }).join('');
+
+  el('reoptOverlay').classList.add('show');
+}
+function closeReoptOverlay(){ el('reoptOverlay').classList.remove('show'); }
+
+function applyReoptimization(){
+  const result = window._lastReoptResult;
+  if (!result) return;
+
+  const newSaved = [];
+  result.groups.forEach(g => {
+    const rows = result.newRowsByGroup.get(g.groupId) || [];
+    rows.forEach((r, idx) => {
+      newSaved.push({
+        id: `${g.groupId}-${idx}`,
+        groupId: g.groupId,
+        category: g.category,
+        name: g.name,
+        namaSpesifik: g.namaSpesifik,
+        coeffLabel: g.coeffLabel,
+        tambahan: g.tambahan,
+        sks: r.allocated,
+        nilai: g.nilai,
+        docs: g.docs,
+        courseId: r.courseId,
+        courseName: r.courseName,
+        courseRequired: r.courseRequired,
+      });
+    });
+  });
+
+  saved = newSaved;
+  persist();
+  closeReoptOverlay();
+  renderAll();
+  showToast(t('reoptAppliedToast'));
+}
+
+function renderPrintReport(){
+  const summary = computeCourseSummary();
+  const met = summary.filter(c => c.met);
+  const totalRecognized = Math.round(met.reduce((s,c) => s + c.required, 0) * 100) / 100;
+  const targetSKS = targetMode === 'kesehatan' ? 10 : targetMode === 'nonkesehatan' ? 20 : Math.max(0, customTarget);
+  const targetLabel = targetMode === 'kesehatan' ? t('targetKesehatan') : targetMode === 'nonkesehatan' ? t('targetNonKesehatan') : t('targetCustom');
+
+  const now = new Date();
+  const dateStr = now.toLocaleDateString(lang === 'id' ? 'id-ID' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+  const courseRows = summary.length === 0
+    ? `<tr><td colspan="4" class="pr-empty">${t('prEmptyCourses')}</td></tr>`
+    : summary.map(c => `
+      <tr>
+        <td>${c.name}</td>
+        <td>${c.earned.toFixed(2)}</td>
+        <td>${c.required}</td>
+        <td><span class="pr-badge ${c.met ? 'pr-badge-met' : 'pr-badge-pending'}">${c.met ? t('prMet') : t('prPending')}</span></td>
+      </tr>`).join('');
+
+  const savedRows = saved.length === 0
+    ? `<tr><td colspan="5" class="pr-empty">${t('prEmptySaved')}</td></tr>`
+    : saved.map(e => `
+      <tr>
+        <td>${e.name}${e.namaSpesifik ? `<br><span style="color:var(--faint); font-style:italic; font-size:10.5px;">${e.namaSpesifik}</span>` : ''}</td>
+        <td>${e.courseName}</td>
+        <td>${e.sks.toFixed(2)}</td>
+        <td>${e.nilai ?? 100}</td>
+        <td style="font-size:10.5px; color:var(--muted);">${e.docs}</td>
+      </tr>`).join('');
+
+  el('printReport').innerHTML = `
+    <div class="pr-page">
+      <div class="pr-header">
+        <div>
+          <h1 class="pr-title">${t('prTitle')}</h1>
+          <div class="pr-subtitle">${t('prSubtitle')}</div>
+        </div>
+        <div class="pr-meta">${t('prPrintedOn')} ${dateStr}<br>${t('prSource')}</div>
+      </div>
+
+      <div class="pr-stats">
+        <div class="pr-stat">
+          <div class="pr-stat-value">${met.length} / ${summary.length}</div>
+          <div class="pr-stat-label">${t('prStatMet')}</div>
+        </div>
+        <div class="pr-stat">
+          <div class="pr-stat-value">${totalRecognized.toFixed(2)}</div>
+          <div class="pr-stat-label">${t('prStatSKS')}</div>
+        </div>
+        <div class="pr-stat">
+          <div class="pr-stat-value">${totalRecognized.toFixed(2)} / ${targetSKS.toFixed(2)}</div>
+          <div class="pr-stat-label">${t('prStatTarget')} (${targetLabel})</div>
+        </div>
+      </div>
+
+      <div class="pr-section-title">${t('prCourseStatusTitle')}</div>
+      <table class="pr-table">
+        <thead><tr><th>${t('prColMataKuliah')}</th><th>${t('prColSKS')}</th><th>${t('prColKebutuhan')}</th><th>${t('prColStatus')}</th></tr></thead>
+        <tbody>${courseRows}</tbody>
+      </table>
+
+      <div class="pr-section-title">${t('prSavedTitle')}</div>
+      <table class="pr-table">
+        <thead><tr><th>${t('prColKegiatan')}</th><th>${t('prColTujuan')}</th><th>${t('prColSKS')}</th><th>${t('prColNilai')}</th><th>${t('thDokumen')}</th></tr></thead>
+        <tbody>${savedRows}</tbody>
+      </table>
+
+      <div class="pr-footer">${t('prDisclaimer')}</div>
+    </div>`;
+}
+
 function renderAll(){
   const summary = renderCourseSummary();
   renderTable();
   renderStatsAndTarget(summary);
   renderAllocationAndResult();
+  renderReoptBanner();
+  renderPrintReport();
 }
 
 // ===========================================================================
@@ -1357,93 +1639,31 @@ el('footerIdentifyBtn').addEventListener('click', () => {
   window.scrollTo({top:0, behavior:'smooth'});
 });
 
-function openComingSoonOverlay(titleKey, textKey){
-  const titleEl = el('memoOverlayTitle');
-  const textEl = el('memoOverlayTextEl');
-  titleEl.dataset.i18n = titleKey;
-  textEl.dataset.i18n = textKey;
-  titleEl.textContent = t(titleKey);
-  textEl.textContent = t(textKey);
-  el('memoOverlay').classList.add('show');
+el('reoptBannerBtn').addEventListener('click', openReoptOverlay);
+el('reoptBannerDismiss').addEventListener('click', () => {
+  reoptDismissedFor = savedSignature();
+  el('reoptBanner').style.display = 'none';
+});
+el('reoptOverlayClose').addEventListener('click', closeReoptOverlay);
+el('reoptCancelBtn').addEventListener('click', closeReoptOverlay);
+el('reoptOverlay').addEventListener('click', (e) => { if (e.target.id === 'reoptOverlay') closeReoptOverlay(); });
+el('reoptApplyBtn').addEventListener('click', applyReoptimization);
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeReoptOverlay(); });
+
+function renderGuideSteps(){
+  const steps = I18N[lang].guideSteps || [];
+  el('guideSteps').innerHTML = steps.map((s, i) => `
+    <div class="guide-step">
+      <span class="guide-step-num">${i + 1}</span>
+      <span class="guide-step-text">${s}</span>
+    </div>`).join('');
 }
-function closeMemoOverlay(){ el('memoOverlay').classList.remove('show'); }
-el('memoBtnForm').addEventListener('click', () => openComingSoonOverlay('memoOverlayTitle', 'memoOverlayText'));
-
-// ---------- navigasi antar halaman ----------
-function showPage(page){
-  el('page-prediksi').style.display = page === 'prediksi' ? '' : 'none';
-  el('page-dosen').style.display = page === 'dosen' ? '' : 'none';
-  document.querySelectorAll('.site-nav-link').forEach(l => l.classList.remove('active'));
-  el(page === 'prediksi' ? 'siteNavPrediksiLink' : 'dosenNavBtn').classList.add('active');
-  window.scrollTo({top:0, behavior:'instant'});
-}
-el('siteNavPrediksiLink').addEventListener('click', (e) => { e.preventDefault(); showPage('prediksi'); });
-el('dosenNavBtn').addEventListener('click', () => { showPage('dosen'); renderDosenList(); });
-
-// ---------- daftar & lookup dosen pembimbing ----------
-function renderDosenLead(){
-  const wrap = el('dosenLeadRow');
-  wrap.innerHTML = `
-    <span class="dosen-lead-name">${DOSEN_TEAM_LEAD.name}</span>
-    <button type="button" class="dosen-lead-btn" id="dosenLeadLookupBtn">
-      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-      ${t('dosenLeadLabel')}
-    </button>`;
-  el('dosenLeadLookupBtn').addEventListener('click', () => openDosenLookup(DOSEN_TEAM_LEAD, t('dosenLeadLabel')));
-}
-
-function renderDosenList(){
-  const query = (el('dosenSearchInput').value || '').trim().toLowerCase();
-  const area = el('dosenListArea');
-  let anyMatch = false;
-  const groupsHtml = DOSEN_DATA.map(group => {
-    const filtered = group.advisors.filter(a => a.name.toLowerCase().includes(query));
-    if (filtered.length === 0) return '';
-    anyMatch = true;
-    const rows = filtered.map(a => `
-      <div class="dosen-row">
-        <span class="dosen-row-name">${a.name}</span>
-        <button type="button" class="dosen-lookup-btn" data-name="${a.name}" data-phone="${a.phone || ''}" data-cat="${group.category}">
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          Lookup
-        </button>
-      </div>`).join('');
-    return `<div class="dosen-group"><div class="dosen-group-title">${group.category}</div>${rows}</div>`;
-  }).join('');
-
-  area.innerHTML = anyMatch ? groupsHtml : `<div class="dosen-empty">${t('dosenEmpty')}</div>`;
-
-  area.querySelectorAll('.dosen-lookup-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      openDosenLookup({ name: btn.dataset.name, phone: btn.dataset.phone || null }, btn.dataset.cat);
-    });
-  });
-}
-
-function openDosenLookup(advisor, categoryLabel){
-  el('dosenLookupName').textContent = advisor.name;
-  el('dosenLookupCategory').textContent = categoryLabel;
-  const chatBtn = el('dosenLookupChatBtn');
-  if (advisor.phone){
-    el('dosenLookupPhone').textContent = '+' + advisor.phone.replace(/(\d{2})(\d{3,4})(\d{3,4})(\d+)/, '$1 $2-$3-$4');
-    chatBtn.href = `https://wa.me/${advisor.phone}`;
-    chatBtn.classList.remove('disabled');
-  } else {
-    el('dosenLookupPhone').textContent = t('dosenNoPhone');
-    chatBtn.removeAttribute('href');
-    chatBtn.classList.add('disabled');
-  }
-  el('dosenLookupOverlay').classList.add('show');
-}
-function closeDosenLookup(){ el('dosenLookupOverlay').classList.remove('show'); }
-el('dosenLookupClose').addEventListener('click', closeDosenLookup);
-el('dosenLookupOverlay').addEventListener('click', (e) => { if (e.target.id === 'dosenLookupOverlay') closeDosenLookup(); });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDosenLookup(); });
-el('dosenSearchInput').addEventListener('input', renderDosenList);
-renderDosenLead();
-el('memoOverlayClose').addEventListener('click', closeMemoOverlay);
-el('memoOverlay').addEventListener('click', (e) => { if (e.target.id === 'memoOverlay') closeMemoOverlay(); });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMemoOverlay(); });
+function openGuideOverlay(){ renderGuideSteps(); el('guideOverlay').classList.add('show'); }
+function closeGuideOverlay(){ el('guideOverlay').classList.remove('show'); }
+el('guideBtn').addEventListener('click', openGuideOverlay);
+el('guideOverlayClose').addEventListener('click', closeGuideOverlay);
+el('guideOverlay').addEventListener('click', (e) => { if (e.target.id === 'guideOverlay') closeGuideOverlay(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeGuideOverlay(); });
 
 ['btnKesehatan','btnNonKesehatan','btnCustom'].forEach(id => {
   el(id).addEventListener('click', (e) => {
@@ -1461,12 +1681,15 @@ customTargetInput.addEventListener('input', e => {
   renderStatsAndTarget(computeCourseSummary());
 });
 
-el('langToggle').addEventListener('click', () => {
-  lang = lang === 'id' ? 'en' : 'id';
+function switchLang(newLang){
+  if (newLang === lang) return;
+  lang = newLang;
   localStorage.setItem('mkpk-lang', lang);
   applyStaticTranslations();
   renderAll();
-});
+}
+el('langBtnId').addEventListener('click', () => switchLang('id'));
+el('langBtnEn').addEventListener('click', () => switchLang('en'));
 
 // ===========================================================================
 // INIT
@@ -1485,6 +1708,7 @@ if (targetMode === 'custom'){
 }
 renderItemDetails();
 renderAll();
+window.addEventListener('beforeprint', renderPrintReport);
 </script>
 </body>
 </html>
