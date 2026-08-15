@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Prediksi MKPK</title>
+<title>Prediksi MKPK: Rubrik MKPK Edisi 3</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
@@ -243,25 +243,29 @@
     body{background:#FFFFFF !important;}
     @page{margin:16mm 14mm;}
   }
-  .pr-page{font-family:'Inter', system-ui, sans-serif; color:var(--text); max-width:720px; margin:0 auto;}
-  .pr-header{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:3px solid var(--navy); padding-bottom:14px; margin-bottom:6px;}
+  .pr-page{font-family:'Inter', system-ui, sans-serif; color:var(--text); width:100%; max-width:100%; box-sizing:border-box;}
+  .pr-header{display:flex; justify-content:space-between; align-items:flex-start;}
+  .pr-doc-label{font-size:10px; font-weight:700; letter-spacing:.12em; color:var(--muted); text-transform:uppercase; margin-bottom:4px;}
   .pr-title{font-size:22px; font-weight:800; color:var(--navy); margin:0;}
-  .pr-subtitle{font-size:12.5px; color:var(--muted); margin-top:3px;}
-  .pr-meta{font-size:11px; color:var(--faint); text-align:right; line-height:1.6;}
-  .pr-stats{display:flex; gap:0; border:1px solid var(--border); border-radius:6px; overflow:hidden; margin:18px 0;}
-  .pr-stat{flex:1; padding:12px 14px; border-right:1px solid var(--border);}
-  .pr-stat:last-child{border-right:none;}
-  .pr-stat-value{font-size:20px; font-weight:800; color:var(--navy); font-variant-numeric:tabular-nums;}
-  .pr-stat-label{font-size:10.5px; color:var(--muted); margin-top:2px;}
-  .pr-section-title{font-size:13px; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:.04em; margin:22px 0 10px; padding-bottom:6px; border-bottom:1.5px solid var(--navy);}
-  .pr-table{width:100%; border-collapse:collapse; font-size:11.5px; margin-bottom:6px;}
-  .pr-table th{text-align:left; font-size:10px; letter-spacing:.03em; text-transform:uppercase; color:var(--muted); border-bottom:1.5px solid var(--border); padding:6px 8px;}
+  .pr-meta{font-size:10.5px; color:var(--muted); text-align:right; line-height:1.7;}
+  .pr-meta b{color:var(--text); font-weight:600;}
+  .pr-rule{border:none; border-top:2.5px solid var(--navy); margin:10px 0 2px;}
+  .pr-rule-thin{border:none; border-top:1px solid var(--border); margin:0 0 20px;}
+
+  .pr-info-grid{display:flex; margin:20px 0 26px;}
+  .pr-info-item{flex:1; padding:0 16px; border-left:1px solid var(--border);}
+  .pr-info-item:first-child{padding-left:0; border-left:none;}
+  .pr-info-label{font-size:9.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-bottom:4px;}
+  .pr-info-value{font-size:17px; font-weight:700; color:var(--navy); font-variant-numeric:tabular-nums;}
+
+  .pr-section-title{font-size:11.5px; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:.06em; margin:22px 0 8px; padding-bottom:5px; border-bottom:1.5px solid var(--navy);}
+  .pr-table{width:100%; border-collapse:collapse; font-size:11px; margin-bottom:4px;}
+  .pr-table th{text-align:left; font-size:9.5px; font-weight:700; letter-spacing:.03em; text-transform:uppercase; color:var(--muted); border-bottom:1px solid var(--navy); padding:6px 8px;}
   .pr-table td{padding:7px 8px; border-bottom:1px solid var(--border); vertical-align:top;}
-  .pr-badge{display:inline-block; font-size:9.5px; font-weight:700; border-radius:10px; padding:2px 8px;}
-  .pr-badge-met{color:#177A4C; background:#E7F5EC;}
-  .pr-badge-pending{color:#B4530A; background:#FDF0E4;}
-  .pr-empty{font-size:11.5px; color:var(--faint); padding:8px 0; font-style:italic;}
-  .pr-footer{margin-top:28px; padding-top:12px; border-top:1px solid var(--border); font-size:9.5px; color:var(--faint); line-height:1.6;}
+  .pr-status-met{font-weight:700; color:var(--text);}
+  .pr-status-pending{font-weight:400; color:var(--muted); font-style:italic;}
+  .pr-empty{font-size:11px; color:var(--faint); padding:8px 0; font-style:italic;}
+  .pr-footer{margin-top:26px; padding-top:10px; border-top:1px solid var(--border); font-size:9px; color:var(--faint); line-height:1.6;}
   @media print{
     .pr-table{page-break-inside:auto;}
     .pr-table tr{page-break-inside:avoid;}
@@ -747,7 +751,7 @@ const I18N = {
     statMetLabel: "Mata kuliah terpenuhi",
     statSKSLabel: "SKS terekognisi",
     statSavedLabel: "Kegiatan tersimpan",
-    targetLabel: "Target Capaian Kelulusan",
+    targetLabel: "Target Kelulusan",
     targetKesehatan: "Kesehatan (10 SKS)",
     targetNonKesehatan: "Non-Kesehatan (20 SKS)",
     targetCustom: "Kustom",
@@ -784,6 +788,7 @@ const I18N = {
     reoptCancel: "Nanti Saja",
     reoptApply: "Terapkan Alokasi Baru",
     reoptAppliedToast: "Alokasi berhasil dioptimasi ulang",
+    prDocLabel: "Laporan Prediksi Rekognisi SKS MKPK",
     prTitle: "Prediksi MKPK",
     prSubtitle: "Laporan Prediksi Rekognisi SKS MKPK",
     prPrintedOn: "Dicetak pada",
@@ -886,6 +891,7 @@ const I18N = {
     reoptCancel: "Not Now",
     reoptApply: "Apply New Allocation",
     reoptAppliedToast: "Allocation successfully re-optimised",
+    prDocLabel: "MKPK Credit Recognition Prediction Report",
     prTitle: "Prediksi MKPK",
     prSubtitle: "MKPK Credit Recognition Prediction Report",
     prPrintedOn: "Printed on",
@@ -1547,7 +1553,7 @@ function renderPrintReport(){
         <td>${c.name}</td>
         <td>${c.earned.toFixed(2)}</td>
         <td>${c.required}</td>
-        <td><span class="pr-badge ${c.met ? 'pr-badge-met' : 'pr-badge-pending'}">${c.met ? t('prMet') : t('prPending')}</span></td>
+        <td class="${c.met ? 'pr-status-met' : 'pr-status-pending'}">${c.met ? t('prMet') : t('prPending')}</td>
       </tr>`).join('');
 
   const savedRows = saved.length === 0
@@ -1565,24 +1571,26 @@ function renderPrintReport(){
     <div class="pr-page">
       <div class="pr-header">
         <div>
+          <div class="pr-doc-label">${t('prDocLabel')}</div>
           <h1 class="pr-title">${t('prTitle')}</h1>
-          <div class="pr-subtitle">${t('prSubtitle')}</div>
         </div>
-        <div class="pr-meta">${t('prPrintedOn')} ${dateStr}<br>${t('prSource')}</div>
+        <div class="pr-meta"><b>${t('prPrintedOn')}</b> ${dateStr}<br>${t('prSource')}</div>
       </div>
+      <hr class="pr-rule" />
+      <hr class="pr-rule-thin" />
 
-      <div class="pr-stats">
-        <div class="pr-stat">
-          <div class="pr-stat-value">${met.length} / ${summary.length}</div>
-          <div class="pr-stat-label">${t('prStatMet')}</div>
+      <div class="pr-info-grid">
+        <div class="pr-info-item">
+          <div class="pr-info-label">${t('prStatSKS')}</div>
+          <div class="pr-info-value">${totalRecognized.toFixed(2)}</div>
         </div>
-        <div class="pr-stat">
-          <div class="pr-stat-value">${totalRecognized.toFixed(2)}</div>
-          <div class="pr-stat-label">${t('prStatSKS')}</div>
+        <div class="pr-info-item">
+          <div class="pr-info-label">${t('prStatMet')}</div>
+          <div class="pr-info-value">${met.length} / ${summary.length}</div>
         </div>
-        <div class="pr-stat">
-          <div class="pr-stat-value">${totalRecognized.toFixed(2)} / ${targetSKS.toFixed(2)}</div>
-          <div class="pr-stat-label">${t('prStatTarget')} (${targetLabel})</div>
+        <div class="pr-info-item">
+          <div class="pr-info-label">${t('prStatTarget')} &middot; ${targetLabel}</div>
+          <div class="pr-info-value">${totalRecognized.toFixed(2)} / ${targetSKS.toFixed(2)}</div>
         </div>
       </div>
 
