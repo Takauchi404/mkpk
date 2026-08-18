@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Prediksi MKPK: Rubrik MKPK Edisi 3</title>
+<title>Prediksi MKPK</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
@@ -50,6 +50,12 @@
   .subtitle{font-size:16px; line-height:1.6; color:var(--muted); max-width:680px; margin:0 0 24px;}
 
   .stat-row{display:flex; gap:12px; flex-wrap:wrap;}
+
+  /* ---------- quick nav ---------- */
+  .quicknav{background:#FFFFFF; border-bottom:1px solid var(--border); position:sticky; top:0; z-index:10; box-shadow:0 1px 3px rgba(16,20,30,0.05);}
+  .quicknav-inner{display:flex; gap:22px; overflow-x:auto;}
+  .quicknav-link{flex-shrink:0; padding:12px 2px; font-size:13.5px; font-weight:600; color:var(--muted); text-decoration:none; border-bottom:2px solid transparent; transition:color .15s, border-color .15s; white-space:nowrap;}
+  .quicknav-link:hover{color:var(--navy);}
   .stat-card{background:var(--surface-alt); border:1px solid var(--border); border-radius:6px; padding:12px 18px; min-width:140px;}
   .stat-value{font-size:22px; font-weight:700; color:var(--navy); font-variant-numeric:tabular-nums;}
   .stat-of{font-size:15.5px; font-weight:500; color:var(--faint);}
@@ -80,6 +86,7 @@
   }
   .overlay-backdrop.show{display:flex;}
   @keyframes overlayFadeIn{from{opacity:0;} to{opacity:1;}}
+  @keyframes fadeSlideIn{from{opacity:0; transform:translateY(-4px);} to{opacity:1; transform:translateY(0);}}
   .overlay-card{
     position:relative; background:#FFFFFF; border-radius:10px; max-width:380px; width:100%;
     padding:28px 26px 26px; text-align:center; box-shadow:0 20px 50px rgba(11,12,16,0.25);
@@ -153,7 +160,30 @@
   .desc-note{display:flex; gap:6px; font-size:13.5px; color:var(--muted); margin-top:4px; align-items:flex-start; line-height:1.5;}
   .select-wrap{position:relative;}
   select.field-select{width:100%; appearance:none; background:#FFFFFF; border:1px solid var(--border); border-radius:5px; padding:10px 34px 10px 12px; font-size:15px; color:var(--text); cursor:pointer;}
+  select.field-select.needs-review{border-color:#D9A441; background:#FFFBF0;}
+  .nilai-weighted-wrap{display:flex; flex-direction:column; gap:10px;}
+  .nilai-weighted-row{display:flex; flex-direction:column; gap:5px;}
+  .nilai-weighted-label{font-size:12.5px; color:var(--muted); display:flex; justify-content:space-between; align-items:baseline;}
+  .nilai-weighted-weight{font-size:11px; color:var(--faint); font-weight:600;}
+  .nilai-weighted-result{margin-top:10px; padding:10px 12px; background:var(--surface-alt); border:1px solid var(--border); border-radius:6px; font-size:13.5px; color:var(--navy); font-weight:600;}
+  .review-hint{display:flex; align-items:center; gap:5px; font-size:11.5px; color:#8A5A0A; margin-top:5px; animation:fadeSlideIn .15s ease-out;}
+  .review-hint::before{content:"●"; font-size:8px; color:#D9A441;}
   .select-wrap svg.chevron{position:absolute; right:11px; top:11px; color:var(--faint); pointer-events:none;}
+
+  /* ---------- combobox (dropdown dengan pencarian) ---------- */
+  .combo-wrap{position:relative;}
+  .combo-input{padding-right:34px !important; cursor:text;}
+  .combo-chevron{position:absolute; right:11px; top:11px; color:var(--faint); pointer-events:none;}
+  .combo-list{
+    position:absolute; top:calc(100% + 4px); left:0; right:0; max-height:280px; overflow-y:auto;
+    background:#FFFFFF; border:1px solid var(--border); border-radius:6px; box-shadow:0 8px 24px rgba(16,20,30,0.12);
+    z-index:20;
+  }
+  .combo-group-label{font-size:10.5px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--faint); padding:8px 12px 4px; background:var(--surface-alt);}
+  .combo-option{padding:9px 12px; font-size:14px; color:var(--text); cursor:pointer;}
+  .combo-option:hover, .combo-option.highlighted{background:var(--surface-alt);}
+  .combo-option.selected{color:var(--blue); font-weight:600;}
+  .combo-empty{padding:14px 12px; font-size:13px; color:var(--faint); text-align:center; font-style:italic;}
   input[type=number].field-input, input[type=text].field-input{width:100%; background:#FFFFFF; border:1px solid var(--border); border-radius:5px; padding:10px 12px; font-size:15px; color:var(--text);}
   .tambahan-checklist{display:flex; flex-direction:column; gap:7px;}
   .tambahan-check-row{display:flex; align-items:center; gap:10px; background:#FFFFFF; border:1px solid var(--border); border-radius:6px; padding:10px 12px;}
@@ -164,6 +194,11 @@
   .nilai-fixed{font-size:14.5px; color:var(--muted); background:var(--surface-alt); border:1px solid var(--border); border-radius:5px; padding:10px 12px;}
 
   .syarat-box{display:flex; gap:8px; align-items:baseline; background:var(--surface-alt); border:1px solid var(--border); border-radius:5px; padding:9px 12px; margin-bottom:16px; font-size:14.5px; flex-wrap:wrap;}
+  .tahapan-lanjut-box{background:var(--surface-alt); border:1px solid var(--border); border-radius:5px; padding:9px 12px; margin:-8px 0 16px;}
+  .tahapan-lanjut-row{display:flex; align-items:center; gap:10px; cursor:pointer;}
+  .tahapan-lanjut-row input[type=checkbox]{width:17px; height:17px; flex-shrink:0; accent-color:var(--blue); cursor:pointer;}
+  .tahapan-lanjut-label{flex:1; font-size:13.5px; color:var(--text);}
+  .tahapan-lanjut-value{font-size:13px; font-weight:700; color:var(--blue); background:#EAF0FD; border-radius:20px; padding:3px 10px; white-space:nowrap; font-variant-numeric:tabular-nums;}
   .syarat-label{font-weight:700; color:var(--navy);}
   .syarat-text{color:var(--muted);}
 
@@ -174,8 +209,8 @@
   .alloc-box{background:var(--surface-alt); border:1px solid var(--border); border-radius:8px; padding:20px 22px; margin-bottom:20px;}
   .alloc-box > .docs-label{margin-bottom:6px;}
   .alloc-box > .hint-text{margin-bottom:2px;}
-  .met-note{font-size:13px; color:var(--success); background:var(--success-bg); border:1px solid #BFE3CC; border-radius:6px; padding:10px 13px; margin:14px 0; line-height:1.5;}
-  .reco-box{background:#FFFFFF; border:1px solid var(--border); border-radius:6px; padding:14px 15px; margin:14px 0;}
+  .met-note{font-size:13px; color:var(--success); background:var(--success-bg); border:1px solid #BFE3CC; border-radius:6px; padding:10px 13px; margin:14px 0; line-height:1.5; animation:fadeSlideIn .18s ease-out;}
+  .reco-box{background:#FFFFFF; border:1px solid var(--border); border-radius:6px; padding:14px 15px; margin:14px 0; animation:fadeSlideIn .18s ease-out;}
   .reco-label{font-size:12.5px; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:.03em; margin-bottom:10px;}
   .reco-list{display:flex; flex-direction:column; gap:8px; margin-bottom:10px;}
   .reco-item{display:flex; align-items:center; justify-content:space-between; gap:10px; background:var(--surface-alt); border-radius:6px; padding:9px 12px;}
@@ -208,7 +243,7 @@
   .badge-success{color:var(--success); background:var(--success-bg); border:1px solid #BFE3CC;}
   .badge-pending{color:var(--warn); background:var(--warn-bg); border:1px solid #F0CFA8;}
 
-  .empty-state{font-size:15px; color:var(--faint); padding:20px 0; text-align:center;}
+  .empty-state{font-size:15px; color:var(--faint); padding:20px 0; text-align:center; animation:fadeSlideIn .18s ease-out;}
 
   .table-wrap{overflow-x:auto;}
   table{width:100%; border-collapse:collapse; font-size:14.5px;}
@@ -219,7 +254,9 @@
   .td-name{font-weight:600; color:var(--text);}
   .td-spesifik{font-size:13px; color:var(--faint); font-style:italic; margin-top:2px;}
   .sks-pill{font-weight:700; color:var(--navy); font-variant-numeric:tabular-nums;}
+  .row-actions{display:flex; align-items:center; gap:2px;}
   .row-icon-btn{display:flex; align-items:center; justify-content:center; background:transparent; border:none; color:#9AA2B1; cursor:pointer; padding:6px; border-radius:5px; transition:background .15s, color .15s;}
+  .edit-btn:hover{background:#EAF0FD; color:var(--blue);}
   .del-btn:hover{background:var(--warn-bg); color:var(--warn);}
 
   /* ---------- footer ---------- */
@@ -346,6 +383,15 @@
   </div>
 </header>
 
+<!-- ============ QUICK NAV (loncat antar section) ============ -->
+<nav class="quicknav no-print">
+  <div class="container quicknav-inner">
+    <a href="#langkah-1" class="quicknav-link" data-i18n="navAdd">Tambah Kegiatan</a>
+    <a href="#langkah-2" class="quicknav-link" data-i18n="navStatus">Status Mata Kuliah</a>
+    <a href="#langkah-3" class="quicknav-link" data-i18n="navSaved">Kegiatan Tersimpan</a>
+  </div>
+</nav>
+
 <!-- ============ TOAST NOTIFIKASI ============ -->
 <div class="toast no-print" id="toast">
   <span class="toast-icon">
@@ -361,23 +407,31 @@
 
     <div class="form-grid">
       <div class="field">
-        <label class="field-label" data-i18n="labelCategory">Kategori</label>
+        <label class="field-label" data-i18n="labelCategory">Basis</label>
         <div class="select-wrap">
           <select class="field-select" id="categorySelect"></select>
           <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
         </div>
       </div>
       <div class="field">
-        <label class="field-label" data-i18n="labelActivity">Nama Kegiatan</label>
-        <div class="select-wrap">
-          <select class="field-select" id="itemSelect"></select>
-          <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        <label class="field-label" data-i18n="labelActivity">Kategori</label>
+        <div class="combo-wrap" id="itemComboWrap">
+          <input type="text" class="field-input combo-input" id="itemSearchInput" autocomplete="off" data-i18n-placeholder="itemSearchPlaceholder" placeholder="Cari atau pilih..." />
+          <svg class="chevron combo-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          <div class="combo-list" id="itemComboList" style="display:none"></div>
         </div>
         <div class="desc-note" id="descNote" style="display:none"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0; margin-top:1px"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span id="descText"></span></div>
       </div>
     </div>
 
     <div class="syarat-box"><span class="syarat-label" data-i18n="syaratLabel">Syarat pengakuan</span><span class="syarat-text" id="syaratText"></span></div>
+    <div class="tahapan-lanjut-box" id="tahapanLanjutBox" style="display:none">
+      <label class="tahapan-lanjut-row">
+        <input type="checkbox" id="tahapanLanjutCheck" />
+        <span class="tahapan-lanjut-label" id="tahapanLanjutLabel"></span>
+        <span class="tahapan-lanjut-value" id="tahapanLanjutValue"></span>
+      </label>
+    </div>
 
     <div class="field">
       <label class="field-label" data-i18n="labelSpesifik">Nama atau Judul Kegiatan Spesifik (opsional)</label>
@@ -395,14 +449,14 @@
       <div class="hint-text" id="tambahanSum" style="display:none"></div>
     </div>
 
-    <div class="field">
+    <div class="field" id="nilaiField">
       <label class="field-label" data-i18n="labelNilai">Estimasi Nilai (dari Rubrik Penilaian)</label>
       <div id="nilaiVariableWrap" class="select-wrap" style="display:none">
         <select class="field-select" id="nilaiSelect"></select>
         <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
       </div>
-      <div class="nilai-fixed" id="nilaiFixedText" style="display:none" data-i18n="nilaiFixed">100 (menyelesaikan kegiatan = nilai penuh, tidak bertingkat pada rubrik)</div>
-      <div class="hint-text" id="nilaiKompetisiHint" style="display:none" data-i18n="nilaiKompetisiHint">Tingkatan nilai kompetisi mengikuti pola umum di rubrik (Juara 100 atau Harapan 95 atau Finalis 90). Sebagian kompetisi punya rentang berbeda. Cek tabel rubrik penilaian spesifik kompetisi ini untuk kepastian.</div>
+      <div id="nilaiWeightedWrap" class="nilai-weighted-wrap" style="display:none"></div>
+      <div id="nilaiWeightedResult" class="nilai-weighted-result" style="display:none"></div>
     </div>
 
     <div class="docs-box">
@@ -536,56 +590,158 @@ const TEAM_ROLE = { label:"Peran dalam tim", key:"peran", options:[{label:"Ketua
 const NILAI_LEMBAGA_95 = [{label:"Penyelenggara minimal setingkat BEM Universitas",value:100},{label:"Penyelenggara minimal setingkat BEM Fakultas",value:95}];
 const NILAI_LEMBAGA_90 = [{label:"Penyelenggara minimal setingkat BEM Universitas",value:100},{label:"Penyelenggara minimal setingkat BEM Fakultas",value:90}];
 const NILAI_DOKUMEN_90 = [{label:"Dokumen lengkap (laporan + sertifikat + surat keterangan)",value:100},{label:"Dokumen sebagian (laporan + surat keterangan saja)",value:90}];
-const NILAI_KOMPETISI_GENERIK = [{label:"Juara 1, 2, atau 3 tingkat nasional",value:100},{label:"Juara Harapan",value:95},{label:"Finalis atau lolos seleksi tingkat wilayah-regional",value:90}];
-const NILAI_MAGANG_SI = [
-  {label:"Semua tahap (persiapan, pelaksanaan, evaluasi) dokumen lengkap",value:100},
-  {label:"Tahap pelaksanaan kurang lengkap (laporan lengkap, logbook tidak)",value:79},
-  {label:"Banyak tahap dokumen tidak lengkap",value:55},
+const NILAI_KOMPETISI_GENERIK = [{label:"Juara 1, 2, atau 3 tingkat nasional",value:100},{label:"Juara Harapan",value:95},{label:"Finalis atau lolos seleksi tingkat wilayah-regional",value:90},{label:"Lolos seleksi internal (submit proposal)",value:90}];
+const NILAI_TAHAPAN_MAGANG_SI = [
+  {label:"Tahapan Penjajakan",weight:0.10,options:[{label:"Dokumen lengkap",value:100},{label:"Dokumen tidak lengkap",value:50}]},
+  {label:"Tahapan Persiapan",weight:0.10,options:[{label:"Laporan lengkap",value:100},{label:"Laporan kurang lengkap",value:70},{label:"Laporan tidak lengkap",value:40}]},
+  {label:"Tahapan Pelaksanaan",weight:0.70,options:[{label:"Laporan dan logbook lengkap",value:100},{label:"Laporan lengkap, logbook tidak lengkap",value:70},{label:"Laporan dan logbook tidak lengkap",value:40}]},
+  {label:"Tahapan Evaluasi",weight:0.10,options:[{label:"Laporan lengkap",value:100},{label:"Laporan kurang lengkap",value:70},{label:"Laporan tidak lengkap",value:40}]},
 ];
 
 const DATA = [
   // ================= KOMPETISI =================
-  {cat:"Kompetisi",name:"Olimpiade Nasional MIPA (ONMIPA)",base:3.09,syarat:"Lolos ke Tahap Nasional",tambahanMax:8,tambahanOptions:[{label:"Juara 1, 2, atau 3 tingkat Nasional",value:2},{label:"Juara Harapan",value:1},{label:"Mewakili Universitas ke ajang Internasional",value:2},{label:"Memperoleh penghargaan di ajang Internasional",value:3}],mkpk:[4,12,13,15,16,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook & dokumentasi tiap tahap seleksi, sertifikat atau SK capaian."},
-  {cat:"Kompetisi",name:"NUDC & KDMI",base:3.29,syarat:"Lolos ke Tahap Nasional",tambahanMax:3,mkpk:[1,3,4,11,12,13,16,17],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, dokumentasi, sertifikat atau SK capaian."},
-  {cat:"Kompetisi",name:"PILMAPRES",base:4.76,syarat:"Lolos ke Tahap Nasional",tambahanMax:3,mkpk:[4,5,11,13,15,16,17,18,19,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, portofolio, sertifikat atau SK capaian."},
-  {cat:"Kompetisi",name:"PKM – PIMNAS",base:6.32,syarat:"Lolos Pendanaan",tambahanMax:4,coeff:[TEAM_ROLE],mkpk:[1,2,3,5,8,9,10,12,13,15,16,18,19,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Proposal & bukti submit, logbook, laporan kemajuan, dokumentasi karya, sertifikat atau SK."},
-  {cat:"Kompetisi",name:"Kontes Robot Indonesia (KRI)",base:4.2,syarat:"Lolos ke Tingkat Wilayah",tambahanMax:7,coeff:[TEAM_ROLE],mkpk:[1,5,13,15,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, proposal & bukti submit, dokumentasi karya, sertifikat atau SK."},
-  {cat:"Kompetisi",name:"Kontes Mobil Hemat Energi (KMHE)",base:4.53,syarat:"Lolos ke Tingkat Wilayah",tambahanMax:7,coeff:[TEAM_ROLE],mkpk:[1,5,13,15,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, proposal, dokumentasi karya, sertifikat atau SK."},
-  {cat:"Kompetisi",name:"Kontes Kapal Indonesia (KKI)",base:3.42,syarat:"Lolos ke Tingkat Wilayah",tambahanMax:7,coeff:[TEAM_ROLE],mkpk:[1,5,13,15,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, proposal, dokumentasi karya, sertifikat atau SK."},
-  {cat:"Kompetisi",name:"Kompetisi Jembatan Indonesia (KJI)",base:5.58,syarat:"Lolos ke Tingkat Nasional",tambahanMax:3,coeff:[TEAM_ROLE],mkpk:[1,5,13,15,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, proposal & bukti submit, dokumentasi karya, sertifikat atau SK."},
-  {cat:"Kompetisi",name:"Kompetisi Bangunan Gedung Indonesia (KBGI)",base:5.58,syarat:"Lolos ke Tingkat Nasional",tambahanMax:3,coeff:[TEAM_ROLE],mkpk:[1,5,13,15,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, proposal, dokumentasi karya, sertifikat atau SK."},
-  {cat:"Kompetisi",name:"Kontes Robot Terbang Indonesia (KRTI)",base:5.11,syarat:"Lolos ke Tingkat Wilayah",tambahanMax:7,coeff:[TEAM_ROLE],mkpk:[1,5,13,15,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, proposal, dokumentasi karya, sertifikat atau SK."},
-  {cat:"Kompetisi",name:"Lomba Inovasi Digital Mahasiswa (LIDM)",base:3.4,syarat:"Lolos ke Tingkat Nasional",desc:"Kompetisi Kemendikbud di bidang inovasi digital untuk pendidikan atau pembelajaran.",tambahanMax:1,mkpk:[1,4,5,15,16,17],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, proposal atau karya, sertifikat atau SK."},
-  {cat:"Kompetisi",name:"Satria Data – NSC",base:4.0,syarat:"Lolos ke Tingkat Nasional",desc:"Kompetisi statistika nasional oleh BPS, kategori analisis statistik umum (National Statistics Competition).",tambahanMax:2,tambahanOptions:[{label:"Memperoleh penghargaan khusus tingkat nasional",value:1},{label:"Memperoleh medali emas, perak, atau perunggu tingkat nasional",value:2}],mkpk:[1,4,5,12,13,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
-  {cat:"Kompetisi",name:"Satria Data – SEC",base:2.61,syarat:"Lolos ke Tingkat Nasional",desc:"Kompetisi statistika BPS, kategori penulisan esai berbasis data (Statistics Essay Competition).",tambahanMax:2,tambahanOptions:[{label:"Memperoleh penghargaan khusus tingkat nasional",value:1},{label:"Memperoleh medali emas, perak, atau perunggu tingkat nasional",value:2}],mkpk:[1,4,5,12,13,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
-  {cat:"Kompetisi",name:"Satria Data – SIC",base:2.61,syarat:"Lolos ke Tingkat Nasional",desc:"Kompetisi statistika BPS, kategori infografis data (Statistics Infographic Competition).",tambahanMax:2,tambahanOptions:[{label:"Memperoleh penghargaan khusus tingkat nasional",value:1},{label:"Memperoleh medali emas, perak, atau perunggu tingkat nasional",value:2}],mkpk:[1,4,5,12,13,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
-  {cat:"Kompetisi",name:"Satria Data – BDC",base:3.83,syarat:"Lolos ke Tingkat Nasional",desc:"Kompetisi statistika BPS, kategori pengolahan big data (Big Data Challenge).",tambahanMax:2,tambahanOptions:[{label:"Memperoleh penghargaan khusus tingkat nasional",value:1},{label:"Memperoleh medali emas, perak, atau perunggu tingkat nasional",value:2}],mkpk:[1,4,5,12,13,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
-  {cat:"Kompetisi",name:"PPK Ormawa – Tim Pelaksana",base:6.93,syarat:"Lolos pendanaan & selesai kegiatan",desc:"Program Penguatan Kapasitas Ormawa, yaitu pendanaan Kemendikbud untuk organisasi mahasiswa menjalankan proyek pemberdayaan masyarakat.",tambahanMax:2,mkpk:[1,2,3,5,6,8,9,10,12,13,16,18,19,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Proposal, laporan kemajuan, laporan akhir, dokumentasi, SK."},
-  {cat:"Kompetisi",name:"PPK Ormawa – Perwakilan Ormawa",base:1.6,syarat:"Lolos pendanaan & selesai kegiatan",desc:"Anggota ormawa yang ditugaskan mewakili organisasi dalam program PPK Ormawa, bukan bagian tim pelaksana inti.",tambahanMax:5,mkpk:[1,2,3,5,6,8,9,10,12,13,16,18,19,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"SK penugasan, logbook, dokumentasi."},
+  {cat:"Kompetisi",name:"Olimpiade Nasional MIPA (ONMIPA)",base:3.09,syarat:"Lolos ke Tahap Nasional",tambahanMax:8,
+    tambahanOptions:[
+      {label:"Memperoleh Honorable Mention tingkat nasional",value:2,group:"nasional",nilaiSync:95},{label:"Memperoleh medali emas, perak, atau perunggu tingkat nasional",value:3,group:"nasional",nilaiSync:100},
+      {label:"Mewakili Universitas ke ajang Internasional (khusus bidang matematika, IMC)",value:2},{label:"Memperoleh penghargaan di ajang Internasional (khusus bidang matematika, IMC)",value:3,nilaiSync:100},
+    ],
+    mkpk:[4,12,13,15,16,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook & dokumentasi tiap tahap seleksi, sertifikat atau SK capaian."},
+  {cat:"Kompetisi",name:"NUDC & KDMI",base:3.29,syarat:"Lolos ke Tahap Nasional",tambahanMax:3,
+    tambahanOptions:[{label:"Memperoleh medali pada kategori terbuka",value:2},{label:"Memperoleh medali pada kategori pemula",value:1}],
+    mkpk:[1,3,4,11,12,13,16,17],
+    nilai:[{label:"Juara 1, 2, atau 3",value:100},{label:"Pembicara Terbaik",value:95}],
+    docs:"Logbook, dokumentasi, sertifikat atau SK capaian."},
+  {cat:"Kompetisi",name:"PILMAPRES",base:4.76,syarat:"Lolos ke Tahap Nasional",tambahanMax:3,
+    tambahanOptions:[
+      {label:"Menjadi juara tingkat Universitas",value:0.25},{label:"Menjadi wakil tingkat Wilayah",value:0.5},
+      {label:"Juara 1, 2, atau 3 tingkat Nasional",value:2,group:"nasional",nilaiSync:100},{label:"Juara Harapan",value:1,group:"nasional",nilaiSync:95},{label:"Honorable Mention",value:1,group:"nasional",nilaiSync:90},
+    ],
+    mkpk:[4,5,11,13,15,16,17,18,19,20],
+    nilai:[{label:"Juara 1, 2, atau 3 tingkat Nasional",value:100},{label:"Juara Harapan",value:95},{label:"Honorable Mention, Finalis, atau Lolos Seleksi tingkat Wilayah-Regional",value:90}],
+    docs:"Logbook, portofolio, sertifikat atau SK capaian."},
+  {cat:"Kompetisi",name:"PKM – PIMNAS",base:6.32,syarat:"Lolos Pendanaan",tambahanMax:4,
+    tambahanOptions:[{label:"Menjadi mahasiswa bertalenta",value:1},{label:"Medali Presentasi",value:2,nilaiSync:100},{label:"Medali Poster",value:1,nilaiSync:100}],
+    tahapanLanjut:{label:"Melaksanakan tahap PIMNAS (tahapan lanjut)",value:3.78},
+    coeff:[TEAM_ROLE],mkpk:[1,2,3,5,8,9,10,12,13,15,16,18,19,20],
+    nilai:[{label:"Memperoleh medali emas, perak, atau perunggu",value:100},{label:"Mengikuti setiap kegiatan sebelum PIMNAS",value:95}],
+    docs:"Proposal & bukti submit, logbook, laporan kemajuan, dokumentasi karya, sertifikat atau SK."},
+  {cat:"Kompetisi",name:"Kontes Robot Indonesia (KRI)",base:4.2,syarat:"Lolos ke Tingkat Wilayah",tambahanMax:7,
+    tambahanOptions:[{label:"Juara 1, 2, atau 3 tingkat Nasional",value:2,group:"nasional",nilaiSync:100},{label:"Juara Harapan",value:1,group:"nasional",nilaiSync:95},{label:"Mewakili Universitas ke ajang Internasional",value:2},{label:"Memperoleh penghargaan di ajang Internasional",value:3,nilaiSync:100}],
+    tahapanLanjut:{label:"Lolos hingga Tingkat Nasional (tahapan lanjut)",value:1.31},
+    coeff:[TEAM_ROLE],mkpk:[1,5,13,15,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, proposal & bukti submit, dokumentasi karya, sertifikat atau SK."},
+  {cat:"Kompetisi",name:"Kontes Mobil Hemat Energi (KMHE)",base:4.53,syarat:"Lolos ke Tingkat Wilayah",tambahanMax:7,
+    tambahanOptions:[{label:"Juara 1, 2, atau 3 tingkat Nasional",value:2,group:"nasional",nilaiSync:100},{label:"Juara Harapan",value:1,group:"nasional",nilaiSync:95},{label:"Mewakili Universitas ke ajang Internasional",value:2},{label:"Memperoleh penghargaan di ajang Internasional",value:3,nilaiSync:100}],
+    tahapanLanjut:{label:"Lolos hingga Tingkat Nasional (tahapan lanjut)",value:1.47},
+    coeff:[TEAM_ROLE],mkpk:[1,5,13,15,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, proposal, dokumentasi karya, sertifikat atau SK."},
+  {cat:"Kompetisi",name:"Kontes Kapal Indonesia (KKI)",base:3.42,syarat:"Lolos ke Tingkat Wilayah",tambahanMax:7,
+    tambahanOptions:[{label:"Juara 1, 2, atau 3 tingkat Nasional",value:2,group:"nasional",nilaiSync:100},{label:"Juara Harapan",value:1,group:"nasional",nilaiSync:95},{label:"Mewakili Universitas ke ajang Internasional",value:2},{label:"Memperoleh penghargaan di ajang Internasional",value:3,nilaiSync:100}],
+    tahapanLanjut:{label:"Lolos hingga Tingkat Nasional (tahapan lanjut)",value:2.58},
+    coeff:[TEAM_ROLE],mkpk:[1,5,13,15,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, proposal, dokumentasi karya, sertifikat atau SK."},
+  {cat:"Kompetisi",name:"Kompetisi Jembatan Indonesia (KJI)",base:5.58,syarat:"Lolos ke Tingkat Nasional",tambahanMax:3,
+    tambahanOptions:[{label:"Juara 1, 2, atau 3 tingkat Nasional",value:2,group:"nasional",nilaiSync:100},{label:"Juara Harapan",value:1,group:"nasional",nilaiSync:95},{label:"Juara Kategori",value:1,nilaiSync:95}],
+    coeff:[TEAM_ROLE],mkpk:[1,5,13,15,16,17,20],
+    nilai:[{label:"Juara 1, 2, atau 3",value:100},{label:"Juara Kategori atau Harapan",value:95}],
+    docs:"Logbook, proposal & bukti submit, dokumentasi karya, sertifikat atau SK."},
+  {cat:"Kompetisi",name:"Kompetisi Bangunan Gedung Indonesia (KBGI)",base:5.58,syarat:"Lolos ke Tingkat Nasional",tambahanMax:3,
+    tambahanOptions:[{label:"Juara 1, 2, atau 3 tingkat Nasional",value:2,group:"nasional",nilaiSync:100},{label:"Juara Harapan",value:1,group:"nasional",nilaiSync:95},{label:"Juara Kategori",value:1,nilaiSync:95}],
+    coeff:[TEAM_ROLE],mkpk:[1,5,13,15,16,17,20],
+    nilai:[{label:"Juara 1, 2, atau 3",value:100},{label:"Juara Kategori atau Harapan",value:95}],
+    docs:"Logbook, proposal, dokumentasi karya, sertifikat atau SK."},
+  {cat:"Kompetisi",name:"Kontes Robot Terbang Indonesia (KRTI)",base:5.11,syarat:"Lolos ke Tingkat Wilayah",tambahanMax:7,
+    tambahanOptions:[{label:"Juara 1, 2, atau 3 tingkat Nasional",value:2,group:"nasional",nilaiSync:100},{label:"Juara Harapan",value:1,group:"nasional",nilaiSync:95},{label:"Mewakili Universitas ke ajang Internasional",value:2},{label:"Memperoleh penghargaan di ajang Internasional",value:3,nilaiSync:100}],
+    tahapanLanjut:{label:"Lolos hingga Tingkat Nasional (tahapan lanjut)",value:0.89},
+    coeff:[TEAM_ROLE],mkpk:[1,5,13,15,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, proposal, dokumentasi karya, sertifikat atau SK."},
+  {cat:"Kompetisi",name:"Lomba Inovasi Digital Mahasiswa (LIDM)",base:3.4,syarat:"Lolos ke Tingkat Nasional",desc:"Kompetisi Kemendikbud di bidang inovasi digital untuk pendidikan atau pembelajaran.",tambahanMax:1,
+    tambahanOptions:[{label:"Juara 1, 2, atau 3",value:1}],
+    mkpk:[1,4,5,15,16,17],docs:"Logbook, proposal atau karya, sertifikat atau SK."},
+  {cat:"Kompetisi",name:"Satria Data – NSC",base:4.0,syarat:"Lolos ke Tingkat Nasional",desc:"Kompetisi statistika nasional oleh BPS, kategori analisis statistik umum (National Statistics Competition).",tambahanMax:2,tambahanOptions:[{label:"Memperoleh penghargaan khusus tingkat nasional",value:1,group:"nasional",nilaiSync:95},{label:"Memperoleh medali emas, perak, atau perunggu tingkat nasional",value:2,group:"nasional",nilaiSync:100}],mkpk:[1,4,5,12,13,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
+  {cat:"Kompetisi",name:"Satria Data – SEC",base:2.61,syarat:"Lolos ke Tingkat Nasional",desc:"Kompetisi statistika BPS, kategori penulisan esai berbasis data (Statistics Essay Competition).",tambahanMax:2,tambahanOptions:[{label:"Memperoleh penghargaan khusus tingkat nasional",value:1,group:"nasional",nilaiSync:95},{label:"Memperoleh medali emas, perak, atau perunggu tingkat nasional",value:2,group:"nasional",nilaiSync:100}],mkpk:[1,4,5,12,13,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
+  {cat:"Kompetisi",name:"Satria Data – SIC",base:2.61,syarat:"Lolos ke Tingkat Nasional",desc:"Kompetisi statistika BPS, kategori infografis data (Statistics Infographic Competition).",tambahanMax:2,tambahanOptions:[{label:"Memperoleh penghargaan khusus tingkat nasional",value:1,group:"nasional",nilaiSync:95},{label:"Memperoleh medali emas, perak, atau perunggu tingkat nasional",value:2,group:"nasional",nilaiSync:100}],mkpk:[1,4,5,12,13,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
+  {cat:"Kompetisi",name:"Satria Data – BDC",base:3.83,syarat:"Lolos ke Tingkat Nasional",desc:"Kompetisi statistika BPS, kategori pengolahan big data (Big Data Challenge).",tambahanMax:2,tambahanOptions:[{label:"Memperoleh penghargaan khusus tingkat nasional",value:1,group:"nasional",nilaiSync:95},{label:"Memperoleh medali emas, perak, atau perunggu tingkat nasional",value:2,group:"nasional",nilaiSync:100}],mkpk:[1,4,5,12,13,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
+  {cat:"Kompetisi",name:"PPK Ormawa – Tim Pelaksana",base:6.93,syarat:"Lolos pendanaan & selesai kegiatan",desc:"Program Penguatan Kapasitas Ormawa, yaitu pendanaan Kemendikbud untuk organisasi mahasiswa menjalankan proyek pemberdayaan masyarakat.",tambahanMax:2,
+    tambahanOptions:[{label:"Penghargaan Abdidaya Terbaik 1, 2, 3, atau 4 kategori Tim Pelaksana",value:2,nilaiSync:100}],
+    tahapanLanjut:{label:"Lolos hingga Abdidaya (tahapan lanjut)",value:3.69},
+    mkpk:[1,2,3,5,6,8,9,10,12,13,16,18,19,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Proposal, laporan kemajuan, laporan akhir, dokumentasi, SK."},
+  {cat:"Kompetisi",name:"PPK Ormawa – Perwakilan Ormawa",base:1.6,syarat:"Lolos pendanaan & selesai kegiatan",desc:"Anggota ormawa yang ditugaskan mewakili organisasi dalam program PPK Ormawa, bukan bagian tim pelaksana inti.",tambahanMax:5,
+    tambahanOptions:[{label:"Penghargaan Abdidaya Terbaik 1, 2, 3, atau 4 kategori Ormawa",value:2,nilaiSync:100}],
+    tahapanLanjut:{label:"Lolos hingga Abdidaya (tahapan lanjut)",value:0.54},
+    tambahanNote:"Maksimal tambahan di rubrik untuk peran ini adalah 5.00 SKS, tapi baru 2 opsi di atas yang datanya terkonfirmasi. Sisanya kemungkinan besar bonus dari peran Kepengurusan (Ketua/pengurus ormawa yang mengkoordinir PPK Ormawa), diklaim lewat MKPK Kepengurusan secara terpisah, bukan lewat peran Perwakilan ini.",
+    mkpk:[1,2,3,5,6,8,9,10,12,13,16,18,19,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"SK penugasan, logbook, dokumentasi."},
   {cat:"Kompetisi",name:"PPK Ormawa – Pendanaan Internal",base:6.4,syarat:"Dapat pendanaan internal & selesai kegiatan",desc:"PPK Ormawa yang didanai internal kampus (bukan lolos pendanaan Kemendikbud).",tambahanMax:0,mkpk:[1,2,3,5,6,8,9,10,12,13,16,18,19,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"SK pendanaan, laporan, dokumentasi."},
-  {cat:"Kompetisi",name:"Musabaqah Tilawatil Qur'an (MTQ)",base:1.0,syarat:"Juara 1–3 Provinsi atau Nasional atau lolos Tahap Nasional",desc:"Lomba tilawah, hafalan, atau pemahaman Al-Qur'an tingkat provinsi hingga nasional.",tambahanMax:5.75,tambahanOptions:[{label:"Juara 1, 2, atau 3 MTQM tingkat Unhas",value:0.5},{label:"Juara 1, 2, atau 3 MTQ tingkat Provinsi",value:0.75},{label:"Juara 1, 2, atau 3 MTQM tingkat Nasional",value:1},{label:"Juara 1, 2, atau 3 MTQ tingkat Nasional",value:1.5},{label:"Juara 1, 2, atau 3 MTQ tingkat Internasional",value:2}],mkpk:[1,15,16,18,19,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Sertifikat atau SK, dokumentasi."},
-  {cat:"Kompetisi",name:"GEMASTIK Bidang I & II",base:3.15,syarat:"Lolos ke Tingkat Nasional",tambahanMax:1.5,tambahanOptions:[{label:"Memperoleh penghargaan khusus tingkat nasional",value:0.5},{label:"Memperoleh medali emas, perak, atau perunggu tingkat nasional",value:1}],mkpk:[1,4,5,12,13,14,15,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
-  {cat:"Kompetisi",name:"GEMASTIK Bidang III, IV, V, VI, VII, X, XI",base:3.15,syarat:"Lolos ke Tingkat Nasional",tambahanMax:3,mkpk:[1,4,5,12,13,14,15,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
-  {cat:"Kompetisi",name:"GEMASTIK Bidang VIII & IX",base:3.15,syarat:"Lolos ke Tingkat Nasional",tambahanMax:5,mkpk:[1,4,5,12,13,14,15,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
-  {cat:"Kompetisi",name:"KBMK (Bisnis, Manajemen, Keuangan)",base:3.0,syarat:"Lolos ke Babak Final",desc:"Kompetisi Mahasiswa Nasional Bidang Ilmu Bisnis, Manajemen, dan Keuangan.",tambahanMax:1,mkpk:[1,9,10,16,17],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
-  {cat:"Kompetisi",name:"Kompetisi Kemaritiman Mahasiswa Nasional (KKMN)",base:2.02,syarat:"Lolos sebagai Finalis",desc:"Kompetisi nasional bertema kemaritiman (kelautan, perikanan, kepelabuhan, dll.).",tambahanMax:1.5,tambahanOptions:[{label:"Juara 1, 2, atau 3 kategori Presentasi",value:1},{label:"Juara 1, 2, atau 3 kategori Poster",value:0.5}],mkpk:[1,16],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
-  {cat:"Kompetisi",name:"PORPROV, POMNAS, PON, atau Lomba Olahraga Regional-Internasional",base:1.93,syarat:"Memenangkan lomba (rentang SKS 1,93–19,30 tergantung capaian)",tambahanMax:0,mkpk:[1,3,4,7,11,12,13,14,18,19],nilai:NILAI_KOMPETISI_GENERIK,docs:"Sertifikat atau SK, dokumentasi."},
-  {cat:"Kompetisi",name:"PEKSIMINAS atau PEKSIMIDA",base:1.64,syarat:"Lolos ke Tingkat Nasional",tambahanMax:1,tambahanOptions:[{label:"Memperoleh juara pada PEKSIMINAS",value:1}],mkpk:[1,7,18,19],nilai:NILAI_KOMPETISI_GENERIK,docs:"Sertifikat atau SK, dokumentasi."},
-  {cat:"Kompetisi",name:"Lomba Paduan Suara Mahasiswa (LPSM)",base:1.38,syarat:"Lolos ke Tingkat Nasional",tambahanMax:1,mkpk:[1,18,19],nilai:NILAI_KOMPETISI_GENERIK,docs:"Sertifikat atau SK, dokumentasi."},
-  {cat:"Kompetisi",name:"Pesta Paduan Suara Gerejawi (PESPARAWI)",base:0.85,syarat:"Lolos ke Tingkat Nasional",tambahanMax:1,mkpk:[1,18,19],nilai:NILAI_KOMPETISI_GENERIK,docs:"Sertifikat atau SK, dokumentasi."},
-  {cat:"Kompetisi",name:"Juri atau Wasit Penalaran, Seni, Olahraga",base:1.0,syarat:"Sertifikat atau SK dari pejabat berwenang",tambahanMax:0,mkpk:[12,14],nilai:NILAI_KOMPETISI_GENERIK,docs:"Sertifikat atau SK dari pejabat berwenang, dokumentasi saat bertugas."},
-  {cat:"Kompetisi",name:"Lomba Mandiri Bidang Penalaran",base:0.58,syarat:"Memenangkan lomba",tambahanMax:0,mkpk:[4,13,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Sertifikat atau SK, dokumentasi."},
-  {cat:"Kompetisi",name:"Lomba Mandiri Bidang Seni & Olahraga",base:0.56,syarat:"Memenangkan lomba",tambahanMax:0,mkpk:[4,18,19],nilai:NILAI_KOMPETISI_GENERIK,docs:"Sertifikat atau SK, dokumentasi."},
-  {cat:"Kompetisi",name:"Unhas Freshmen Talent Competition (UFTC)",base:0.8,syarat:"Lolos Babak Final sebagai Finalis",tambahanMax:0.5,mkpk:[18,19],nilai:NILAI_KOMPETISI_GENERIK,docs:"Sertifikat atau SK, dokumentasi."},
-  {cat:"Kompetisi",name:"Pentas Seni (PENSI)",base:0.8,syarat:"Lolos Babak Final sebagai Finalis",tambahanMax:0.5,mkpk:[18,19],nilai:NILAI_KOMPETISI_GENERIK,docs:"Sertifikat atau SK, dokumentasi."},
+  {cat:"Kompetisi",name:"Musabaqah Tilawatil Qur'an (MTQ)",base:1.0,syarat:"Juara 1–3 Provinsi atau Nasional atau lolos Tahap Nasional",desc:"Lomba tilawah, hafalan, atau pemahaman Al-Qur'an tingkat provinsi hingga nasional.",tambahanMax:5.75,
+    coeff:[{label:"Tingkat kompetisi",key:"tingkat",options:[{label:"MTQ Internasional",value:3},{label:"MTQ Nasional",value:2.5},{label:"MTQM Nasional",value:2},{label:"MTQ Provinsi",value:1.5},{label:"MTQM Unhas",value:1}]}],
+    tambahanOptions:[{label:"Juara 1, 2, atau 3 MTQM tingkat Unhas",value:0.5},{label:"Juara 1, 2, atau 3 MTQ tingkat Provinsi",value:0.75},{label:"Juara 1, 2, atau 3 MTQM tingkat Nasional",value:1},{label:"Juara 1, 2, atau 3 MTQ tingkat Nasional",value:1.5},{label:"Juara 1, 2, atau 3 MTQ tingkat Internasional",value:2}],mkpk:[1,15,16,18,19,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Sertifikat atau SK, dokumentasi."},
+  {cat:"Kompetisi",name:"GEMASTIK Bidang I & II",base:3.15,syarat:"Lolos ke Tingkat Nasional",tambahanMax:1.5,tambahanOptions:[{label:"Memperoleh penghargaan khusus tingkat nasional",value:0.5,nilaiSync:95},{label:"Memperoleh medali emas, perak, atau perunggu tingkat nasional",value:1,nilaiSync:100}],mkpk:[1,4,5,12,13,14,15,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
+  {cat:"Kompetisi",name:"GEMASTIK Bidang III, IV, V, VI, VII, X, XI",base:3.15,syarat:"Lolos ke Tingkat Nasional",tambahanMax:3,
+    tambahanOptions:[{label:"Memperoleh penghargaan khusus tingkat nasional",value:1,nilaiSync:95},{label:"Memperoleh medali emas, perak, atau perunggu tingkat nasional",value:2,nilaiSync:100}],
+    mkpk:[1,4,5,12,13,14,15,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
+  {cat:"Kompetisi",name:"GEMASTIK Bidang VIII & IX",base:3.15,syarat:"Lolos ke Tingkat Nasional",tambahanMax:5,
+    tambahanOptions:[{label:"Memperoleh penghargaan khusus tingkat nasional",value:2,nilaiSync:95},{label:"Memperoleh medali emas, perak, atau perunggu tingkat nasional",value:3,nilaiSync:100}],
+    mkpk:[1,4,5,12,13,14,15,16,17,20],nilai:NILAI_KOMPETISI_GENERIK,docs:"Logbook, karya, sertifikat atau SK."},
+  {cat:"Kompetisi",name:"KBMK (Bisnis, Manajemen, Keuangan)",base:3.0,syarat:"Lolos ke Babak Final",desc:"Kompetisi Mahasiswa Nasional Bidang Ilmu Bisnis, Manajemen, dan Keuangan.",tambahanMax:1,tambahanOptions:[{label:"Memperoleh penghargaan terbaik 1, 2, atau 3",value:1,nilaiSync:100}],mkpk:[1,9,10,16,17],
+    nilai:[{label:"Juara 1, 2, atau 3",value:100},{label:"Pelaksanaan Babak Grand Final",value:95},{label:"Pelaksanaan Babak Semi Final",value:90}],
+    docs:"Logbook, karya, sertifikat atau SK."},
+  {cat:"Kompetisi",name:"Kompetisi Kemaritiman Mahasiswa Nasional (KKMN)",base:2.02,syarat:"Lolos sebagai Finalis",desc:"Kompetisi nasional bertema kemaritiman (kelautan, perikanan, kepelabuhan, dll.).",tambahanMax:1.5,tambahanOptions:[{label:"Juara 1, 2, atau 3 kategori Presentasi",value:1},{label:"Juara 1, 2, atau 3 kategori Poster",value:0.5}],mkpk:[1,16],docs:"Logbook, karya, sertifikat atau SK."},
+  {cat:"Kompetisi",name:"PORPROV, POMNAS, PON, atau Lomba Olahraga Regional-Internasional",base:1.93,syarat:"Memenangkan lomba",tambahanMax:0,
+    coeff:[{label:"Tingkat kompetisi",key:"tingkat",options:[{label:"Olimpiade",value:10},{label:"ASIAN Games",value:5},{label:"SEA Games",value:4},{label:"PON atau lomba tingkat Internasional",value:3},{label:"POMNAS atau lomba mahasiswa tingkat Nasional",value:2},{label:"PORPROV atau lomba tingkat Provinsi",value:1}]}],
+    mkpk:[1,3,4,7,11,12,13,14,18,19],
+    nilai:[{label:"Juara 1, 2, atau 3",value:100},{label:"Juara Harapan",value:90},{label:"Finalis",value:85}],
+    docs:"Sertifikat atau SK, dokumentasi."},
+  {cat:"Kompetisi",name:"PEKSIMINAS atau PEKSIMIDA",base:1.73,syarat:"Lolos ke Tingkat Nasional",tambahanMax:1,tambahanOptions:[{label:"Memperoleh juara pada PEKSIMINAS",value:1,nilaiSync:100}],mkpk:[1,7,18,19],
+    nilai:[{label:"Juara 1, 2, atau 3 tingkat Nasional",value:100},{label:"Mengikuti PEKSIMINAS (lomba tingkat nasional)",value:95},{label:"Mengikuti PEKSIMIDA (lomba tingkat daerah)",value:90},{label:"Lolos seleksi tingkat Universitas",value:85}],
+    docs:"Sertifikat atau SK, dokumentasi."},
+  {cat:"Kompetisi",name:"Lomba Paduan Suara Mahasiswa (LPSM)",base:1.38,syarat:"Lolos ke Tingkat Nasional",tambahanMax:1,
+    tambahanOptions:[{label:"Juara pada tingkat Nasional",value:1,nilaiSync:100}],
+    mkpk:[1,18,19],
+    nilai:[{label:"Juara 1, 2, 3, atau Juara Harapan 1-2",value:100},{label:"Mengikuti Lomba Nasional",value:95},{label:"Mengikuti Seleksi Penyisihan",value:90},{label:"Lolos Seleksi Penyisihan",value:85}],
+    docs:"Sertifikat atau SK, dokumentasi."},
+  {cat:"Kompetisi",name:"Pesta Paduan Suara Gerejawi (PESPARAWI)",base:0.85,syarat:"Lolos ke Tingkat Nasional",tambahanMax:1,
+    tambahanOptions:[{label:"Juara pada tingkat Nasional",value:1,nilaiSync:100}],
+    mkpk:[1,18,19],
+    nilai:[{label:"Juara 1, 2, atau 3",value:100},{label:"Juara Harapan 1 atau 2",value:95},{label:"Lolos Seleksi Penyisihan (mengikuti lomba nasional)",value:90}],
+    docs:"Sertifikat atau SK, dokumentasi."},
+  {cat:"Kompetisi",name:"Juri atau Wasit Penalaran, Seni, Olahraga",base:1.0,syarat:"Sertifikat atau SK dari pejabat berwenang",tambahanMax:0,
+    coeff:[{label:"Cakupan penugasan",key:"cakupan",options:[{label:"Internasional (tercatat di Belmawa)",value:2},{label:"Nasional Belmawa atau Internasional",value:1.5},{label:"Nasional Non-Belmawa",value:1},{label:"Provinsi",value:0.5}]}],
+    mkpk:[12,14],docs:"Sertifikat atau SK dari pejabat berwenang, dokumentasi saat bertugas."},
+  {cat:"Kompetisi",name:"Lomba Mandiri Bidang Penalaran",base:0.58,syarat:"Memenangkan lomba",tambahanMax:0,
+    coeff:[{label:"Skala penyelenggara",key:"skala",options:[{label:"Kompetisi Internasional bereputasi",value:2.5},{label:"Setingkat institusi (luring) atau Internasional (daring)",value:2},{label:"Setingkat BEM Universitas, Fakultas atau Himpunan, Departemen atau Prodi, atau UKM Universitas (luring)",value:1.5},{label:"Diselenggarakan secara daring",value:1}]}],
+    mkpk:[4,13,20],
+    nilai:[{label:"Juara 1, 2, atau 3",value:100},{label:"Juara Harapan",value:90}],
+    docs:"Sertifikat atau SK, dokumentasi."},
+  {cat:"Kompetisi",name:"Lomba Mandiri Bidang Seni & Olahraga",base:0.56,syarat:"Memenangkan lomba",tambahanMax:0,
+    coeff:[{label:"Skala penyelenggara",key:"skala",options:[{label:"Kompetisi Internasional bereputasi",value:2.5},{label:"Setingkat institusi (luring) atau Internasional (daring)",value:2},{label:"Setingkat BEM Universitas, Fakultas atau Himpunan, Departemen atau Prodi, atau UKM Universitas (luring)",value:1.5},{label:"Diselenggarakan secara daring",value:1}]}],
+    mkpk:[4,18,19],
+    nilai:[{label:"Juara 1, 2, atau 3",value:100},{label:"Juara Harapan",value:90}],
+    docs:"Sertifikat atau SK, dokumentasi."},
+  {cat:"Kompetisi",name:"Unhas Freshmen Talent Competition (UFTC)",base:0.8,syarat:"Lolos Babak Final sebagai Finalis",tambahanMax:0.5,
+    tambahanOptions:[{label:"Meraih juara 1, 2, atau 3",value:0.5}],
+    mkpk:[18,19],docs:"Sertifikat atau SK, dokumentasi."},
+  {cat:"Kompetisi",name:"Pentas Seni (PENSI)",base:0.8,syarat:"Lolos Babak Final sebagai Finalis",tambahanMax:0.5,
+    tambahanOptions:[{label:"Meraih juara 1, 2, atau 3",value:0.5}],
+    mkpk:[18,19],docs:"Sertifikat atau SK, dokumentasi."},
 
   // ================= KEWIRAUSAHAAN =================
-  {cat:"Kewirausahaan",name:"Program Mahasiswa Wirausaha (PMW)",base:3.18,syarat:"Lolos pendanaan & selesai kegiatan",desc:"Program pendanaan usaha rintisan dari kampus (internal Unhas).",tambahanMax:1,coeff:[TEAM_ROLE],mkpk:[1,2,3,4,9,10],docs:"Proposal ide & usaha, BMC, laporan bulanan usaha, laporan kemajuan, laporan akhir & sertifikat."},
-  {cat:"Kewirausahaan",name:"Program Pembinaan Mahasiswa Wirausaha (P2MW)",base:4.18,syarat:"Lolos pendanaan & selesai kegiatan dengan baik",desc:"Program pendanaan wirausaha dari Kemendikbud (Belmawa), jenjang lebih tinggi dari PMW, bermuara ke KMI Award.",tambahanMax:1,tambahanOptions:[{label:"Mendapatkan penghargaan KMI Award",value:1}],coeff:[TEAM_ROLE],mkpk:[1,2,3,4,5,9,10,12,13],docs:"Proposal, laporan kemajuan, laporan akhir, dokumen KMI Award (jika ada)."},
-  {cat:"Kewirausahaan",name:"Wirausaha Mandiri",base:2.08,syarat:"Usia usaha ≥3 bulan, margin keuntungan ≥15%",desc:"Usaha pribadi yang berjalan tanpa pendanaan program kampus (modal sendiri).",tambahanMax:0,mkpk:[2,9,10],docs:"Dokumen kelengkapan usaha minimal NIB, bukti cashflow atau margin keuntungan."},
+  {cat:"Kewirausahaan",name:"Program Mahasiswa Wirausaha (PMW)",base:3.18,syarat:"Lolos pendanaan & selesai kegiatan",desc:"Program pendanaan usaha rintisan dari kampus (internal Unhas).",tambahanMax:1,
+    tambahanOptions:[{label:"Menjadi wirausaha pemula berkelanjutan (tahap bertumbuh)",value:1},{label:"Mendapatkan penghargaan 1, 2, atau 3",value:0.5}],
+    coeff:[TEAM_ROLE],mkpk:[1,2,3,4,9,10],docs:"Proposal ide & usaha, BMC, laporan bulanan usaha, laporan kemajuan, laporan akhir & sertifikat."},
+  {cat:"Kewirausahaan",name:"Program Pembinaan Mahasiswa Wirausaha (P2MW)",base:4.18,syarat:"Lolos pendanaan & selesai kegiatan dengan baik",desc:"Program pendanaan wirausaha dari Kemendikbud (Belmawa), jenjang lebih tinggi dari PMW, bermuara ke KMI Award.",tambahanMax:1,tambahanOptions:[{label:"Mendapatkan penghargaan KMI Award",value:1,nilaiSync:100}],
+    tahapanLanjut:{label:"Menjadi Finalis KMI Award (tahapan lanjut)",value:2},
+    coeff:[TEAM_ROLE],mkpk:[1,2,3,4,5,9,10,12,13],
+    nilai:[{label:"Juara 1, 2, atau 3 KMI Award",value:100},{label:"Juara Harapan KMI Award",value:95},{label:"Finalis KMI Award",value:90},{label:"Lolos pendanaan dan melaksanakan usaha",value:85}],
+    docs:"Proposal, laporan kemajuan, laporan akhir, dokumen KMI Award (jika ada)."},
+  {cat:"Kewirausahaan",name:"Wirausaha Mandiri",base:2.08,syarat:"Usia usaha minimal 3 bulan, margin keuntungan minimal 15%, dan memiliki dokumen kelengkapan usaha minimal NIB",desc:"Usaha pribadi yang berjalan tanpa pendanaan program kampus (modal sendiri).",tambahanMax:0,mkpk:[2,9,10],
+    nilai:[{label:"Usia usaha lebih dari 6 bulan",value:100},{label:"Usia usaha 3-6 bulan",value:95}],
+    docs:"Dokumen kelengkapan usaha minimal NIB, bukti cashflow atau margin keuntungan."},
 
   // ================= KEORGANISASIAN =================
-  {cat:"Keorganisasian",name:"Kepengurusan",base:3.05,syarat:"Menyelesaikan tugas kepengurusan 1 periode penuh",tambahanMax:7,mkpk:[1,2,3,6,7,11,12,13,14,15,16],
+  {cat:"Keorganisasian",name:"Kepengurusan",base:3.05,syarat:"Menyelesaikan tugas kepengurusan 1 periode penuh",tambahanMax:7,
+    tambahanOptions:[
+      {label:"Tim PPK Ormawa lolos seleksi presentasi proposal Belmawa",value:0.5},{label:"Tim PPK Ormawa lolos pendanaan",value:0.5},
+      {label:"Tim PPK Ormawa lolos hingga Abdidaya",value:1},{label:"Tim Pelaksana PPK Ormawa mendapat award di Abdidaya",value:1},
+      {label:"Ormawa mendapat award di Abdidaya",value:1},{label:"Ormawa jadi tuan rumah pertemuan Nasional (min. 5 provinsi, luring)",value:1},
+      {label:"Ormawa jadi tuan rumah pertemuan Internasional (min. 5 negara, luring)",value:2},
+    ],
+    mkpk:[1,2,3,6,7,11,12,13,14,15,16],
     coeff:[
       {label:"Jabatan",key:"jabatan",options:[{label:"Ketua",value:1.5},{label:"Wakil Ketua, Sekretaris, Bendahara, atau Koordinator Bidang",value:1},{label:"Anggota",value:0.5}]},
       {label:"Cakupan organisasi",key:"cakupan",options:[{label:"Internasional",value:2},{label:"Nasional atau BEM Universitas",value:1.5},{label:"Provinsi-Regional atau BEM Fakultas",value:1},{label:"Himpunan Departemen atau UKM Universitas atau cabang organisasi internasional atau tingkat kabupaten",value:0.75},{label:"Lokal atau UKM Fakultas",value:0.5},{label:"Organisasi pengawas Ormawa",value:0.5}]},
@@ -636,10 +792,10 @@ const DATA = [
   {cat:"Kepesertaan",name:"Kredensial Mikro",base:0.23,syarat:"Menyelesaikan course & memperoleh sertifikat kelulusan",desc:"Sertifikat course singkat dari platform pembelajaran (Coursera, edX, LinkedIn Learning, dll.), bukan pelatihan formal kampus.",tambahanMax:0,mkpk:[4,5,18,19],
     coeff:[{label:"Durasi course",key:"durasi",options:[{label:"> 20 jam",value:5},{label:"16–20 jam",value:4},{label:"11–15 jam",value:3},{label:"5–10 jam",value:2}]},{label:"Bahasa pengantar course",key:"bahasa",options:[{label:"Bahasa Asing",value:1.5},{label:"Bahasa Indonesia",value:1}]}],
     docs:"Sertifikat kelulusan course."},
-  {cat:"Kepesertaan",name:"Pertukaran Mahasiswa",base:1.6,syarat:"Menyelesaikan kegiatan pertukaran mahasiswa (>1 bulan)",desc:"Program resmi pertukaran atau credit transfer antar perguruan tinggi (mis. IISMA, Permata), beda dari short course biasa.",tambahanMax:0.5,mkpk:[3,4,5,7,11,12,20],
+  {cat:"Kepesertaan",name:"Pertukaran Mahasiswa",base:1.6,syarat:"Menyelesaikan kegiatan pertukaran mahasiswa (>1 bulan)",desc:"Program resmi pertukaran atau credit transfer antar perguruan tinggi (mis. IISMA, Permata), beda dari short course biasa.",tambahanMax:0.5,tambahanOptions:[{label:"Memperoleh pendanaan atau beasiswa (termasuk enrichment program kelas internasional)",value:0.5}],mkpk:[3,4,5,7,11,12,20],
     coeff:[{label:"Skala kegiatan",key:"skala",options:[{label:"Internasional",value:2},{label:"Nasional",value:1}]},{label:"Durasi kegiatan",key:"durasi",options:[{label:"5–6 bulan",value:2},{label:"3–4 bulan",value:1.5},{label:"> 1–2 bulan",value:1}]}],
     docs:"Sertifikat, dokumentasi, laporan kegiatan."},
-  {cat:"Kepesertaan",name:"Short Course",base:1.24,syarat:"Menyelesaikan short course",desc:"Program belajar singkat di institusi lain (dalam atau luar negeri) tanpa status pertukaran resmi antar kampus.",tambahanMax:0.5,mkpk:[4,5,7,11,12,20],
+  {cat:"Kepesertaan",name:"Short Course",base:1.24,syarat:"Menyelesaikan short course",desc:"Program belajar singkat di institusi lain (dalam atau luar negeri) tanpa status pertukaran resmi antar kampus.",tambahanMax:0.5,tambahanOptions:[{label:"Memperoleh pendanaan atau beasiswa (termasuk enrichment program kelas internasional)",value:0.5}],mkpk:[4,5,7,11,12,20],
     coeff:[{label:"Skala kegiatan",key:"skala",options:[{label:"Internasional",value:2},{label:"Nasional",value:1}]},{label:"Durasi kegiatan",key:"durasi",options:[{label:"21–30 hari",value:2},{label:"10–20 hari",value:1.5},{label:"< 10 hari",value:1}]}],
     docs:"Sertifikat, dokumentasi, laporan kegiatan."},
   {cat:"Kepesertaan",name:"Gerakan Unhas Mengkaji & Shalat Berjamaah (GUMSB)",base:0.4,syarat:"Menyelesaikan program GUMSB",desc:"Program kajian & shalat berjamaah rutin yang diselenggarakan resmi oleh kampus, bukan kegiatan keagamaan pribadi.",tambahanMax:0,mkpk:[18,19,20],docs:"Logbook, dokumentasi."},
@@ -649,8 +805,12 @@ const DATA = [
   {cat:"Kepesertaan",name:"Volunteer Event Insidental",base:0.28,syarat:"Menyelesaikan tugas sebagai volunteer",tambahanMax:0,mkpk:[18,19],
     coeff:[{label:"Skala kegiatan",key:"skala",options:[{label:"Internasional",value:2},{label:"Nasional",value:1.5},{label:"Regional",value:1.25},{label:"Universitas",value:1},{label:"Fakultas, Prodi, atau Departemen",value:0.75}]}],
     docs:"SK Pimpinan Universitas, Fakultas, atau Prodi, sertifikat, logbook, dokumentasi."},
-  {cat:"Kepesertaan",name:"Volunteer Berketerampilan Khusus (Terprogram)",base:2.01,syarat:"Menyelesaikan kegiatan volunteer (maks. klaim 2 MKPK)",desc:"Relawan yang memakai keahlian spesifik (medis, teknis, penerjemah, dll.), beda dari relawan acara umum.",tambahanMax:1,mkpk:[1,3,6,11,14],docs:"Logbook, dokumentasi, SK atau surat tugas, sertifikat."},
-  {cat:"Kepesertaan",name:"Volunteer Berketerampilan Khusus (Insidental)",base:1.07,syarat:"Menyelesaikan kegiatan volunteer (maks. klaim 2 MKPK)",desc:"Sama seperti di atas tapi untuk kegiatan yang sifatnya sewaktu-waktu atau tidak terjadwal rutin.",tambahanMax:1,mkpk:[6,14],docs:"Logbook, dokumentasi, SK atau surat tugas, sertifikat."},
+  {cat:"Kepesertaan",name:"Volunteer Berketerampilan Khusus (Terprogram)",base:2.01,syarat:"Menyelesaikan kegiatan volunteer (maks. klaim 2 MKPK)",desc:"Relawan yang memakai keahlian spesifik (medis, teknis, penerjemah, dll.), beda dari relawan acara umum.",tambahanMax:1,
+    tambahanOptions:[{label:"Bersertifikat Keahlian",value:1}],
+    mkpk:[1,3,6,11,14],docs:"Logbook, dokumentasi, SK atau surat tugas, sertifikat."},
+  {cat:"Kepesertaan",name:"Volunteer Berketerampilan Khusus (Insidental)",base:1.07,syarat:"Menyelesaikan kegiatan volunteer (maks. klaim 2 MKPK)",desc:"Sama seperti di atas tapi untuk kegiatan yang sifatnya sewaktu-waktu atau tidak terjadwal rutin.",tambahanMax:1,
+    tambahanOptions:[{label:"Bersertifikat Keahlian",value:1}],
+    mkpk:[6,14],docs:"Logbook, dokumentasi, SK atau surat tugas, sertifikat."},
 
   // ================= PENGABDIAN MASYARAKAT =================
   {cat:"Pengabdian Masyarakat",name:"Pemberdayaan Masyarakat Terprogram",base:1.02,syarat:"Menyelesaikan kegiatan pemberdayaan masyarakat terprogram",tambahanMax:5,coeff:[TEAM_ROLE],mkpk:[1,2,6,7,8,13,14],
@@ -667,17 +827,19 @@ const DATA = [
     nilai:NILAI_DOKUMEN_90,docs:"Surat Tugas atau SK, logbook, dokumentasi, laporan, sertifikat atau SK."},
 
   // ================= MAGANG atau STUDI INDEPENDEN =================
-  {cat:"Magang & Studi Independen",name:"Magang 2 SKS",base:2.0,syarat:"Menyelesaikan kegiatan magang",desc:"Bekerja langsung di perusahaan atau instansi mitra sebagai peserta magang.",tambahanMax:0,mkpk:[21],nilai:NILAI_MAGANG_SI,docs:"Logbook harian, laporan bulanan, formulir penilaian dosen pembimbing & mitra, laporan akhir & presentasi, SK atau surat penerimaan magang."},
-  {cat:"Magang & Studi Independen",name:"Magang 3 SKS",base:3.0,syarat:"Menyelesaikan kegiatan magang",tambahanMax:0,mkpk:[22],nilai:NILAI_MAGANG_SI,docs:"Logbook harian, laporan bulanan, formulir penilaian dosen pembimbing & mitra, laporan akhir & presentasi, SK atau surat penerimaan magang."},
-  {cat:"Magang & Studi Independen",name:"Magang 4 SKS",base:4.0,syarat:"Menyelesaikan kegiatan magang",tambahanMax:0,mkpk:[23],nilai:NILAI_MAGANG_SI,docs:"Logbook harian, laporan bulanan, formulir penilaian dosen pembimbing & mitra, laporan akhir & presentasi, SK atau surat penerimaan magang."},
-  {cat:"Magang & Studi Independen",name:"Magang 6 SKS",base:6.0,syarat:"Menyelesaikan kegiatan magang",tambahanMax:0,mkpk:[24],nilai:NILAI_MAGANG_SI,docs:"Logbook harian, laporan bulanan, formulir penilaian dosen pembimbing & mitra, laporan akhir & presentasi, SK atau surat penerimaan magang."},
-  {cat:"Magang & Studi Independen",name:"Magang 9 SKS",base:9.0,syarat:"Menyelesaikan kegiatan magang",tambahanMax:0,mkpk:[25],nilai:NILAI_MAGANG_SI,docs:"Logbook harian, laporan bulanan, formulir penilaian dosen pembimbing & mitra, laporan akhir & presentasi, SK atau surat penerimaan magang."},
-  {cat:"Magang & Studi Independen",name:"Studi Independen 2 SKS",base:2.0,syarat:"Menyelesaikan kegiatan (bebas status DO evaluasi 4 semester)",desc:"Proyek belajar mandiri dengan bimbingan mentor profesional, biasanya lewat skema Kampus Merdeka (MSIB).",tambahanMax:0,mkpk:[26],nilai:NILAI_MAGANG_SI,docs:"Laporan pembekalan, logbook atau laporan pelaksanaan, draft tugas atau laporan, logbook konsultasi mentor, laporan akhir."},
-  {cat:"Magang & Studi Independen",name:"Studi Independen 4 SKS",base:4.0,syarat:"Menyelesaikan kegiatan (bebas status DO evaluasi 4 semester)",tambahanMax:0,mkpk:[27],nilai:NILAI_MAGANG_SI,docs:"Bukti konsultasi program, dokumen administrasi atau seleksi, laporan pembekalan, logbook atau laporan pelaksanaan, draft & laporan akhir."},
-  {cat:"Magang & Studi Independen",name:"Studi Independen 6 SKS",base:6.0,syarat:"Menyelesaikan kegiatan (bebas status DO evaluasi 4 semester)",tambahanMax:0,mkpk:[28],nilai:NILAI_MAGANG_SI,docs:"Bukti konsultasi program, dokumen administrasi atau seleksi, laporan pembekalan, logbook atau laporan pelaksanaan, draft & laporan akhir."},
+  {cat:"Magang & Studi Independen",name:"Magang 2 SKS",base:2.0,syarat:"Menyelesaikan kegiatan magang",desc:"Bekerja langsung di perusahaan atau instansi mitra sebagai peserta magang.",tambahanMax:0,mkpk:[21],nilaiWeighted:NILAI_TAHAPAN_MAGANG_SI,docs:"Logbook harian, laporan bulanan, formulir penilaian dosen pembimbing & mitra, laporan akhir & presentasi, SK atau surat penerimaan magang."},
+  {cat:"Magang & Studi Independen",name:"Magang 3 SKS",base:3.0,syarat:"Menyelesaikan kegiatan magang",tambahanMax:0,mkpk:[22],nilaiWeighted:NILAI_TAHAPAN_MAGANG_SI,docs:"Logbook harian, laporan bulanan, formulir penilaian dosen pembimbing & mitra, laporan akhir & presentasi, SK atau surat penerimaan magang."},
+  {cat:"Magang & Studi Independen",name:"Magang 4 SKS",base:4.0,syarat:"Menyelesaikan kegiatan magang",tambahanMax:0,mkpk:[23],nilaiWeighted:NILAI_TAHAPAN_MAGANG_SI,docs:"Logbook harian, laporan bulanan, formulir penilaian dosen pembimbing & mitra, laporan akhir & presentasi, SK atau surat penerimaan magang."},
+  {cat:"Magang & Studi Independen",name:"Magang 6 SKS",base:6.0,syarat:"Menyelesaikan kegiatan magang",tambahanMax:0,mkpk:[24],nilaiWeighted:NILAI_TAHAPAN_MAGANG_SI,docs:"Logbook harian, laporan bulanan, formulir penilaian dosen pembimbing & mitra, laporan akhir & presentasi, SK atau surat penerimaan magang."},
+  {cat:"Magang & Studi Independen",name:"Magang 9 SKS",base:9.0,syarat:"Menyelesaikan kegiatan magang",tambahanMax:0,mkpk:[25],nilaiWeighted:NILAI_TAHAPAN_MAGANG_SI,docs:"Logbook harian, laporan bulanan, formulir penilaian dosen pembimbing & mitra, laporan akhir & presentasi, SK atau surat penerimaan magang."},
+  {cat:"Magang & Studi Independen",name:"Studi Independen 2 SKS",base:2.0,syarat:"Menyelesaikan kegiatan (bebas status DO evaluasi 4 semester)",desc:"Proyek belajar mandiri dengan bimbingan mentor profesional, biasanya lewat skema Kampus Merdeka (MSIB).",tambahanMax:0,mkpk:[26],nilaiWeighted:NILAI_TAHAPAN_MAGANG_SI,docs:"Laporan pembekalan, logbook atau laporan pelaksanaan, draft tugas atau laporan, logbook konsultasi mentor, laporan akhir."},
+  {cat:"Magang & Studi Independen",name:"Studi Independen 4 SKS",base:4.0,syarat:"Menyelesaikan kegiatan (bebas status DO evaluasi 4 semester)",tambahanMax:0,mkpk:[27],nilaiWeighted:NILAI_TAHAPAN_MAGANG_SI,docs:"Bukti konsultasi program, dokumen administrasi atau seleksi, laporan pembekalan, logbook atau laporan pelaksanaan, draft & laporan akhir."},
+  {cat:"Magang & Studi Independen",name:"Studi Independen 6 SKS",base:6.0,syarat:"Menyelesaikan kegiatan (bebas status DO evaluasi 4 semester)",tambahanMax:0,mkpk:[28],nilaiWeighted:NILAI_TAHAPAN_MAGANG_SI,docs:"Bukti konsultasi program, dokumen administrasi atau seleksi, laporan pembekalan, logbook atau laporan pelaksanaan, draft & laporan akhir."},
 
   // ================= PUBLIKASI ILMIAH =================
-  {cat:"Publikasi Ilmiah",name:"Artikel Ilmiah",base:4.09,syarat:"Artikel telah diterbitkan pada jurnal nasional atau internasional berbasis riset atau pengabdian",tambahanMax:2,mkpk:[2,4,13,15,17,20],
+  {cat:"Publikasi Ilmiah",name:"Artikel Ilmiah",base:4.09,syarat:"Artikel telah diterbitkan pada jurnal nasional atau internasional berbasis riset atau pengabdian",tambahanMax:2,
+    tambahanOptions:[{label:"Melaksanakan riset",value:2}],
+    mkpk:[2,4,13,15,17,20],
     coeff:[
       {label:"Peran penulis",key:"peran",options:[{label:"Penulis Utama",value:1},{label:"Penulis Pendamping (2–3 penulis, 60%)",value:0.6},{label:"Penulis Pendamping (4–8 penulis, 40%)",value:0.4}]},
       {label:"Jenis jurnal atau skala capaian",key:"jurnal",options:[
@@ -690,15 +852,21 @@ const DATA = [
     docs:"Logbook penyusunan artikel, draft artikel yang didaftarkan ke jurnal, bukti pendaftaran (tangkapan layar sistem jurnal), jawaban atas komentar reviewer, bukti penerimaan, link penerbitan, surat keterangan publikasi PMU Unhas, tangkapan layar indeksasi Scimago atau SINTA."},
 
   // ================= MINAT DAN BAKAT =================
-  {cat:"Minat & Bakat",name:"Teknologi Tepat Guna",base:1.51,syarat:"Teknologi telah diimplementasikan nyata oleh kelompok masyarakat",desc:"Inovasi teknologi praktis untuk menyelesaikan masalah nyata di masyarakat (mis. alat pertanian, pengolahan limbah).",tambahanMax:1,coeff:[TEAM_ROLE],mkpk:[6,8,16],
+  {cat:"Minat & Bakat",name:"Teknologi Tepat Guna",base:1.51,syarat:"Teknologi telah diimplementasikan nyata oleh kelompok masyarakat",desc:"Inovasi teknologi praktis untuk menyelesaikan masalah nyata di masyarakat (mis. alat pertanian, pengolahan limbah).",tambahanMax:1,
+    tambahanOptions:[{label:"Memperoleh HKI",value:1}],
+    coeff:[TEAM_ROLE],mkpk:[6,8,16],
     nilai:[{label:"Dipakai pemerintah kecamatan atau desa, ≥2 kelompok masyarakat berbeda aktivitas",value:100},{label:"Dipakai oleh 1 kelompok masyarakat",value:90}],
     docs:"Portofolio, desain karya, karya, logbook, laporan, dokumentasi, surat kerja sama (TTD pimpinan prodi atau fakultas), publikasi media."},
   {cat:"Minat & Bakat",name:"Menulis Opini (Media Lokal)",base:0.13,syarat:"Opini telah terbit di media lokal",tambahanMax:0,mkpk:[15],docs:"Bukti terbit (tautan atau kliping media)."},
   {cat:"Minat & Bakat",name:"Menulis Opini (Media Nasional)",base:0.21,syarat:"Opini telah terbit di media nasional",tambahanMax:0,mkpk:[15],docs:"Bukti terbit (tautan atau kliping media)."},
-  {cat:"Minat & Bakat",name:"Karya Cipta",base:1.51,syarat:"Karya didaftarkan HKI & diimplementasikan kelompok masyarakat",desc:"Karya orisinal (desain, tulisan, aplikasi, dll.) yang didaftarkan Hak Kekayaan Intelektual (HKI).",tambahanMax:2,coeff:[TEAM_ROLE],mkpk:[14,17,18,19],
+  {cat:"Minat & Bakat",name:"Karya Cipta",base:1.51,syarat:"Karya didaftarkan HKI & diimplementasikan kelompok masyarakat",desc:"Karya orisinal (desain, tulisan, aplikasi, dll.) yang didaftarkan Hak Kekayaan Intelektual (HKI).",tambahanMax:2,
+    tambahanOptions:[{label:"Mengikuti kompetisi atau terekam di kanal media digital resmi",value:1},{label:"Mendaftarkan HKI",value:1}],
+    coeff:[TEAM_ROLE],mkpk:[14,17,18,19],
     nilai:[{label:"Juara nasional atau terekam di kanal media resmi berbadan hukum (nasional)",value:100},{label:"Juara provinsi atau terekam di kanal media resmi berbadan hukum (provinsi)",value:90}],
     docs:"Portofolio, karya, logbook, laporan, dokumentasi, bukti pendaftaran HKI (Kemenkumham), publikasi media."},
-  {cat:"Minat & Bakat",name:"Karya Monumental",base:1.51,syarat:"Karya didaftarkan HKI & diimplementasikan kelompok masyarakat",desc:"Karya berskala besar dengan dampak luas dan diakui publik (mis. instalasi, monumen, proyek besar), didaftarkan HKI.",tambahanMax:2,coeff:[TEAM_ROLE],mkpk:[14,17,18,19],
+  {cat:"Minat & Bakat",name:"Karya Monumental",base:1.51,syarat:"Karya didaftarkan HKI & diimplementasikan kelompok masyarakat",desc:"Karya berskala besar dengan dampak luas dan diakui publik (mis. instalasi, monumen, proyek besar), didaftarkan HKI.",tambahanMax:2,
+    tambahanOptions:[{label:"Mengikuti kompetisi atau terekam di kanal media digital resmi",value:1},{label:"Mendaftarkan HKI",value:1}],
+    coeff:[TEAM_ROLE],mkpk:[14,17,18,19],
     nilai:[{label:"Juara nasional atau terekam di kanal media resmi berbadan hukum (nasional)",value:100},{label:"Juara provinsi atau terekam di kanal media resmi berbadan hukum (provinsi)",value:90}],
     docs:"Portofolio, desain karya, karya, logbook, laporan, dokumentasi, publikasi media, bukti pendaftaran HKI."},
   {cat:"Minat & Bakat",name:"Menjadi Duta (Level Universitas)",base:1.13,syarat:"Menyelesaikan tugas sebagai duta level universitas",tambahanMax:0,mkpk:[1,2,5,6,7],docs:"Portofolio, dokumentasi kampanye & seleksi, sertifikat, logbook, SK, jejak digital publikasi."},
@@ -728,9 +896,16 @@ const DATA = [
 
 const CATEGORIES = [...new Set(DATA.map(d => d.cat))];
 
+// Default dropdown koefisien atau nilai selalu ke opsi bernilai TERENDAH, bukan yang pertama
+// terdaftar di rubrik (yang seringnya justru capaian tertinggi) — supaya orang nggak diam-diam
+// kesimpen nilai terlalu tinggi cuma karena lupa ganti dropdown.
+function lowestOption(options){
+  return options.reduce((min, o) => (o.value < min.value ? o : min), options[0]);
+}
+
 function computeSKS(item, coeffValues, tambahan){
   let mult = 1;
-  if (item.coeff) for (const g of item.coeff) mult *= coeffValues[g.key] ?? g.options[0].value;
+  if (item.coeff) for (const g of item.coeff) mult *= coeffValues[g.key] ?? lowestOption(g.options).value;
   return item.base * mult + (Number(tambahan) || 0);
 }
 
@@ -760,16 +935,18 @@ const I18N = {
     targetReached: "Target tercapai",
     toastAdded: "Kegiatan berhasil ditambahkan",
     cardAddTitle: "Tambah Kegiatan",
-    labelCategory: "Kategori",
-    labelActivity: "Nama Kegiatan",
+    labelCategory: "Basis",
+    labelActivity: "Kategori",
+    itemSearchPlaceholder: "Cari atau pilih...",
+    comboEmpty: "Tidak ada yang cocok.",
+    navAdd: "Tambah Kegiatan",
+    navStatus: "Status Mata Kuliah",
+    navSaved: "Kegiatan Tersimpan",
     syaratLabel: "Syarat pengakuan",
     labelSpesifik: "Nama atau Judul Kegiatan Spesifik (opsional)",
     spesifikPlaceholder: 'mis. "Coursera: Data Analysis Specialization", "Juara 2 GEMASTIK Bidang V 2025"',
     spesifikHint: "Diisi supaya daftar kegiatan Anda mudah dibedakan.",
-    labelNilai: "Estimasi Nilai (dari Rubrik Penilaian)",
-    nilaiFixed: "100 (menyelesaikan kegiatan = nilai penuh, tidak bertingkat pada rubrik)",
-    nilaiKompetisiHint: "Tingkatan nilai kompetisi mengikuti pola umum di rubrik (Juara 100 atau Harapan 95 atau Finalis 90). Sebagian kompetisi punya rentang berbeda. Cek tabel rubrik penilaian spesifik kompetisi ini untuk kepastian.",
-    docsLabel: "Dokumen pendukung yang diperlukan",
+    labelNilai: "Estimasi Nilai (dari Rubrik Penilaian)",    docsLabel: "Dokumen pendukung yang diperlukan",
     allocTitle: "Alokasi Otomatis ke Mata Kuliah MKPK",
     allocHint: "Sistem mengisi dulu mata kuliah dengan sisa kebutuhan paling kecil, supaya lebih banyak mata kuliah selesai dan tidak ada penumpukan SKS berlebih di satu mata kuliah saja. Mata kuliah yang sudah penuh otomatis dilewati.",
     allocEmpty: "Semua mata kuliah yang berhak untuk kegiatan ini sudah terpenuhi dari kegiatan lain. Tidak ada tempat lagi untuk mengalokasikan SKS ini.",
@@ -780,7 +957,7 @@ const I18N = {
     footerRefHead: "Referensi",
     footerCopy: "Dibuat mandiri oleh mahasiswa &middot; Terakhir diperbarui 15 Agustus 2026",
     footerIdentifyBtn: "Cara mengenali alat ini",
-    reoptBannerText: (n) => `Optimasi terdeteksi. Berpotensi menyelesaikan ${n} mata kuliah tambahan.`,
+    reoptBannerText: (n) => `Sistem menemukan susunan alokasi lebih baik dari kegiatan yang sudah Anda simpan. Berpotensi menyelesaikan ${n} mata kuliah tambahan.`,
     reoptViewDetail: "Lihat Detail",
     reoptOverlayTitle: "Optimasi Alokasi Ditemukan",
     reoptSummaryTemplate: (current, next, names) => `Saat ini ${current} mata kuliah selesai. Dengan alokasi ulang, ${next} mata kuliah bisa selesai, termasuk: ${names}.`,
@@ -800,7 +977,7 @@ const I18N = {
     prSavedTitle: "Daftar Kegiatan",
     prColMataKuliah: "Mata Kuliah",
     prColSKS: "SKS",
-    prColKebutuhan: "Kebutuhan",
+    prColKebutuhan: "Diperlukan",
     prColStatus: "Status",
     prColKegiatan: "Kegiatan",
     prColTujuan: "Tujuan",
@@ -822,9 +999,10 @@ const I18N = {
       "Kalau sistem menemukan susunan alokasi yang lebih baik dari kegiatan-kegiatan yang sudah tersimpan, notifikasi kuning akan muncul; klik untuk lihat detail sebelum menerapkannya.",
       "Ekspor laporan PDF kapan saja lewat tombol \"Ekspor PDF\" di pojok kanan atas.",
     ],
-    tambahanLabelTemplate: (max) => `SKS tambahan (prestasi atau pendanaan, dsb, maks. ${max} SKS, cek syarat detail di rubrik)`,
+    tambahanLabelTemplate: (max) => `SKS tambahan (maks. ${max} SKS)`,
     tambahanSumTemplate: (sum, max) => `Terpilih: ${sum} dari maksimal ${max} SKS.`,
     tambahanCappedNote: "Kelebihan dari maksimal tidak dihitung.",
+    nilaiWeightedResultTemplate: (val) => `Estimasi nilai akhir (dihitung berbobot dari 4 tahap di atas): ${val}`,
     metNoteTemplate: (names) => `Sudah penuh (dilewati): ${names}.`,
     recoLabel: "Rekomendasi Alokasi",
     recoNote: "Diurutkan dari sisa kebutuhan terkecil, supaya lebih banyak mata kuliah selesai lebih dulu.",
@@ -840,6 +1018,9 @@ const I18N = {
     thSKS: "SKS", thNilai: "Nilai", thDokumen: "Dokumen Diperlukan",
     tambahanExtra: (v) => `+ tambahan ${v} SKS`,
     hapusLabel: "Hapus",
+    editLabel: "Edit",
+    editToast: "Silakan sesuaikan lalu simpan ulang",
+    reviewHint: "Cek dulu, jangan asal ikut pilihan default",
     footerTitle: "Prediksi MKPK",
   },
   en: {
@@ -863,16 +1044,18 @@ const I18N = {
     targetReached: "Target reached",
     toastAdded: "Activity added successfully",
     cardAddTitle: "Add an Activity",
-    labelCategory: "Category",
-    labelActivity: "Activity Name",
+    labelCategory: "Group",
+    labelActivity: "Category",
+    itemSearchPlaceholder: "Search or select...",
+    comboEmpty: "No matches found.",
+    navAdd: "Add Activity",
+    navStatus: "Course Status",
+    navSaved: "Saved Activities",
     syaratLabel: "Recognition requirement",
     labelSpesifik: "Specific Activity Title (optional)",
     spesifikPlaceholder: 'e.g. "Coursera: Data Analysis Specialization", "2nd Place, GEMASTIK Category V 2025"',
     spesifikHint: "This helps you tell your saved activities apart.",
-    labelNilai: "Estimated Grade (from the Assessment Rubric)",
-    nilaiFixed: "100 (completing the activity earns full marks; this activity has no graded tiers in the rubric)",
-    nilaiKompetisiHint: "Competition grade tiers follow the common pattern in the rubric (Winner 100 / Honourable mention 95 / Finalist 90). Some competitions use different tiers, so check that specific competition's assessment table to be sure.",
-    docsLabel: "Supporting documents required",
+    labelNilai: "Estimated Grade (from the Assessment Rubric)",    docsLabel: "Supporting documents required",
     allocTitle: "Automatic Allocation to MKPK Courses",
     allocHint: "The system fills whichever eligible course has the smallest remaining requirement first, so more courses get completed and credit isn't overstacked into a single course. Courses that are already full are skipped automatically.",
     allocEmpty: "Every course this activity is eligible for has already been completed by other activities. There's nowhere left to allocate this credit.",
@@ -883,7 +1066,7 @@ const I18N = {
     footerRefHead: "Reference",
     footerCopy: "Built independently by a student &middot; Last updated 15 August 2026",
     footerIdentifyBtn: "How to recognise this tool",
-    reoptBannerText: (n) => `Optimisation found. Could complete ${n} more course${n === 1 ? '' : 's'}.`,
+    reoptBannerText: (n) => `The system found a better allocation across the activities you've already saved. Could complete ${n} more course${n === 1 ? '' : 's'}.`,
     reoptViewDetail: "View Details",
     reoptOverlayTitle: "Allocation Optimisation Found",
     reoptSummaryTemplate: (current, next, names) => `Currently ${current} course${current === 1 ? '' : 's'} complete. Reallocating could complete ${next}, including: ${names}.`,
@@ -925,9 +1108,10 @@ const I18N = {
       "If the system finds a better allocation across your saved activities, a yellow notification appears; click it to review the details before applying.",
       "Export a PDF report at any time using the \"Export PDF\" button in the top right.",
     ],
-    tambahanLabelTemplate: (max) => `Additional credit (achievement/funding, etc, max. ${max} credits; check the rubric for exact conditions)`,
+    tambahanLabelTemplate: (max) => `Additional credit (max. ${max} credits)`,
     tambahanSumTemplate: (sum, max) => `Selected: ${sum} out of a maximum ${max} credits.`,
     tambahanCappedNote: "Anything above the maximum isn't counted.",
+    nilaiWeightedResultTemplate: (val) => `Final estimated grade (weighted across the 4 stages above): ${val}`,
     metNoteTemplate: (names) => `Already complete (skipped): ${names}.`,
     recoLabel: "Allocation Recommendation",
     recoNote: "Ordered from the smallest remaining requirement first, so more courses get completed sooner.",
@@ -943,6 +1127,9 @@ const I18N = {
     thSKS: "Credits", thNilai: "Grade", thDokumen: "Documents Required",
     tambahanExtra: (v) => `+ ${v} additional credits`,
     hapusLabel: "Remove",
+    editLabel: "Edit",
+    editToast: "Adjust the details, then save again",
+    reviewHint: "Double-check this, don't just leave the default",
     footerTitle: "Prediksi MKPK",
   },
 };
@@ -977,6 +1164,7 @@ let saved = JSON.parse(localStorage.getItem('mkpk-saved-v3') || '[]');
 saved.forEach(e => { if (!e.groupId) e.groupId = String(e.id).replace(/-\d+$/, ''); });
 let coeffValues = {};
 let tambahan = 0;
+let tahapanLanjutValue = 0;
 let nilaiValue = 100;
 let excludedCourses = {};
 let targetMode = localStorage.getItem('mkpk-target-mode') || 'kesehatan';
@@ -987,15 +1175,18 @@ let customTarget = Number(localStorage.getItem('mkpk-target-custom') || 10);
 // ===========================================================================
 const el = (id) => document.getElementById(id);
 const categorySelect = el('categorySelect');
-const itemSelect = el('itemSelect');
+const itemSearchInput = el('itemSearchInput');
+const itemComboList = el('itemComboList');
 const syaratText = el('syaratText');
 const descNote = el('descNote'), descText = el('descText');
 const namaSpesifikInput = el('namaSpesifikInput');
 const coeffGrid = el('coeffGrid');
 const tambahanField = el('tambahanField'), tambahanLabel = el('tambahanLabel'), tambahanInput = el('tambahanInput');
+const tahapanLanjutBox = el('tahapanLanjutBox'), tahapanLanjutCheck = el('tahapanLanjutCheck'), tahapanLanjutLabel = el('tahapanLanjutLabel'), tahapanLanjutValueEl = el('tahapanLanjutValue');
 const tambahanChecklist = el('tambahanChecklist'), tambahanNote = el('tambahanNote'), tambahanSum = el('tambahanSum');
 const nilaiVariableWrap = el('nilaiVariableWrap'), nilaiSelect = el('nilaiSelect');
-const nilaiFixedText = el('nilaiFixedText'), nilaiKompetisiHint = el('nilaiKompetisiHint');
+const nilaiField = el('nilaiField');
+const nilaiWeightedWrap = el('nilaiWeightedWrap'), nilaiWeightedResult = el('nilaiWeightedResult');
 const docsText = el('docsText');
 const metNote = el('metNote'), recoText = el('recoText');
 const allocEmptyState = el('allocEmptyState'), allocList = el('allocList');
@@ -1007,10 +1198,12 @@ const statMet = el('statMet'), statMetOf = el('statMetOf'), statSKS = el('statSK
 const targetProgressBar = el('targetProgressBar'), targetDone = el('targetDone'), targetRemaining = el('targetRemaining');
 const customTargetInput = el('customTargetInput');
 
+let selectedItemName = null;
+
 function currentItem(){
   const cat = categorySelect.value;
   const list = DATA.filter(d => d.cat === cat);
-  return DATA.find(d => d.cat === cat && d.name === itemSelect.value) || list[0];
+  return DATA.find(d => d.cat === cat && d.name === selectedItemName) || list[0];
 }
 
 function earnedByCourse(){
@@ -1048,8 +1241,65 @@ function populateCategories(){
 }
 function populateItems(){
   const list = DATA.filter(d => d.cat === categorySelect.value);
-  itemSelect.innerHTML = list.map(d => `<option value="${d.name}">${d.name}</option>`).join('');
+  selectedItemName = list[0]?.name || null;
+  itemSearchInput.value = selectedItemName || '';
 }
+
+// ---------- combobox pencarian kegiatan ----------
+let comboHighlightIdx = -1;
+
+function comboFilteredList(){
+  const raw = itemSearchInput.value.trim();
+  const list = DATA.filter(d => d.cat === categorySelect.value);
+  // kalau isi input masih persis nama yang lagi kepilih (belum diketik ulang), tampilkan semua opsi
+  if (!raw || raw === selectedItemName) return list;
+  const query = raw.toLowerCase();
+  return list.filter(d => d.name.toLowerCase().includes(query));
+}
+
+function renderComboList(){
+  const list = comboFilteredList();
+  if (list.length === 0){
+    itemComboList.innerHTML = `<div class="combo-empty">${t('comboEmpty')}</div>`;
+  } else {
+    itemComboList.innerHTML = list.map((d, i) => `
+      <div class="combo-option${d.name === selectedItemName ? ' selected' : ''}${i === comboHighlightIdx ? ' highlighted' : ''}" data-name="${d.name}" data-idx="${i}">${d.name}</div>
+    `).join('');
+    itemComboList.querySelectorAll('.combo-option').forEach(opt => {
+      opt.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        chooseComboItem(opt.dataset.name);
+      });
+    });
+  }
+  itemComboList.style.display = 'block';
+}
+
+function chooseComboItem(name){
+  selectedItemName = name;
+  itemSearchInput.value = name;
+  itemComboList.style.display = 'none';
+  comboHighlightIdx = -1;
+  renderItemDetails();
+  renderAll();
+}
+
+itemSearchInput.addEventListener('focus', (e) => { comboHighlightIdx = -1; e.target.select(); renderComboList(); });
+itemSearchInput.addEventListener('input', () => { comboHighlightIdx = -1; renderComboList(); });
+itemSearchInput.addEventListener('blur', () => {
+  setTimeout(() => {
+    itemComboList.style.display = 'none';
+    // kalau user ngetik tapi nggak pilih apa-apa, balikin ke nama yang lagi kepilih
+    itemSearchInput.value = selectedItemName || '';
+  }, 120);
+});
+itemSearchInput.addEventListener('keydown', (e) => {
+  const list = comboFilteredList();
+  if (e.key === 'ArrowDown'){ e.preventDefault(); comboHighlightIdx = Math.min(comboHighlightIdx + 1, list.length - 1); renderComboList(); }
+  else if (e.key === 'ArrowUp'){ e.preventDefault(); comboHighlightIdx = Math.max(comboHighlightIdx - 1, 0); renderComboList(); }
+  else if (e.key === 'Enter'){ e.preventDefault(); if (list[comboHighlightIdx]) chooseComboItem(list[comboHighlightIdx].name); else if (list[0]) chooseComboItem(list[0].name); }
+  else if (e.key === 'Escape'){ itemComboList.style.display = 'none'; itemSearchInput.blur(); }
+});
 
 function updateTambahanFromChecklist(){
   const item = currentItem();
@@ -1060,6 +1310,40 @@ function updateTambahanFromChecklist(){
   tambahan = capped;
   tambahanSum.style.display = 'block';
   tambahanSum.textContent = t('tambahanSumTemplate', capped.toFixed(2), item.tambahanMax) + (rawSum > item.tambahanMax ? ' ' + t('tambahanCappedNote') : '');
+
+  // sinkronisasi nilai: kalau ada opsi tercentang yang punya padanan nilai (nilaiSync),
+  // otomatis pilihkan nilai tertinggi di antara opsi-opsi itu ke dropdown Estimasi Nilai
+  if (Array.isArray(item.nilai)){
+    const syncValues = checked
+      .map(cb => cb.dataset.nilaiSync)
+      .filter(v => v !== '')
+      .map(Number);
+    if (syncValues.length > 0){
+      const best = Math.max(...syncValues);
+      nilaiValue = best;
+      nilaiSelect.value = best;
+      nilaiSelect.classList.remove('needs-review');
+    } else {
+      // nggak ada opsi tercentang yang punya padanan nilai, balikin ke default terendah
+      nilaiValue = lowestOption(item.nilai).value;
+      nilaiSelect.value = nilaiValue;
+      nilaiSelect.classList.toggle('needs-review', item.nilai.length > 1);
+    }
+  }
+
+  renderAllocationAndResult();
+}
+
+function computeWeightedNilai(){
+  const item = currentItem();
+  if (!item || !Array.isArray(item.nilaiWeighted)) return;
+  let weightedSum = 0;
+  item.nilaiWeighted.forEach((tahap, idx) => {
+    const sel = el(`nilaiTahap${idx}`);
+    weightedSum += Number(sel.value) * tahap.weight;
+  });
+  nilaiValue = Math.round(weightedSum * 10) / 10;
+  nilaiWeightedResult.textContent = t('nilaiWeightedResultTemplate', nilaiValue.toFixed(1));
   renderAllocationAndResult();
 }
 
@@ -1069,6 +1353,18 @@ function renderItemDetails(){
   syaratText.textContent = item.syarat;
   docsText.textContent = item.docs;
 
+  // tahapan lanjut: bukan tambahan/prestasi, tapi soal sampai tahap mana prosesnya
+  // (mempengaruhi total SKS langsung, tidak kena batas maksimal tambahan)
+  tahapanLanjutValue = 0;
+  tahapanLanjutCheck.checked = false;
+  if (item.tahapanLanjut){
+    tahapanLanjutBox.style.display = 'block';
+    tahapanLanjutLabel.textContent = item.tahapanLanjut.label;
+    tahapanLanjutValueEl.textContent = `+${item.tahapanLanjut.value.toFixed(2)} SKS`;
+  } else {
+    tahapanLanjutBox.style.display = 'none';
+  }
+
   if (item.desc){ descNote.style.display = 'flex'; descText.textContent = item.desc; }
   else { descNote.style.display = 'none'; }
 
@@ -1076,22 +1372,68 @@ function renderItemDetails(){
   coeffValues = {};
   coeffGrid.innerHTML = '';
   (item.coeff || []).forEach(g => {
-    coeffValues[g.key] = g.options[0].value;
+    const defaultVal = lowestOption(g.options).value;
+    coeffValues[g.key] = defaultVal;
+    const needsReview = g.options.length > 1;
     const wrap = document.createElement('div');
     wrap.className = 'field';
     wrap.innerHTML = `<label class="field-label">${g.label}</label>
       <div class="select-wrap">
-        <select class="field-select" data-key="${g.key}">
+        <select class="field-select${needsReview ? ' needs-review' : ''}" data-key="${g.key}">
           ${g.options.map(o => `<option value="${o.value}">${o.label} (×${o.value})</option>`).join('')}
         </select>
         <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-      </div>`;
+      </div>
+      ${needsReview ? `<div class="review-hint">${t('reviewHint')}</div>` : ''}`;
+    wrap.querySelector('select').value = defaultVal;
     wrap.querySelector('select').addEventListener('change', e => {
       coeffValues[g.key] = Number(e.target.value);
+      e.target.classList.remove('needs-review');
+      const hint = wrap.querySelector('.review-hint');
+      if (hint) hint.remove();
       renderAllocationAndResult();
     });
     coeffGrid.appendChild(wrap);
   });
+
+  // nilai (field ini disembunyikan total kalau kegiatan nilainya flat 100, biar tidak jadi noise berulang)
+  // catatan: blok ini HARUS jalan sebelum blok tambahan, karena updateTambahanFromChecklist()
+  // butuh nilaiSelect sudah terisi opsi buat sinkronisasi nilai otomatis (nilaiSync)
+  nilaiVariableWrap.style.display = 'none';
+  nilaiWeightedWrap.style.display = 'none';
+  nilaiWeightedResult.style.display = 'none';
+  if (Array.isArray(item.nilaiWeighted)){
+    // nilai berbobot multi-tahap (Magang/Studi Independen): satu dropdown per tahap, hasil akhir dihitung berbobot
+    nilaiField.style.display = 'flex';
+    nilaiWeightedWrap.style.display = 'flex';
+    nilaiWeightedResult.style.display = 'block';
+    nilaiWeightedWrap.innerHTML = item.nilaiWeighted.map((tahap, idx) => `
+      <div class="nilai-weighted-row">
+        <div class="nilai-weighted-label"><span>${tahap.label}</span><span class="nilai-weighted-weight">${(tahap.weight * 100).toFixed(0)}%</span></div>
+        <div class="select-wrap">
+          <select class="field-select needs-review" id="nilaiTahap${idx}" data-weight="${tahap.weight}">
+            ${tahap.options.map(o => `<option value="${o.value}">${o.label} (${o.value})</option>`).join('')}
+          </select>
+          <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>`).join('');
+    item.nilaiWeighted.forEach((tahap, idx) => {
+      const sel = el(`nilaiTahap${idx}`);
+      sel.value = lowestOption(tahap.options).value;
+      sel.addEventListener('change', (e) => { e.target.classList.remove('needs-review'); computeWeightedNilai(); });
+    });
+    computeWeightedNilai();
+  } else if (Array.isArray(item.nilai)){
+    nilaiField.style.display = 'flex';
+    nilaiVariableWrap.style.display = 'block';
+    nilaiSelect.innerHTML = item.nilai.map(n => `<option value="${n.value}">${n.label}: ${n.value}</option>`).join('');
+    nilaiValue = lowestOption(item.nilai).value;
+    nilaiSelect.value = nilaiValue;
+    nilaiSelect.classList.toggle('needs-review', item.nilai.length > 1);
+  } else {
+    nilaiField.style.display = 'none';
+    nilaiValue = 100;
+  }
 
   // tambahan
   tambahan = 0; tambahanInput.value = 0;
@@ -1106,12 +1448,21 @@ function renderItemDetails(){
       tambahanChecklist.style.display = 'flex';
       tambahanChecklist.innerHTML = item.tambahanOptions.map((opt, idx) => `
         <label class="tambahan-check-row">
-          <input type="checkbox" data-value="${opt.value}" id="tambahanOpt${idx}" />
+          <input type="checkbox" data-value="${opt.value}" data-group="${opt.group || ''}" data-nilai-sync="${opt.nilaiSync ?? ''}" id="tambahanOpt${idx}" />
           <span class="tambahan-check-label">${opt.label}</span>
           <span class="tambahan-check-value">+${opt.value.toFixed(2)} SKS</span>
         </label>`).join('');
       tambahanChecklist.querySelectorAll('input[type=checkbox]').forEach(cb => {
-        cb.addEventListener('change', updateTambahanFromChecklist);
+        cb.addEventListener('change', (e) => {
+          const group = e.target.dataset.group;
+          // kalau checkbox ini bagian dari grup saling-eksklusif, matikan checkbox lain di grup yang sama
+          if (group && e.target.checked){
+            tambahanChecklist.querySelectorAll(`input[type=checkbox][data-group="${group}"]`).forEach(other => {
+              if (other !== e.target) other.checked = false;
+            });
+          }
+          updateTambahanFromChecklist();
+        });
       });
       if (item.tambahanNote){
         tambahanNote.style.display = 'block';
@@ -1130,19 +1481,6 @@ function renderItemDetails(){
     tambahanField.style.display = 'none';
   }
 
-  // nilai
-  if (Array.isArray(item.nilai)){
-    nilaiVariableWrap.style.display = 'block';
-    nilaiFixedText.style.display = 'none';
-    nilaiSelect.innerHTML = item.nilai.map(n => `<option value="${n.value}">${n.label}: ${n.value}</option>`).join('');
-    nilaiValue = item.nilai[0].value;
-  } else {
-    nilaiVariableWrap.style.display = 'none';
-    nilaiFixedText.style.display = 'block';
-    nilaiValue = 100;
-  }
-  nilaiKompetisiHint.style.display = (item.cat === 'Kompetisi') ? 'block' : 'none';
-
   namaSpesifikInput.value = '';
   excludedCourses = {};
 
@@ -1152,7 +1490,7 @@ function renderItemDetails(){
 function renderAllocationAndResult(){
   const item = currentItem();
   if (!item) return;
-  const currentSKS = computeSKS(item, coeffValues, tambahan);
+  const currentSKS = computeSKS(item, coeffValues, tambahan) + tahapanLanjutValue;
   resultValue.textContent = currentSKS.toFixed(2) + ' SKS';
 
   const earned = earnedByCourse();
@@ -1232,7 +1570,7 @@ function addEntry(){
   if (!item || !auto || auto.rows.length === 0) return;
 
   const coeffLabelParts = (item.coeff || []).map(g => {
-    const val = coeffValues[g.key] ?? g.options[0].value;
+    const val = coeffValues[g.key] ?? lowestOption(g.options).value;
     const opt = g.options.find(o => o.value === val);
     return `${g.label}: ${opt ? opt.label : '-'} (×${val})`;
   });
@@ -1426,15 +1764,41 @@ function renderTable(){
       <td style="text-align:right; font-variant-numeric:tabular-nums; color:#4A5162">${e.nilai ?? 100}</td>
       <td style="color:#71788A; font-size:14px">${e.docs}</td>
       <td class="no-print">
-        <button class="row-icon-btn del-btn" data-id="${e.id}" aria-label="${t('hapusLabel')}" title="${t('hapusLabel')}">
-          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-        </button>
+        <div class="row-actions">
+          <button class="row-icon-btn edit-btn" data-group="${e.groupId}" aria-label="${t('editLabel')}" title="${t('editLabel')}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+          </button>
+          <button class="row-icon-btn del-btn" data-id="${e.id}" aria-label="${t('hapusLabel')}" title="${t('hapusLabel')}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+          </button>
+        </div>
       </td>
     </tr>`).join('');
   tableArea.innerHTML = `<div class="table-wrap"><table>
     <thead><tr><th>${t('thKegiatan')}</th><th>${t('thMataKuliah')}</th><th>${t('thCakupan')}</th><th style="text-align:right">${t('thSKS')}</th><th style="text-align:right">${t('thNilai')}</th><th>${t('thDokumen')}</th><th class="no-print"></th></tr></thead>
     <tbody>${rows}</tbody></table></div>`;
   tableArea.querySelectorAll('.del-btn').forEach(btn => btn.addEventListener('click', () => removeEntry(btn.dataset.id)));
+  tableArea.querySelectorAll('.edit-btn').forEach(btn => btn.addEventListener('click', () => editGroup(btn.dataset.group)));
+}
+
+function editGroup(groupId){
+  const groupEntries = saved.filter(e => e.groupId === groupId);
+  if (groupEntries.length === 0) return;
+  const first = groupEntries[0];
+
+  saved = saved.filter(e => e.groupId !== groupId);
+  persist();
+
+  categorySelect.value = first.category;
+  populateItems();
+  selectedItemName = first.name;
+  itemSearchInput.value = first.name;
+  renderItemDetails();
+  namaSpesifikInput.value = first.namaSpesifik || '';
+  renderAll();
+
+  document.getElementById('langkah-1').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  showToast(t('editToast'));
 }
 
 function renderStatsAndTarget(summary){
@@ -1623,8 +1987,12 @@ function renderAll(){
 // EVENTS
 // ===========================================================================
 categorySelect.addEventListener('change', () => { populateItems(); renderItemDetails(); renderAll(); });
-itemSelect.addEventListener('change', () => { renderItemDetails(); renderAll(); });
-nilaiSelect.addEventListener('change', e => { nilaiValue = Number(e.target.value); });
+nilaiSelect.addEventListener('change', e => { nilaiValue = Number(e.target.value); e.target.classList.remove('needs-review'); });
+tahapanLanjutCheck.addEventListener('change', (e) => {
+  const item = currentItem();
+  tahapanLanjutValue = (e.target.checked && item.tahapanLanjut) ? item.tahapanLanjut.value : 0;
+  renderAllocationAndResult();
+});
 tambahanInput.addEventListener('input', e => {
   const item = currentItem();
   let v = Number(e.target.value) || 0;
