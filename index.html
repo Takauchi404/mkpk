@@ -148,7 +148,11 @@
 
   /* ---------- cards ---------- */
   .card{background:#FFFFFF; border:1px solid var(--border); border-radius:8px; padding:24px 26px; margin-top:24px;}
-  .card-head{margin-bottom:20px; border-bottom:1px solid var(--border); padding-bottom:14px;}
+  .card-head{margin-bottom:20px; border-bottom:1px solid var(--border); padding-bottom:14px; display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap;}
+  .reset-btn{display:flex; align-items:center; gap:5px; background:none; border:none; padding:2px 0; font-size:12.5px; font-weight:600; color:var(--faint); cursor:pointer; letter-spacing:.01em; transition:color .15s;}
+  .reset-btn svg{opacity:.7; transition:opacity .15s;}
+  .reset-btn:hover{color:#A6371F;}
+  .reset-btn:hover svg{opacity:1;}
   .card-head-row{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;}
   .card-title{font-size:18px; font-weight:700; color:var(--navy); margin:0;}
 
@@ -244,6 +248,9 @@
   .badge-pending{color:var(--warn); background:var(--warn-bg); border:1px solid #F0CFA8;}
 
   .empty-state{font-size:15px; color:var(--faint); padding:20px 0; text-align:center; animation:fadeSlideIn .18s ease-out;}
+  .pending-fit-box{display:flex; align-items:center; gap:10px; flex-wrap:wrap; background:#FFF7E8; border:1px solid #F0D9A8; color:#7A4E0A; border-radius:6px; padding:12px 14px; margin:14px 0; font-size:13.5px; animation:fadeSlideIn .18s ease-out;}
+  .pending-fit-link{background:#7A4E0A; color:#FFFFFF; border:none; border-radius:5px; padding:6px 13px; font-size:12.5px; font-weight:700; cursor:pointer; white-space:nowrap; transition:background .15s;}
+  .pending-fit-link:hover{background:#5C3B08;}
 
   .table-wrap{overflow-x:auto;}
   table{width:100%; border-collapse:collapse; font-size:14.5px;}
@@ -252,8 +259,12 @@
   td{padding:11px 10px; vertical-align:top;}
   .td-cat{font-size:12px; color:var(--blue); text-transform:uppercase; letter-spacing:.04em; margin-bottom:2px; font-weight:700;}
   .td-name{font-weight:600; color:var(--text);}
-  .td-spesifik{font-size:13px; color:var(--faint); font-style:italic; margin-top:2px;}
+  .td-spesifik{font-size:13.5px; color:var(--muted); margin-top:1px;}
   .sks-pill{font-weight:700; color:var(--navy); font-variant-numeric:tabular-nums;}
+  .alloc-line{padding:6px 0; white-space:nowrap;}
+  .alloc-line + .alloc-line{border-top:1px dashed var(--border); margin-top:2px; padding-top:8px;}
+  .alloc-line-split{display:flex; align-items:baseline; justify-content:space-between; gap:12px;}
+  .alloc-total{border-top:1.5px solid var(--border); margin-top:6px; padding-top:6px;}
   .row-actions{display:flex; align-items:center; gap:2px;}
   .row-icon-btn{display:flex; align-items:center; justify-content:center; background:transparent; border:none; color:#9AA2B1; cursor:pointer; padding:6px; border-radius:5px; transition:background .15s, color .15s;}
   .edit-btn:hover{background:#EAF0FD; color:var(--blue);}
@@ -325,7 +336,7 @@
     </div>
     <div class="identify-panel" id="identifyPanel">
       <div class="identify-col">
-        <div class="identify-col-head"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg><span data-i18n="identify1Head">Bukan bagian dari Unhas</span></div>
+        <div class="identify-col-head"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg><span data-i18n="identify1Head">Bukan bagian dari Universitas Hasanuddin</span></div>
         <p class="identify-col-text" data-i18n="identify1Text">Alat ini dibuat mandiri oleh mahasiswa untuk membantu prediksi SKS berdasarkan Rubrik MKPK Edisi 3. Pengisian activity hours dan pengajuan klaim MKPK yang sesungguhnya tetap lewat Sipakamase.</p>
       </div>
       <div class="identify-col">
@@ -434,7 +445,7 @@
     </div>
 
     <div class="field">
-      <label class="field-label" data-i18n="labelSpesifik">Nama atau Judul Kegiatan Spesifik (opsional)</label>
+      <label class="field-label" data-i18n="labelSpesifik">Judul Kegiatan Spesifik (opsional)</label>
       <input type="text" class="field-input" id="namaSpesifikInput" placeholder='mis. "Coursera: Data Analysis Specialization", "Juara 2 GEMASTIK Bidang V 2025"' data-i18n-placeholder="spesifikPlaceholder" />
       <div class="hint-text" data-i18n="spesifikHint">Diisi supaya daftar kegiatan Anda mudah dibedakan.</div>
     </div>
@@ -470,6 +481,10 @@
       <div class="met-note" id="metNote" style="display:none"></div>
       <div class="reco-box" id="recoText" style="display:none"></div>
       <div class="empty-state" id="allocEmptyState" style="display:none" data-i18n="allocEmpty">Semua mata kuliah yang berhak untuk kegiatan ini sudah terpenuhi dari kegiatan lain. Tidak ada tempat lagi untuk mengalokasikan SKS ini.</div>
+      <div class="pending-fit-box" id="pendingFitBox" style="display:none">
+        <span id="pendingFitText"></span>
+        <button type="button" class="pending-fit-link" id="pendingFitViewBtn" data-i18n="pendingFitViewBtn">Lihat opsi</button>
+      </div>
       <div class="alloc-list" id="allocList"></div>
       <div class="alloc-summary">
         <span><span data-i18n="allocatedLabel">Teralokasikan</span>: <b id="allocTotal">0.00</b> / <span id="allocAvailable">0.00</span> SKS</span>
@@ -504,7 +519,13 @@
 
   <!-- ============ LANGKAH 3 ============ -->
   <section id="langkah-3" class="card">
-    <div class="card-head"><h2 class="card-title" id="savedTitle">Kegiatan Tersimpan (0)</h2></div>
+    <div class="card-head">
+      <h2 class="card-title" id="savedTitle">Kegiatan Tersimpan (0)</h2>
+      <button type="button" class="reset-btn no-print" id="resetSavedBtn" style="display:none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
+        <span data-i18n="resetBtn">Kosongkan</span>
+      </button>
+    </div>
     <div id="tableArea"></div>
   </section>
 </main>
@@ -527,6 +548,26 @@
     </div>
   </div>
 </div>
+
+<!-- ============ OVERLAY: PENDING FIT (kegiatan baru lewat realokasi) ============ -->
+<div class="overlay-backdrop no-print" id="pendingFitOverlay">
+  <div class="overlay-card overlay-card-wide" role="dialog" aria-modal="true" aria-labelledby="pendingFitOverlayTitle">
+    <button type="button" class="overlay-close" id="pendingFitOverlayClose" aria-label="Tutup">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="overlay-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+    </div>
+    <h3 class="overlay-title" id="pendingFitOverlayTitle" data-i18n="pendingFitOverlayTitle">Opsi Realokasi untuk Kegiatan Ini</h3>
+    <div class="reopt-summary" id="pendingFitSummary"></div>
+    <div class="reopt-changes" id="pendingFitChanges"></div>
+    <div class="reopt-actions">
+      <button type="button" class="reopt-cancel-btn" id="pendingFitCancelBtn" data-i18n="reoptCancel">Nanti Saja</button>
+      <button type="button" class="add-btn" id="pendingFitApplyBtn" data-i18n="pendingFitApply">Terapkan & Tambahkan Kegiatan</button>
+    </div>
+  </div>
+</div>
+
 
 <!-- ============ OVERLAY: PANDUAN PENGGUNAAN ============ -->
 <div class="overlay-backdrop no-print" id="guideOverlay">
@@ -555,7 +596,7 @@
     </div>
     <div class="footer-divider"></div>
     <div class="footer-bottom">
-      <div class="footer-copy" data-i18n="footerCopy">Dibuat mandiri oleh mahasiswa &middot; Terakhir diperbarui 15 Agustus 2026</div>
+      <div class="footer-copy" data-i18n="footerCopy">Dibuat mandiri oleh mahasiswa &middot; Terakhir diperbarui 20 Agustus 2026</div>
       <button class="footer-link-btn" id="footerIdentifyBtn" data-i18n="footerIdentifyBtn">Cara mengenali alat ini</button>
     </div>
   </div>
@@ -721,7 +762,7 @@ const DATA = [
     mkpk:[18,19],docs:"Sertifikat atau SK, dokumentasi."},
 
   // ================= KEWIRAUSAHAAN =================
-  {cat:"Kewirausahaan",name:"Program Mahasiswa Wirausaha (PMW)",base:3.18,syarat:"Lolos pendanaan & selesai kegiatan",desc:"Program pendanaan usaha rintisan dari kampus (internal Unhas).",tambahanMax:1,
+  {cat:"Kewirausahaan",name:"Program Mahasiswa Wirausaha (PMW)",base:3.18,syarat:"Lolos pendanaan & selesai kegiatan",desc:"Program pendanaan usaha rintisan dari kampus (internal Universitas Hasanuddin).",tambahanMax:1,
     tambahanOptions:[{label:"Menjadi wirausaha pemula berkelanjutan (tahap bertumbuh)",value:1},{label:"Mendapatkan penghargaan 1, 2, atau 3",value:0.5}],
     coeff:[TEAM_ROLE],mkpk:[1,2,3,4,9,10],docs:"Proposal ide & usaha, BMC, laporan bulanan usaha, laporan kemajuan, laporan akhir & sertifikat."},
   {cat:"Kewirausahaan",name:"Program Pembinaan Mahasiswa Wirausaha (P2MW)",base:4.18,syarat:"Lolos pendanaan & selesai kegiatan dengan baik",desc:"Program pendanaan wirausaha dari Kemendikbud (Belmawa), jenjang lebih tinggi dari PMW, bermuara ke KMI Award.",tambahanMax:1,tambahanOptions:[{label:"Mendapatkan penghargaan KMI Award",value:1,nilaiSync:100}],
@@ -816,7 +857,7 @@ const DATA = [
   {cat:"Pengabdian Masyarakat",name:"Pemberdayaan Masyarakat Terprogram",base:1.02,syarat:"Menyelesaikan kegiatan pemberdayaan masyarakat terprogram",tambahanMax:5,coeff:[TEAM_ROLE],mkpk:[1,2,6,7,8,13,14],
     tambahanOptions:[
       {label:"Pendanaan ≤10 juta",value:0.5},{label:"Pendanaan 11-50 juta",value:1.5},{label:"Pendanaan >50 juta",value:2},
-      {label:"Skala Internal Unhas",value:1},{label:"Skala Nasional",value:2.5},{label:"Skala Internasional",value:3},
+      {label:"Skala Internal Universitas Hasanuddin",value:1},{label:"Skala Nasional",value:2.5},{label:"Skala Internasional",value:3},
     ],
     tambahanNote:"Ini dua dimensi terpisah (pendanaan dan skala). Pilih maksimal satu dari tiap kelompok, sesuai capaian tertinggi Anda.",
     nilai:[{label:"Ada proposal + laporan atau logbook + publikasi media massa",value:100},{label:"Ada proposal + laporan atau logbook, TANPA publikasi media massa",value:95}],
@@ -849,7 +890,7 @@ const DATA = [
         {label:"Jurnal nasional riset (SINTA 5–6)",value:0.4},{label:"Jurnal nasional pengabdian masyarakat (SINTA 3–4)",value:0.4},{label:"Jurnal nasional pengabdian masyarakat (SINTA 5–6)",value:0.3},
       ]},
     ],
-    docs:"Logbook penyusunan artikel, draft artikel yang didaftarkan ke jurnal, bukti pendaftaran (tangkapan layar sistem jurnal), jawaban atas komentar reviewer, bukti penerimaan, link penerbitan, surat keterangan publikasi PMU Unhas, tangkapan layar indeksasi Scimago atau SINTA."},
+    docs:"Logbook penyusunan artikel, draft artikel yang didaftarkan ke jurnal, bukti pendaftaran (tangkapan layar sistem jurnal), jawaban atas komentar reviewer, bukti penerimaan, link penerbitan, surat keterangan publikasi PMU Universitas Hasanuddin, tangkapan layar indeksasi Scimago atau SINTA."},
 
   // ================= MINAT DAN BAKAT =================
   {cat:"Minat & Bakat",name:"Teknologi Tepat Guna",base:1.51,syarat:"Teknologi telah diimplementasikan nyata oleh kelompok masyarakat",desc:"Inovasi teknologi praktis untuk menyelesaikan masalah nyata di masyarakat (mis. alat pertanian, pengolahan limbah).",tambahanMax:1,
@@ -922,7 +963,7 @@ const I18N = {
   id: {
     trustBarText: "Alat bantu independen mahasiswa",
     identifyToggle: "Cara mengenali",
-    identify1Head: "Bukan bagian dari Unhas",
+    identify1Head: "Bukan bagian dari Universitas Hasanuddin",
     identify1Text: "Dibuat mandiri oleh mahasiswa untuk membantu prediksi SKS berdasarkan Rubrik MKPK Edisi 3. Pengisian activity hours dan klaim MKPK yang sesungguhnya tetap lewat Sipakamase.",
     identify2Head: "Data tersimpan lokal di perangkat Anda",
     identify2Text: "Daftar kegiatan yang Anda tambahkan tersimpan untuk Anda sendiri di browser ini, tidak dikirim atau dibagikan ke server universitas atau pihak lain.",
@@ -948,19 +989,25 @@ const I18N = {
     navStatus: "Status Mata Kuliah",
     navSaved: "Kegiatan Tersimpan",
     syaratLabel: "Syarat pengakuan",
-    labelSpesifik: "Nama atau Judul Kegiatan Spesifik (opsional)",
+    labelSpesifik: "Judul Kegiatan Spesifik (opsional)",
     spesifikPlaceholder: 'mis. "Coursera: Data Analysis Specialization", "Juara 2 GEMASTIK Bidang V 2025"',
     spesifikHint: "Diisi supaya daftar kegiatan Anda mudah dibedakan.",
     labelNilai: "Estimasi Nilai (dari Rubrik Penilaian)",    docsLabel: "Dokumen pendukung yang diperlukan",
     allocTitle: "Alokasi Otomatis ke Mata Kuliah MKPK",
     allocHint: "Sistem mengisi dulu mata kuliah dengan sisa kebutuhan paling kecil, supaya lebih banyak mata kuliah selesai dan tidak ada penumpukan SKS berlebih di satu mata kuliah saja. Mata kuliah yang sudah penuh otomatis dilewati.",
     allocEmpty: "Semua mata kuliah yang berhak untuk kegiatan ini sudah terpenuhi dari kegiatan lain. Tidak ada tempat lagi untuk mengalokasikan SKS ini.",
+    pendingFitTemplate: (n) => `Semua mata kuliah berhak sudah penuh, tapi ada kemungkinan realokasi membuka slot untuk ${n} SKS dari kegiatan ini.`,
+    pendingFitViewBtn: "Lihat opsi",
+    pendingFitOverlayTitle: "Opsi Realokasi untuk Kegiatan Ini",
+    pendingFitSummaryTemplate: (allocated, total) => `Kalau realokasi ini diterapkan, kegiatan yang mau Anda tambahkan bisa dapat ${allocated} dari ${total} SKS.`,
+    pendingFitApply: "Terapkan & Tambahkan Kegiatan",
+    pendingFitNewActivity: "Kegiatan baru yang mau ditambahkan",
     allocatedLabel: "Teralokasikan",
     resultLabel: "Prediksi total SKS kegiatan ini",
     addBtn: "Tambah ke Daftar",
     cardStatusTitle: "Status per Mata Kuliah MKPK",
     footerRefHead: "Referensi",
-    footerCopy: "Dibuat mandiri oleh mahasiswa &middot; Terakhir diperbarui 15 Agustus 2026",
+    footerCopy: "Dibuat mandiri oleh mahasiswa &middot; Terakhir diperbarui 20 Agustus 2026",
     footerIdentifyBtn: "Cara mengenali alat ini",
     reoptBannerText: (n) => `Sistem menemukan susunan alokasi lebih baik dari kegiatan yang sudah Anda simpan. Berpotensi menyelesaikan ${n} mata kuliah tambahan.`,
     reoptViewDetail: "Lihat Detail",
@@ -1011,7 +1058,7 @@ const I18N = {
     metNoteTemplate: (names) => `Sudah penuh (dilewati): ${names}.`,
     recoLabel: "Rekomendasi Alokasi",
     recoNote: "Diurutkan dari sisa kebutuhan terkecil, supaya lebih banyak mata kuliah selesai lebih dulu.",
-    allocSudah: (already, req) => `sudah ${already} / ${req} SKS`,
+    allocSudah: (already, req) => `${already} / ${req} SKS`,
     allocWastedTemplate: (w) => `${w} SKS tidak terpakai (semua mata kuliah berhak sudah penuh)`,
     emptyCourseSummary: "Belum ada mata kuliah yang tersentuh. Tambahkan kegiatan terlebih dahulu.",
     emptyTable: "Belum ada kegiatan tersimpan.",
@@ -1023,6 +1070,9 @@ const I18N = {
     thSKS: "SKS", thNilai: "Nilai", thDokumen: "Dokumen Diperlukan",
     tambahanExtra: (v) => `+ tambahan ${v} SKS`,
     hapusLabel: "Hapus",
+    resetBtn: "Kosongkan",
+    resetConfirm: "Hapus semua kegiatan tersimpan? Tindakan ini tidak bisa dibatalkan.",
+    resetToast: "Semua kegiatan tersimpan sudah dihapus",
     editLabel: "Edit",
     editToast: "Silakan sesuaikan lalu simpan ulang",
     reviewHint: "Cek dulu, jangan asal ikut pilihan default",
@@ -1031,7 +1081,7 @@ const I18N = {
   en: {
     trustBarText: "An independent student tool",
     identifyToggle: "How to recognise this",
-    identify1Head: "Not part of Unhas",
+    identify1Head: "Not part of Hasanuddin University",
     identify1Text: "Built independently by a student to help predict credit (SKS) outcomes based on the Rubrik MKPK Edisi 3. Logging activity hours and filing an MKPK claim is still done through Sipakamase.",
     identify2Head: "Your data stays on your own device",
     identify2Text: "The activities you add are stored for you alone, in this browser. Nothing is sent or shared with the university's servers or any third party.",
@@ -1064,12 +1114,18 @@ const I18N = {
     allocTitle: "Automatic Allocation to MKPK Courses",
     allocHint: "The system fills whichever eligible course has the smallest remaining requirement first, so more courses get completed and credit isn't overstacked into a single course. Courses that are already full are skipped automatically.",
     allocEmpty: "Every course this activity is eligible for has already been completed by other activities. There's nowhere left to allocate this credit.",
+    pendingFitTemplate: (n) => `Every eligible course is already full, but reallocating existing entries could open up ${n} credits for this activity.`,
+    pendingFitViewBtn: "View options",
+    pendingFitOverlayTitle: "Reallocation Options for This Activity",
+    pendingFitSummaryTemplate: (allocated, total) => `If this reallocation is applied, the activity you're adding could receive ${allocated} of ${total} credits.`,
+    pendingFitApply: "Apply & Add Activity",
+    pendingFitNewActivity: "New activity you're adding",
     allocatedLabel: "Allocated",
     resultLabel: "Predicted total credit for this activity",
     addBtn: "Add to List",
     cardStatusTitle: "Status by MKPK Course",
     footerRefHead: "Reference",
-    footerCopy: "Built independently by a student &middot; Last updated 15 August 2026",
+    footerCopy: "Built independently by a student &middot; Last updated 20 August 2026",
     footerIdentifyBtn: "How to recognise this tool",
     reoptBannerText: (n) => `The system found a better allocation across the activities you've already saved. Could complete ${n} more course${n === 1 ? '' : 's'}.`,
     reoptViewDetail: "View Details",
@@ -1120,7 +1176,7 @@ const I18N = {
     metNoteTemplate: (names) => `Already complete (skipped): ${names}.`,
     recoLabel: "Allocation Recommendation",
     recoNote: "Ordered from the smallest remaining requirement first, so more courses get completed sooner.",
-    allocSudah: (already, req) => `already ${already} / ${req} credits`,
+    allocSudah: (already, req) => `${already} / ${req} credits`,
     allocWastedTemplate: (w) => `${w} credits unused (every eligible course is already complete)`,
     emptyCourseSummary: "No courses touched yet. Add an activity above first.",
     emptyTable: "No activities saved yet.",
@@ -1132,6 +1188,9 @@ const I18N = {
     thSKS: "Credits", thNilai: "Grade", thDokumen: "Documents Required",
     tambahanExtra: (v) => `+ ${v} additional credits`,
     hapusLabel: "Remove",
+    resetBtn: "Clear all",
+    resetConfirm: "Delete all saved activities? This cannot be undone.",
+    resetToast: "All saved activities have been cleared",
     editLabel: "Edit",
     editToast: "Adjust the details, then save again",
     reviewHint: "Double-check this, don't just leave the default",
@@ -1195,10 +1254,12 @@ const nilaiWeightedWrap = el('nilaiWeightedWrap'), nilaiWeightedResult = el('nil
 const docsText = el('docsText');
 const metNote = el('metNote'), recoText = el('recoText');
 const allocEmptyState = el('allocEmptyState'), allocList = el('allocList');
+const pendingFitBox = el('pendingFitBox'), pendingFitText = el('pendingFitText'), pendingFitViewBtn = el('pendingFitViewBtn');
 const allocTotal = el('allocTotal'), allocAvailable = el('allocAvailable'), allocWasted = el('allocWasted');
 const resultValue = el('resultValue'), addBtn = el('addBtn');
 const courseSummaryArea = el('courseSummaryArea');
 const savedTitle = el('savedTitle'), tableArea = el('tableArea');
+const resetSavedBtn = el('resetSavedBtn');
 const statMet = el('statMet'), statMetOf = el('statMetOf'), statSKS = el('statSKS'), statSaved = el('statSaved');
 const targetProgressBar = el('targetProgressBar'), targetDone = el('targetDone'), targetRemaining = el('targetRemaining');
 const customTargetInput = el('customTargetInput');
@@ -1513,9 +1574,22 @@ function renderAllocationAndResult(){
 
   if (auto.rows.length === 0){
     recoText.style.display = 'none';
-    allocEmptyState.style.display = 'block';
     allocList.innerHTML = '';
+
+    const pendingFit = currentSKS > 0 ? computePendingFit(item, currentSKS) : null;
+    if (pendingFit){
+      allocEmptyState.style.display = 'none';
+      pendingFitBox.style.display = 'flex';
+      pendingFitText.textContent = t('pendingFitTemplate', pendingFit.pendingRows.reduce((s,r)=>s+r.allocated,0).toFixed(2));
+      addBtn._pendingFit = pendingFit;
+    } else {
+      allocEmptyState.style.display = 'block';
+      pendingFitBox.style.display = 'none';
+      addBtn._pendingFit = null;
+    }
   } else {
+    pendingFitBox.style.display = 'none';
+    addBtn._pendingFit = null;
     allocEmptyState.style.display = 'none';
     recoText.style.display = 'block';
     const itemsHtml = auto.rows.map(r => `
@@ -1619,8 +1693,8 @@ function showToast(message){
   }, 2800);
 }
 
-function removeEntry(id){
-  saved = saved.filter(e => e.id !== id);
+function removeGroup(groupId){
+  saved = saved.filter(e => e.groupId !== groupId);
   persist();
   renderAll();
 }
@@ -1650,45 +1724,17 @@ function findDataItem(category, name){
   return DATA.find(d => d.cat === category && d.name === name);
 }
 
-function computeGlobalReoptimization(){
-  if (saved.length === 0) return null;
-
-  // kelompokkan entri tersimpan berdasarkan groupId (1 kegiatan asli = 1 group,
-  // meski SKS-nya sempat dipecah ke beberapa mata kuliah)
-  const groupsMap = new Map();
-  saved.forEach((e, idx) => {
-    if (!groupsMap.has(e.groupId)){
-      groupsMap.set(e.groupId, {
-        groupId: e.groupId, category: e.category, name: e.name, namaSpesifik: e.namaSpesifik,
-        coeffLabel: e.coeffLabel, tambahan: e.tambahan, nilai: e.nilai, docs: e.docs,
-        totalSKS: 0, allocatedSum: 0, firstSeenIdx: idx, currentRows: [],
-      });
-    }
-    const g = groupsMap.get(e.groupId);
-    // pakai groupTotalSKS (total asli kegiatan, termasuk yang dulu kebuang) kalau ada;
-    // fallback ke jumlah sks teralokasi untuk data lama sebelum field ini ditambahkan
-    g.totalSKS = e.groupTotalSKS != null ? e.groupTotalSKS : g.totalSKS;
-    g.allocatedSum = Math.round((g.allocatedSum + e.sks) * 100) / 100;
-    g.currentRows.push({ courseId: e.courseId, courseName: e.courseName, allocated: e.sks });
-  });
-  // fallback: kalau groupTotalSKS tidak pernah terisi (data lama), pakai jumlah teralokasi
-  groupsMap.forEach(g => { if (!g.totalSKS) g.totalSKS = g.allocatedSum; });
-
-  const groups = [...groupsMap.values()].map(g => {
-    const dataItem = findDataItem(g.category, g.name);
-    const eligibleIds = dataItem ? dataItem.mkpk : [...new Set(g.currentRows.map(r => r.courseId))];
-    return { ...g, eligibleIds };
-  });
-
-  if (groups.some(g => !g.eligibleIds || g.eligibleIds.length === 0)) return null;
-
-  // proses kegiatan paling terbatas (paling sedikit pilihan mata kuliah) duluan
-  const ordered = [...groups].sort((a, b) => a.eligibleIds.length - b.eligibleIds.length || a.firstSeenIdx - b.firstSeenIdx);
-
-  const simEarned = {}; // courseId -> SKS terpakai di simulasi
+// ===========================================================================
+// SIMULASI ALOKASI MULTI-START
+// Menjalankan heuristik alokasi dengan beberapa strategi urutan berbeda,
+// lalu ambil hasil terbaik (paling banyak mata kuliah selesai, tiebreak SKS
+// terbuang paling sedikit). Ini menutup celah kasus di mana strategi
+// "paling terbatas duluan" doang bisa kelewatan kombinasi yang lebih baik.
+// ===========================================================================
+function simulateAllocation(groups, order){
+  const simEarned = {};
   const newRowsByGroup = new Map();
-
-  for (const g of ordered){
+  for (const g of order){
     const candidates = g.eligibleIds
       .map(id => courseById(id))
       .filter(Boolean)
@@ -1709,11 +1755,70 @@ function computeGlobalReoptimization(){
     }
     newRowsByGroup.set(g.groupId, rows);
   }
+  const completedIds = new Set(Object.keys(simEarned).map(Number).filter(id => simEarned[id] >= courseById(id).sksRequired));
+  const wastedTotal = groups.reduce((sum, g) => {
+    const allocated = (newRowsByGroup.get(g.groupId) || []).reduce((s, r) => s + r.allocated, 0);
+    return sum + Math.max(0, g.totalSKS - allocated);
+  }, 0);
+  return { simEarned, newRowsByGroup, completedIds, completedCount: completedIds.size, wastedTotal };
+}
 
-  const newCompletedIds = new Set(Object.keys(simEarned).map(Number).filter(id => simEarned[id] >= courseById(id).sksRequired));
+function bestMultiStartAllocation(groups){
+  const strategies = [
+    [...groups].sort((a, b) => a.eligibleIds.length - b.eligibleIds.length || a.firstSeenIdx - b.firstSeenIdx), // paling terbatas duluan
+    [...groups].sort((a, b) => b.eligibleIds.length - a.eligibleIds.length || a.firstSeenIdx - b.firstSeenIdx), // paling fleksibel duluan
+    [...groups].sort((a, b) => b.totalSKS - a.totalSKS), // SKS terbesar duluan
+    [...groups].sort((a, b) => a.totalSKS - b.totalSKS), // SKS terkecil duluan
+    [...groups].sort(() => Math.random() - 0.5), // acak 1
+    [...groups].sort(() => Math.random() - 0.5), // acak 2
+    [...groups].sort(() => Math.random() - 0.5), // acak 3
+  ];
+  let best = null;
+  for (const order of strategies){
+    const result = simulateAllocation(groups, order);
+    if (!best || result.completedCount > best.completedCount ||
+        (result.completedCount === best.completedCount && result.wastedTotal < best.wastedTotal)){
+      best = result;
+    }
+  }
+  return best;
+}
+
+function buildReoptGroupsFromSaved(){
+  const groupsMap = new Map();
+  saved.forEach((e, idx) => {
+    if (!groupsMap.has(e.groupId)){
+      groupsMap.set(e.groupId, {
+        groupId: e.groupId, category: e.category, name: e.name, namaSpesifik: e.namaSpesifik,
+        coeffLabel: e.coeffLabel, tambahan: e.tambahan, nilai: e.nilai, docs: e.docs,
+        totalSKS: 0, allocatedSum: 0, firstSeenIdx: idx, currentRows: [],
+      });
+    }
+    const g = groupsMap.get(e.groupId);
+    g.totalSKS = e.groupTotalSKS != null ? e.groupTotalSKS : g.totalSKS;
+    g.allocatedSum = Math.round((g.allocatedSum + e.sks) * 100) / 100;
+    g.currentRows.push({ courseId: e.courseId, courseName: e.courseName, allocated: e.sks });
+  });
+  groupsMap.forEach(g => { if (!g.totalSKS) g.totalSKS = g.allocatedSum; });
+
+  return [...groupsMap.values()].map(g => {
+    const dataItem = findDataItem(g.category, g.name);
+    const eligibleIds = dataItem ? dataItem.mkpk : [...new Set(g.currentRows.map(r => r.courseId))];
+    return { ...g, eligibleIds };
+  });
+}
+
+function computeGlobalReoptimization(){
+  if (saved.length === 0) return null;
+
+  const groups = buildReoptGroupsFromSaved();
+  if (groups.some(g => !g.eligibleIds || g.eligibleIds.length === 0)) return null;
+
+  const best = bestMultiStartAllocation(groups);
+  const { newRowsByGroup, completedIds: newCompletedIds, completedCount: newCompletedCount } = best;
+
   const currentSummary = computeCourseSummary();
   const currentCompletedCount = currentSummary.filter(c => c.met).length;
-  const newCompletedCount = newCompletedIds.size;
 
   if (newCompletedCount <= currentCompletedCount) return null; // tidak ada perbaikan
 
@@ -1729,6 +1834,38 @@ function computeGlobalReoptimization(){
     .map(id => courseById(id).name);
 
   return { changedGroups, newlyCompletedCourses, currentCompletedCount, newCompletedCount, newRowsByGroup, groups };
+}
+
+// ===========================================================================
+// CEK APAKAH KEGIATAN BARU (BELUM TERSIMPAN) BISA DAPAT SLOT
+// LEWAT REALOKASI, WALAU SAAT INI SEMUA MATA KULIAH BERHAKNYA SUDAH PENUH
+// ===========================================================================
+function computePendingFit(item, currentSKSVal){
+  const existingGroups = buildReoptGroupsFromSaved();
+  const pendingGroupId = '__pending__';
+  const pendingGroup = {
+    groupId: pendingGroupId, category: item.cat, name: item.name, namaSpesifik: '',
+    coeffLabel: '-', tambahan: 0, nilai: 100, docs: item.docs,
+    totalSKS: Math.round(currentSKSVal * 100) / 100, allocatedSum: 0, firstSeenIdx: existingGroups.length, currentRows: [],
+    eligibleIds: item.mkpk,
+  };
+  const groups = [...existingGroups, pendingGroup];
+  if (groups.some(g => !g.eligibleIds || g.eligibleIds.length === 0)) return null;
+
+  const best = bestMultiStartAllocation(groups);
+  const pendingRows = best.newRowsByGroup.get(pendingGroupId) || [];
+  if (pendingRows.length === 0) return null; // tetap nggak kebagian slot sama sekali, walau udah dicoba realokasi
+
+  const currentSummary = computeCourseSummary();
+  const currentCompletedCount = currentSummary.filter(c => c.met).length;
+
+  return {
+    pendingRows,
+    newCompletedCount: best.completedCount,
+    currentCompletedCount,
+    newRowsByGroup: best.newRowsByGroup,
+    groups: existingGroups, // cuma yang lama, buat ditampilkan "kegiatan mana yang perlu pindah"
+  };
 }
 
 function renderCourseSummary(){
@@ -1752,37 +1889,50 @@ function renderCourseSummary(){
 
 function renderTable(){
   savedTitle.textContent = t('savedTitleTemplate', saved.length);
+  resetSavedBtn.style.display = saved.length > 0 ? 'flex' : 'none';
   if (saved.length === 0){
     tableArea.innerHTML = `<div class="empty-state">${t('emptyTable')}</div>`;
     return;
   }
-  const rows = saved.map(e => `
+  // kelompokkan per groupId, biar 1 kegiatan = 1 baris meski SKS-nya kepecah ke beberapa mata kuliah
+  const groupsMap = new Map();
+  saved.forEach(e => {
+    if (!groupsMap.has(e.groupId)) groupsMap.set(e.groupId, { ...e, allocations: [] });
+    groupsMap.get(e.groupId).allocations.push({ courseName: e.courseName, sks: e.sks });
+  });
+
+  const rows = [...groupsMap.values()].map(g => `
     <tr>
       <td>
-        <div class="td-cat">${e.category}</div>
-        <div class="td-name">${e.name}</div>
-        ${e.namaSpesifik ? `<div class="td-spesifik">${e.namaSpesifik}</div>` : ''}
+        <div class="td-cat">${g.category}</div>
+        <div class="td-name">${g.name}</div>
+        ${g.namaSpesifik ? `<div class="td-spesifik">${g.namaSpesifik}</div>` : ''}
       </td>
-      <td style="font-weight:600; color:#1A2C56">${e.courseName}</td>
-      <td style="color:#4A5162">${e.coeffLabel}${e.tambahan > 0 ? `<div style="margin-top:2px">${t('tambahanExtra', e.tambahan.toFixed(2))}</div>` : ''}</td>
-      <td style="text-align:right; font-variant-numeric:tabular-nums"><span class="sks-pill">${e.sks.toFixed(2)}</span></td>
-      <td style="text-align:right; font-variant-numeric:tabular-nums; color:#4A5162">${e.nilai ?? 100}</td>
-      <td style="color:#71788A; font-size:14px">${e.docs}</td>
+      <td style="color:#4A5162">${g.coeffLabel}${g.tambahan > 0 ? `<div style="margin-top:2px">${t('tambahanExtra', g.tambahan.toFixed(2))}</div>` : ''}</td>
+      <td style="font-weight:600; color:#1A2C56">
+        ${g.allocations.map(a => `<div class="alloc-line">${a.courseName}</div>`).join('')}
+      </td>
+      <td style="text-align:right; font-variant-numeric:tabular-nums">
+        ${g.allocations.map(a => `<div class="alloc-line"><span class="sks-pill">${a.sks.toFixed(2)}</span></div>`).join('')}
+        ${g.allocations.length > 1 ? `<div class="alloc-total"><span class="sks-pill">${g.allocations.reduce((s,a)=>s+a.sks,0).toFixed(2)}</span></div>` : ''}
+      </td>
+      <td style="text-align:right; font-variant-numeric:tabular-nums; color:#4A5162">${g.nilai ?? 100}</td>
+      <td style="color:#71788A; font-size:14px">${g.docs}</td>
       <td class="no-print">
         <div class="row-actions">
-          <button class="row-icon-btn edit-btn" data-group="${e.groupId}" aria-label="${t('editLabel')}" title="${t('editLabel')}">
+          <button class="row-icon-btn edit-btn" data-group="${g.groupId}" aria-label="${t('editLabel')}" title="${t('editLabel')}">
             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
           </button>
-          <button class="row-icon-btn del-btn" data-id="${e.id}" aria-label="${t('hapusLabel')}" title="${t('hapusLabel')}">
+          <button class="row-icon-btn del-btn" data-group="${g.groupId}" aria-label="${t('hapusLabel')}" title="${t('hapusLabel')}">
             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
           </button>
         </div>
       </td>
     </tr>`).join('');
   tableArea.innerHTML = `<div class="table-wrap"><table>
-    <thead><tr><th>${t('thKegiatan')}</th><th>${t('thMataKuliah')}</th><th>${t('thCakupan')}</th><th style="text-align:right">${t('thSKS')}</th><th style="text-align:right">${t('thNilai')}</th><th>${t('thDokumen')}</th><th class="no-print"></th></tr></thead>
+    <thead><tr><th>${t('thKegiatan')}</th><th>${t('thCakupan')}</th><th>${t('thMataKuliah')}</th><th style="text-align:right">${t('thSKS')}</th><th style="text-align:right">${t('thNilai')}</th><th>${t('thDokumen')}</th><th class="no-print"></th></tr></thead>
     <tbody>${rows}</tbody></table></div>`;
-  tableArea.querySelectorAll('.del-btn').forEach(btn => btn.addEventListener('click', () => removeEntry(btn.dataset.id)));
+  tableArea.querySelectorAll('.del-btn').forEach(btn => btn.addEventListener('click', () => removeGroup(btn.dataset.group)));
   tableArea.querySelectorAll('.edit-btn').forEach(btn => btn.addEventListener('click', () => editGroup(btn.dataset.group)));
 }
 
@@ -1905,6 +2055,90 @@ function applyReoptimization(){
   showToast(t('reoptAppliedToast'));
 }
 
+function openPendingFitOverlay(){
+  const pendingFit = addBtn._pendingFit;
+  if (!pendingFit) return;
+
+  const totalRequested = pendingFit.pendingRows.reduce((s, r) => s + r.allocated, 0);
+  el('pendingFitSummary').textContent = t('pendingFitSummaryTemplate', totalRequested.toFixed(2), (addBtn._currentSKS || 0).toFixed(2));
+
+  const changedGroups = pendingFit.groups.filter(g => {
+    const oldRows = g.currentRows.map(r => `${r.courseId}:${r.allocated}`).sort().join('|');
+    const newRows = (pendingFit.newRowsByGroup.get(g.groupId) || []).map(r => `${r.courseId}:${r.allocated}`).sort().join('|');
+    return oldRows !== newRows;
+  });
+
+  const pendingRowsHtml = `<div class="reopt-change-row" style="border-color:var(--blue)">
+    <div class="reopt-change-name">${t('pendingFitNewActivity')}</div>
+    <div class="reopt-change-path">
+      <span class="reopt-change-new">${pendingFit.pendingRows.map(r => `${r.courseName} (+${r.allocated.toFixed(2)})`).join(', ')}</span>
+    </div>
+  </div>`;
+
+  const changedRowsHtml = changedGroups.map(g => {
+    const oldPath = g.currentRows.map(r => `${r.courseName} (+${r.allocated.toFixed(2)})`).join(', ');
+    const newRows = pendingFit.newRowsByGroup.get(g.groupId) || [];
+    const newPath = newRows.map(r => `${r.courseName} (+${r.allocated.toFixed(2)})`).join(', ');
+    return `<div class="reopt-change-row">
+      <div class="reopt-change-name">${g.name}${g.namaSpesifik ? ` &middot; <span style="font-style:italic; font-weight:400;">${g.namaSpesifik}</span>` : ''}</div>
+      <div class="reopt-change-path">
+        <span class="reopt-change-old">${oldPath}</span>
+        <span>&rarr; ${t('reoptChangeArrow')}</span>
+        <span class="reopt-change-new">${newPath}</span>
+      </div>
+    </div>`;
+  }).join('');
+
+  el('pendingFitChanges').innerHTML = pendingRowsHtml + changedRowsHtml;
+  el('pendingFitOverlay').classList.add('show');
+}
+function closePendingFitOverlay(){ el('pendingFitOverlay').classList.remove('show'); }
+
+function applyPendingFit(){
+  const pendingFit = addBtn._pendingFit;
+  const item = currentItem();
+  if (!pendingFit || !item) return;
+
+  // realokasi seluruh kegiatan yang sudah tersimpan sesuai hasil simulasi
+  const newSaved = [];
+  pendingFit.groups.forEach(g => {
+    const rows = pendingFit.newRowsByGroup.get(g.groupId) || [];
+    rows.forEach((r, idx) => {
+      newSaved.push({
+        id: `${g.groupId}-${idx}`, groupId: g.groupId, category: g.category, name: g.name,
+        namaSpesifik: g.namaSpesifik, coeffLabel: g.coeffLabel, tambahan: g.tambahan,
+        sks: r.allocated, nilai: g.nilai, docs: g.docs,
+        courseId: r.courseId, courseName: r.courseName, courseRequired: r.courseRequired,
+      });
+    });
+  });
+
+  // sekaligus tambahkan kegiatan baru yang mau disimpan, pakai alokasi yang sudah dipastikan bisa dari simulasi
+  const coeffLabelParts = (item.coeff || []).map(g => {
+    const val = coeffValues[g.key] ?? lowestOption(g.options).value;
+    const opt = g.options.find(o => o.value === val);
+    return `${g.label}: ${opt ? opt.label : '-'} (×${val})`;
+  });
+  const newGroupId = Date.now() + '-' + Math.random().toString(36).slice(2,5);
+  const namaSpesifik = namaSpesifikInput.value.trim();
+  const groupTotalSKS = Math.round((addBtn._currentSKS || 0) * 100) / 100;
+  pendingFit.pendingRows.forEach((r, idx) => {
+    newSaved.push({
+      id: `${newGroupId}-${idx}`, groupId: newGroupId, groupTotalSKS,
+      category: item.cat, name: item.name, namaSpesifik,
+      coeffLabel: coeffLabelParts.join(' · ') || '-', tambahan: Number(tambahan) || 0,
+      sks: r.allocated, nilai: nilaiValue, docs: item.docs,
+      courseId: r.courseId, courseName: r.courseName, courseRequired: r.courseRequired,
+    });
+  });
+
+  saved = newSaved;
+  persist();
+  closePendingFitOverlay();
+  renderAll();
+  showToast(t('reoptAppliedToast'));
+}
+
 function renderPrintReport(){
   const summary = computeCourseSummary();
   const met = summary.filter(c => c.met);
@@ -1925,15 +2159,20 @@ function renderPrintReport(){
         <td class="${c.met ? 'pr-status-met' : 'pr-status-pending'}">${c.met ? t('prMet') : t('prPending')}</td>
       </tr>`).join('');
 
+  const savedGroupsMap = new Map();
+  saved.forEach(e => {
+    if (!savedGroupsMap.has(e.groupId)) savedGroupsMap.set(e.groupId, { ...e, allocations: [] });
+    savedGroupsMap.get(e.groupId).allocations.push({ courseName: e.courseName, sks: e.sks });
+  });
   const savedRows = saved.length === 0
     ? `<tr><td colspan="5" class="pr-empty">${t('prEmptySaved')}</td></tr>`
-    : saved.map(e => `
+    : [...savedGroupsMap.values()].map(g => `
       <tr>
-        <td>${e.name}${e.namaSpesifik ? `<br><span style="color:var(--faint); font-style:italic; font-size:10.5px;">${e.namaSpesifik}</span>` : ''}</td>
-        <td>${e.courseName}</td>
-        <td>${e.sks.toFixed(2)}</td>
-        <td>${e.nilai ?? 100}</td>
-        <td style="font-size:10.5px; color:var(--muted);">${e.docs}</td>
+        <td>${g.name}${g.namaSpesifik ? `<br><span style="color:var(--faint); font-style:italic; font-size:10.5px;">${g.namaSpesifik}</span>` : ''}</td>
+        <td>${g.allocations.map(a => `<div style="padding:2px 0;">${a.courseName}</div>`).join('')}</td>
+        <td>${g.allocations.map(a => `<div style="padding:2px 0;">${a.sks.toFixed(2)}</div>`).join('')}${g.allocations.length > 1 ? `<div style="border-top:1px solid var(--border); margin-top:3px; padding-top:3px; font-weight:700;">${g.allocations.reduce((s,a)=>s+a.sks,0).toFixed(2)}</div>` : ''}</td>
+        <td>${g.nilai ?? 100}</td>
+        <td style="font-size:10.5px; color:var(--muted);">${g.docs}</td>
       </tr>`).join('');
 
   el('printReport').innerHTML = `
@@ -2031,6 +2270,13 @@ el('reoptOverlay').addEventListener('click', (e) => { if (e.target.id === 'reopt
 el('reoptApplyBtn').addEventListener('click', applyReoptimization);
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeReoptOverlay(); });
 
+pendingFitViewBtn.addEventListener('click', openPendingFitOverlay);
+el('pendingFitOverlayClose').addEventListener('click', closePendingFitOverlay);
+el('pendingFitCancelBtn').addEventListener('click', closePendingFitOverlay);
+el('pendingFitOverlay').addEventListener('click', (e) => { if (e.target.id === 'pendingFitOverlay') closePendingFitOverlay(); });
+el('pendingFitApplyBtn').addEventListener('click', applyPendingFit);
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePendingFitOverlay(); });
+
 function renderGuideSteps(){
   const steps = I18N[lang].guideSteps || [];
   el('guideSteps').innerHTML = steps.map((s, i) => `
@@ -2071,6 +2317,16 @@ function switchLang(newLang){
 }
 el('langBtnId').addEventListener('click', () => switchLang('id'));
 el('langBtnEn').addEventListener('click', () => switchLang('en'));
+
+resetSavedBtn.addEventListener('click', () => {
+  if (saved.length === 0) return;
+  if (confirm(t('resetConfirm'))){
+    saved = [];
+    persist();
+    renderAll();
+    showToast(t('resetToast'));
+  }
+});
 
 // ===========================================================================
 // INIT
