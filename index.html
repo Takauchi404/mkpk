@@ -19,17 +19,17 @@
   button, input, select{font-family:inherit;}
 
   /* ---------- trust bar ---------- */
-  .trust-bar{background:#F1F2F4; border-bottom:1px solid var(--border); padding:9px 0;}
+  .trust-bar{background:#F1F2F4; padding:9px 0;}
   .trust-bar-row{display:flex; align-items:center; gap:8px; font-size:14px; flex-wrap:wrap;}
-  .trust-bar-text{flex:1; min-width:200px;}
-  .trust-bar-icon{display:flex; align-items:center; flex-shrink:0; color:var(--navy);}
+  .trust-bar-text{min-width:0;}
+  .trust-bar-icon{display:flex; align-items:center; flex-shrink:0; color:var(--blue);}
   .identify-toggle{display:flex; align-items:center; gap:4px; background:none; border:none; color:var(--blue); font-size:14px; font-weight:600; cursor:pointer; padding:2px 0; text-decoration:underline; flex-shrink:0; white-space:nowrap; transition:color .15s;}
   .identify-toggle:hover{color:var(--navy);}
   .identify-toggle svg{transition:transform .15s;}
   .identify-toggle.open svg{transform:rotate(180deg);}
-  .identify-panel{display:none; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:24px; margin-top:12px; padding-top:12px; border-top:1px solid var(--border);}
+  .identify-panel{display:none; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:40px; margin-top:20px; padding-top:20px;}
   .identify-panel.show{display:grid;}
-  .identify-col{display:flex; flex-direction:column; gap:4px;}
+  .identify-col{display:flex; flex-direction:column; gap:10px;}
   .identify-col-head{display:flex; align-items:center; gap:8px; font-size:14.5px; font-weight:700; color:var(--navy);}
   .identify-col-text{font-size:13.5px; color:var(--muted); line-height:1.55; margin:0; padding-left:24px;}
 
@@ -41,25 +41,58 @@
   .export-btn:hover{background:var(--surface-alt); border-color:var(--blue);}
   .guide-btn{display:flex; align-items:center; gap:6px; background:#FFFFFF; color:var(--navy); border:1px solid var(--border); border-radius:5px; padding:9px 14px; font-size:14.5px; font-weight:600; cursor:pointer; flex-shrink:0; margin-top:2px; transition:background .15s, border-color .15s;}
   .guide-btn:hover{background:var(--surface-alt); border-color:var(--blue);}
-  .lang-switch{display:flex; border:1px solid var(--border); border-radius:5px; overflow:hidden; flex-shrink:0; margin-top:2px;}
-  .lang-switch-btn{background:#FFFFFF; color:var(--muted); border:none; padding:9px 13px; font-size:13.5px; font-weight:700; cursor:pointer; transition:background .15s, color .15s;}
-  .lang-switch-btn + .lang-switch-btn{border-left:1px solid var(--border);}
-  .lang-switch-btn:hover{background:var(--surface-alt);}
-  .lang-switch-btn.active{background:var(--navy); color:#FFFFFF;}
-  .lang-switch-btn.active:hover{background:var(--navy);}
+  .lang-dropdown{position:relative; flex-shrink:0;}
+  .lang-dropdown-btn{display:flex; align-items:center; gap:7px; background:#FFFFFF; color:var(--blue); border:1.5px solid var(--blue); border-radius:6px; padding:8px 12px; font-size:13.5px; font-weight:600; cursor:pointer; transition:background .15s;}
+  .lang-dropdown-btn:hover{background:#EAF0FD;}
+  .lang-dropdown-chevron{transition:transform .15s;}
+  .lang-dropdown-btn[aria-expanded="true"] .lang-dropdown-chevron{transform:rotate(180deg);}
+  .lang-dropdown-menu{position:absolute; top:calc(100% + 4px); left:0; min-width:140px; background:#FFFFFF; border:1px solid var(--border); border-radius:6px; box-shadow:0 8px 24px rgba(16,20,30,0.12); overflow:hidden; z-index:20;}
+  .lang-dropdown-item{display:block; width:100%; text-align:left; background:none; border:none; padding:9px 13px; font-size:13.5px; color:var(--text); cursor:pointer; transition:background .15s;}
+  .lang-dropdown-item:hover{background:var(--surface-alt);}
+  .lang-dropdown-item.active{color:var(--blue); font-weight:700;}
   .subtitle{font-size:16px; line-height:1.6; color:var(--muted); max-width:680px; margin:0 0 24px;}
 
-  .stat-row{display:flex; gap:12px; flex-wrap:wrap;}
+  .stat-row{display:flex; flex-wrap:wrap;}
 
   /* ---------- quick nav ---------- */
-  .quicknav{background:#FFFFFF; border-bottom:1px solid var(--border); position:sticky; top:0; z-index:10; box-shadow:0 1px 3px rgba(16,20,30,0.05);}
-  .quicknav-inner{display:flex; gap:22px; overflow-x:auto;}
+  .quicknav{background:#FFFFFF; border-bottom:1px solid var(--border); position:sticky; top:53px; z-index:10; box-shadow:0 1px 3px rgba(16,20,30,0.05);}
+  .quicknav-inner{display:flex; justify-content:center; gap:22px; overflow-x:auto;}
   .quicknav-link{flex-shrink:0; padding:12px 2px; font-size:13.5px; font-weight:600; color:var(--muted); text-decoration:none; border-bottom:2px solid transparent; transition:color .15s, border-color .15s; white-space:nowrap;}
   .quicknav-link:hover{color:var(--navy);}
-  .stat-card{background:var(--surface-alt); border:1px solid var(--border); border-radius:6px; padding:12px 18px; min-width:140px;}
+
+  /* ---------- site nav (ganti halaman) ---------- */
+  .site-nav{background:#FFFFFF; border-bottom:1px solid var(--border); position:sticky; top:0; z-index:11; box-shadow:0 1px 3px rgba(16,20,30,0.05);}
+  .site-nav-inner{display:flex; align-items:center; gap:22px; flex-wrap:wrap;}
+  .site-nav-right-group{display:flex; align-items:center; gap:22px; flex-wrap:wrap; margin-left:auto;}
+  .site-nav-brand{flex-shrink:0; font-size:16px; font-weight:800; color:var(--navy); letter-spacing:.01em; padding:14px 0;}
+  .site-nav-tabs{display:flex; gap:4px; overflow-x:auto;}
+  .site-nav-tab{flex-shrink:0; background:none; border:none; padding:13px 14px; font-size:13.5px; font-weight:600; color:var(--muted); cursor:pointer; border-bottom:2.5px solid transparent; white-space:nowrap; transition:color .15s, border-color .15s;}
+  .site-nav-tab:hover{color:var(--navy);}
+  .site-nav-tab.active{color:var(--navy); border-bottom-color:var(--blue);}
+
+  /* ---------- halaman panduan konversi ---------- */
+  .guide-summary-card{padding-bottom:22px;}
+  .guide-stat-row{display:flex; flex-wrap:wrap;}
+  .guide-target-box{margin-top:20px; padding-top:20px; border-top:1px solid var(--border);}
+  .guide-page-desc{font-size:14.5px; color:var(--muted); line-height:1.6; margin:0 0 20px;}
+  .guide-activity-card{max-width:720px; margin:0 auto 16px; background:#FFFFFF; border:1px solid var(--border); border-radius:8px; padding:18px 20px;}
+  .guide-activity-head{display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin-bottom:4px; flex-wrap:wrap;}
+  .guide-activity-name{font-size:15.5px; font-weight:700; color:var(--navy);}
+  .guide-activity-spesifik{font-size:13.5px; color:var(--muted); margin-bottom:12px;}
+  .guide-activity-total{font-size:12px; color:var(--faint); font-weight:600; white-space:nowrap;}
+  .guide-step-row{display:flex; gap:12px; padding:10px 0; border-top:1px solid var(--border);}
+  .guide-step-num{display:flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:50%; background:var(--navy); color:#FFFFFF; font-size:11.5px; font-weight:700; flex-shrink:0; margin-top:1px;}
+  .guide-step-body{flex:1;}
+  .guide-step-action{font-size:14px; color:var(--text);}
+  .guide-step-action b{color:var(--navy);}
+  .guide-step-note{font-size:12.5px; color:var(--muted); margin-top:5px;}
+  .guide-step-done{font-size:12.5px; color:var(--success); font-weight:600; margin-top:6px;}
+  .guide-wasted-note{font-size:12.5px; color:var(--warn); background:#FDF0E4; border-radius:5px; padding:7px 10px; margin-top:10px;}
+  .stat-card{padding:0 24px; border-left:1px solid var(--border);}
+  .stat-card:first-child{padding-left:0; border-left:none;}
   .stat-value{font-size:22px; font-weight:700; color:var(--navy); font-variant-numeric:tabular-nums;}
   .stat-of{font-size:15.5px; font-weight:500; color:var(--faint);}
-  .stat-label{font-size:13px; color:var(--muted); margin-top:2px;}
+  .stat-label{font-size:11.5px; font-weight:600; letter-spacing:.03em; text-transform:uppercase; color:var(--faint); margin-top:3px;}
 
   .target-box{margin-top:20px; padding-top:20px; border-top:1px solid var(--border);}
   .target-head{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:10px;}
@@ -149,10 +182,11 @@
   /* ---------- cards ---------- */
   .card{background:#FFFFFF; border:1px solid var(--border); border-radius:8px; padding:24px 26px; margin-top:24px;}
   .card-head{margin-bottom:20px; border-bottom:1px solid var(--border); padding-bottom:14px; display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap;}
-  .reset-btn{display:flex; align-items:center; gap:5px; background:none; border:none; padding:2px 0; font-size:12.5px; font-weight:600; color:var(--faint); cursor:pointer; letter-spacing:.01em; transition:color .15s;}
-  .reset-btn svg{opacity:.7; transition:opacity .15s;}
-  .reset-btn:hover{color:#A6371F;}
-  .reset-btn:hover svg{opacity:1;}
+  .card-head-actions{display:flex; align-items:center; gap:16px;}
+  .reset-btn{background:#FFFFFF; border:1px solid var(--border); border-radius:5px; padding:7px 13px; font-size:12.5px; font-weight:600; color:var(--muted); cursor:pointer; letter-spacing:.01em; transition:background .15s, border-color .15s, color .15s;}
+  .reset-btn:hover{color:#A6371F; border-color:#A6371F; background:#FDF0EC;}
+  .guide-link-btn{background:#FFFFFF; border:1px solid var(--border); border-radius:5px; padding:7px 13px; font-size:12.5px; font-weight:600; color:var(--blue); cursor:pointer; letter-spacing:.01em; transition:background .15s, border-color .15s;}
+  .guide-link-btn:hover{border-color:var(--blue); background:#EAF0FD;}
   .card-head-row{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;}
   .card-title{font-size:18px; font-weight:700; color:var(--navy); margin:0;}
 
@@ -220,7 +254,6 @@
   .reco-item{display:flex; align-items:center; justify-content:space-between; gap:10px; background:var(--surface-alt); border-radius:6px; padding:9px 12px;}
   .reco-item-name{font-size:14px; font-weight:600; color:var(--text);}
   .reco-item-amount{font-size:13.5px; font-weight:700; color:var(--blue); background:#EAF0FD; border-radius:20px; padding:3px 10px; white-space:nowrap; font-variant-numeric:tabular-nums;}
-  .reco-note{font-size:12.5px; color:var(--faint); line-height:1.5;}
   .alloc-list{display:flex; flex-direction:column; gap:10px; margin:14px 0;}
   .alloc-row{display:flex; align-items:center; gap:12px; background:#FFFFFF; border:1px solid var(--border); border-radius:7px; padding:13px 15px; transition:opacity .15s;}
   .alloc-row input[type=checkbox]{width:18px; height:18px; flex-shrink:0; accent-color:var(--blue); cursor:pointer;}
@@ -328,7 +361,7 @@
   <div class="container">
     <div class="trust-bar-row">
       <span class="trust-bar-icon"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg></span>
-      <span class="trust-bar-text" data-i18n="trustBarText">Alat bantu independen mahasiswa, bukan sistem resmi Universitas Hasanuddin</span>
+      <span class="trust-bar-text" data-i18n="trustBarText">Alat independen mahasiswa, bukan sistem resmi Universitas Hasanuddin</span>
       <button class="identify-toggle" id="identifyToggle">
         <span data-i18n="identifyToggle">Cara mengenali</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
@@ -337,37 +370,58 @@
     <div class="identify-panel" id="identifyPanel">
       <div class="identify-col">
         <div class="identify-col-head"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg><span data-i18n="identify1Head">Bukan bagian dari Universitas Hasanuddin</span></div>
-        <p class="identify-col-text" data-i18n="identify1Text">Alat ini dibuat mandiri oleh mahasiswa untuk membantu prediksi SKS berdasarkan Rubrik MKPK Edisi 3. Pengisian activity hours dan pengajuan klaim MKPK yang sesungguhnya tetap lewat Sipakamase.</p>
+        <p class="identify-col-text" data-i18n="identify1Text">Dibuat mandiri oleh mahasiswa, berdasarkan Rubrik MKPK Edisi 3. Klaim MKPK yang sesungguhnya tetap lewat Sipakamase.</p>
       </div>
       <div class="identify-col">
         <div class="identify-col-head"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span data-i18n="identify2Head">Data tersimpan lokal di perangkat Anda</span></div>
-        <p class="identify-col-text" data-i18n="identify2Text">Daftar kegiatan yang Anda tambahkan tersimpan untuk Anda sendiri di browser ini, tidak dikirim atau dibagikan ke server universitas atau pihak lain.</p>
+        <p class="identify-col-text" data-i18n="identify2Text">Kegiatan yang Anda tambahkan tersimpan di peramban ini saja, tidak dikirim ke mana pun.</p>
       </div>
     </div>
   </div>
 </div>
 
+<!-- ============ SITE NAV (ganti halaman, bukan scroll) ============ -->
+<nav class="site-nav no-print">
+  <div class="container site-nav-inner">
+    <span class="site-nav-brand">Prediksi MKPK</span>
+    <div class="site-nav-right-group">
+      <div class="site-nav-tabs">
+        <button type="button" class="site-nav-tab active" id="siteNavCalc" data-i18n="siteNavCalc">Kalkulator</button>
+        <button type="button" class="site-nav-tab" id="siteNavGuide" data-i18n="siteNavGuide">Panduan Konversi Sipakamase</button>
+      </div>
+      <div class="lang-dropdown">
+        <button class="lang-dropdown-btn" id="langDropdownBtn" type="button" aria-haspopup="true" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span id="langDropdownLabel">Indonesia</span>
+          <svg class="lang-dropdown-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="lang-dropdown-menu" id="langDropdownMenu" style="display:none">
+          <button class="lang-dropdown-item" id="langBtnId" type="button" data-lang="id">Indonesia</button>
+          <button class="lang-dropdown-item" id="langBtnEn" type="button" data-lang="en">English</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
 <!-- ============ MASTHEAD ============ -->
+<div id="pageCalculator">
 <header class="masthead">
   <div class="container">
     <div class="masthead-top">
-      <h1 class="title">Prediksi MKPK</h1>
+      <h1 class="title">Kalkulator MKPK</h1>
       <div style="display:flex; gap:8px; align-items:center;">
-        <button class="guide-btn no-print" id="guideBtn" type="button">
+        <button class="guide-btn" id="guideBtn" type="button">
           <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
           <span data-i18n="guideBtn">Panduan</span>
         </button>
-        <div class="lang-switch no-print" role="group" aria-label="Bahasa">
-          <button class="lang-switch-btn" id="langBtnId" type="button" data-lang="id">ID</button>
-          <button class="lang-switch-btn" id="langBtnEn" type="button" data-lang="en">EN</button>
-        </div>
-        <button class="export-btn no-print" onclick="window.print()">
+        <button class="export-btn" onclick="window.print()">
           <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           <span data-i18n="exportBtn">Ekspor PDF</span>
         </button>
       </div>
     </div>
-    <p class="subtitle" data-i18n="subtitle">Setiap kegiatan hanya berhak dikonversi ke mata kuliah MKPK tertentu sesuai tabel pemetaan resmi. SKS total kegiatan dialokasikan otomatis ke mata kuliah berhak yang sisa kebutuhannya paling kecil, supaya lebih banyak mata kuliah selesai. Hasilnya sebatas prediksi; sebagian mata kuliah membatasi jumlah kegiatan sejenis yang bisa diklaim, jadi selalu cek syarat detail di rubrik.</p>
+    <p class="subtitle" data-i18n="subtitle">Setiap kegiatan hanya dapat dikonversi ke mata kuliah MKPK tertentu, sesuai tabel resmi di rubrik. SKS akan dialokasikan secara otomatis ke mata kuliah yang sisa kebutuhannya paling kecil terlebih dahulu, agar semakin banyak mata kuliah yang terpenuhi. Perlu diingat, hasil ini sebatas prediksi. Sebagian mata kuliah membatasi jumlah kegiatan sejenis yang dapat diklaim, jadi tetap periksa syarat lengkapnya di rubrik.</p>
 
     <div class="stat-row">
       <div class="stat-card"><div class="stat-value" id="statMet">0<span class="stat-of" id="statMetOf"> / 0</span></div><div class="stat-label" data-i18n="statMetLabel">Mata kuliah terpenuhi</div></div>
@@ -447,7 +501,6 @@
     <div class="field">
       <label class="field-label" data-i18n="labelSpesifik">Judul Kegiatan Spesifik (opsional)</label>
       <input type="text" class="field-input" id="namaSpesifikInput" placeholder='mis. "Coursera: Data Analysis Specialization", "Juara 2 GEMASTIK Bidang V 2025"' data-i18n-placeholder="spesifikPlaceholder" />
-      <div class="hint-text" data-i18n="spesifikHint">Diisi supaya daftar kegiatan Anda mudah dibedakan.</div>
     </div>
 
     <div class="form-grid" id="coeffGrid"></div>
@@ -461,7 +514,7 @@
     </div>
 
     <div class="field" id="nilaiField">
-      <label class="field-label" data-i18n="labelNilai">Estimasi Nilai (dari Rubrik Penilaian)</label>
+      <label class="field-label" data-i18n="labelNilai">Estimasi Nilai</label>
       <div id="nilaiVariableWrap" class="select-wrap" style="display:none">
         <select class="field-select" id="nilaiSelect"></select>
         <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
@@ -521,14 +574,47 @@
   <section id="langkah-3" class="card">
     <div class="card-head">
       <h2 class="card-title" id="savedTitle">Kegiatan Tersimpan (0)</h2>
-      <button type="button" class="reset-btn no-print" id="resetSavedBtn" style="display:none">
-        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
-        <span data-i18n="resetBtn">Kosongkan</span>
-      </button>
+      <div class="card-head-actions no-print">
+        <button type="button" class="guide-link-btn" id="guideLinkBtn" style="display:none">
+          <span data-i18n="guideLinkBtn">Cara Konversi ke Sipakamase</span>
+        </button>
+        <button type="button" class="reset-btn" id="resetSavedBtn" style="display:none">
+          <span data-i18n="resetBtn">Kosongkan</span>
+        </button>
+      </div>
     </div>
     <div id="tableArea"></div>
   </section>
 </main>
+</div>
+<!-- akhir #pageCalculator -->
+
+<!-- ============ HALAMAN: PANDUAN KONVERSI KE SIPAKAMASE ============ -->
+<div id="pageGuide" class="container" style="display:none">
+  <section class="card guide-summary-card">
+    <div class="guide-stat-row">
+      <div class="stat-card"><div class="stat-value" id="statMetGuide">0<span class="stat-of" id="statMetOfGuide"> / 0</span></div><div class="stat-label" data-i18n="statMetLabel">Mata kuliah terpenuhi</div></div>
+      <div class="stat-card"><div class="stat-value" id="statSKSGuide">0.00</div><div class="stat-label" data-i18n="statSKSLabel">SKS terekognisi</div></div>
+      <div class="stat-card"><div class="stat-value" id="statSavedGuide">0</div><div class="stat-label" data-i18n="statSavedLabel">Kegiatan tersimpan</div></div>
+    </div>
+    <div class="target-box guide-target-box">
+      <span class="target-label" data-i18n="targetLabel">Target Kelulusan</span>
+      <div class="target-progress-outer"><div class="target-progress-inner" id="targetProgressBarGuide" style="width:0%"></div></div>
+      <div class="target-progress-labels">
+        <span class="target-progress-done" id="targetDoneGuide">0.00 / 10.00 SKS</span>
+        <span class="target-progress-remaining" id="targetRemainingGuide">Kurang 10.00 SKS</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head">
+      <h2 class="card-title" data-i18n="guidePageTitle">Panduan Konversi Sipakamase</h2>
+    </div>
+    <p class="guide-page-desc" data-i18n="guidePageDesc">Sipakamase tidak memiliki alokasi otomatis seperti kalkulator ini. Setiap kegiatan harus dipilihkan satu mata kuliah secara manual, dan SKS yang dimasukkan akan terserap hingga mata kuliah tersebut terpenuhi. Sisanya akan muncul kembali untuk dialokasikan ke mata kuliah lain. Urutan pemilihan inilah yang menentukan kesesuaian hasil akhir dengan prediksi pada halaman ini. Ikuti langkah-langkah berikut sesuai urutannya.</p>
+    <div id="guidePageContent"></div>
+  </section>
+</div>
 
 <!-- ============ OVERLAY: DETAIL RE-OPTIMASI ============ -->
 <div class="overlay-backdrop no-print" id="reoptOverlay">
@@ -961,14 +1047,14 @@ function computeSKS(item, coeffValues, tambahan){
 // ===========================================================================
 const I18N = {
   id: {
-    trustBarText: "Alat bantu independen mahasiswa",
+    trustBarText: "Alat independen mahasiswa",
     identifyToggle: "Cara mengenali",
     identify1Head: "Bukan bagian dari Universitas Hasanuddin",
-    identify1Text: "Dibuat mandiri oleh mahasiswa untuk membantu prediksi SKS berdasarkan Rubrik MKPK Edisi 3. Pengisian activity hours dan klaim MKPK yang sesungguhnya tetap lewat Sipakamase.",
+    identify1Text: "Dibuat mandiri oleh mahasiswa, berdasarkan Rubrik MKPK Edisi 3. Klaim MKPK yang sesungguhnya tetap lewat Sipakamase.",
     identify2Head: "Data tersimpan lokal di perangkat Anda",
-    identify2Text: "Daftar kegiatan yang Anda tambahkan tersimpan untuk Anda sendiri di browser ini, tidak dikirim atau dibagikan ke server universitas atau pihak lain.",
+    identify2Text: "Kegiatan yang Anda tambahkan tersimpan di peramban ini saja, tidak dikirim ke mana pun.",
     exportBtn: "Ekspor PDF",
-    subtitle: "Setiap kegiatan hanya berhak dikonversi ke mata kuliah MKPK tertentu sesuai tabel pemetaan resmi. SKS total kegiatan dialokasikan otomatis ke mata kuliah berhak yang sisa kebutuhannya paling kecil, supaya lebih banyak mata kuliah selesai. Hasilnya sebatas prediksi; sebagian mata kuliah membatasi jumlah kegiatan sejenis yang bisa diklaim, jadi selalu cek syarat detail di rubrik.",
+    subtitle: "Setiap kegiatan hanya dapat dikonversi ke mata kuliah MKPK tertentu, sesuai tabel resmi di rubrik. SKS akan dialokasikan secara otomatis ke mata kuliah yang sisa kebutuhannya paling kecil terlebih dahulu, agar semakin banyak mata kuliah yang terpenuhi. Perlu diingat, hasil ini sebatas prediksi. Sebagian mata kuliah membatasi jumlah kegiatan sejenis yang dapat diklaim, jadi tetap periksa syarat lengkapnya di rubrik.",
     statMetLabel: "Mata kuliah terpenuhi",
     statSKSLabel: "SKS terekognisi",
     statSavedLabel: "Kegiatan tersimpan",
@@ -992,7 +1078,7 @@ const I18N = {
     labelSpesifik: "Judul Kegiatan Spesifik (opsional)",
     spesifikPlaceholder: 'mis. "Coursera: Data Analysis Specialization", "Juara 2 GEMASTIK Bidang V 2025"',
     spesifikHint: "Diisi supaya daftar kegiatan Anda mudah dibedakan.",
-    labelNilai: "Estimasi Nilai (dari Rubrik Penilaian)",    docsLabel: "Dokumen pendukung yang diperlukan",
+    labelNilai: "Estimasi Nilai",    docsLabel: "Dokumen pendukung yang diperlukan",
     allocTitle: "Alokasi Otomatis ke Mata Kuliah MKPK",
     allocHint: "Sistem mengisi dulu mata kuliah dengan sisa kebutuhan paling kecil, supaya lebih banyak mata kuliah selesai dan tidak ada penumpukan SKS berlebih di satu mata kuliah saja. Mata kuliah yang sudah penuh otomatis dilewati.",
     allocEmpty: "Semua mata kuliah yang berhak untuk kegiatan ini sudah terpenuhi dari kegiatan lain. Tidak ada tempat lagi untuk mengalokasikan SKS ini.",
@@ -1057,7 +1143,6 @@ const I18N = {
     nilaiWeightedResultTemplate: (val) => `Estimasi nilai akhir (dihitung berbobot dari 4 tahap di atas): ${val}`,
     metNoteTemplate: (names) => `Sudah penuh (dilewati): ${names}.`,
     recoLabel: "Rekomendasi Alokasi",
-    recoNote: "Diurutkan dari sisa kebutuhan terkecil, supaya lebih banyak mata kuliah selesai lebih dulu.",
     allocSudah: (already, req) => `${already} / ${req} SKS`,
     allocWastedTemplate: (w) => `${w} SKS tidak terpakai (semua mata kuliah berhak sudah penuh)`,
     emptyCourseSummary: "Belum ada mata kuliah yang tersentuh. Tambahkan kegiatan terlebih dahulu.",
@@ -1073,6 +1158,18 @@ const I18N = {
     resetBtn: "Kosongkan",
     resetConfirm: "Hapus semua kegiatan tersimpan? Tindakan ini tidak bisa dibatalkan.",
     resetToast: "Semua kegiatan tersimpan sudah dihapus",
+    siteNavCalc: "Kalkulator",
+    siteNavGuide: "Panduan Konversi Sipakamase",
+    guideLinkBtn: "Cara Konversi ke Sipakamase",
+    guidePageTitle: "Panduan Konversi Sipakamase",
+    guidePageDesc: "Sipakamase tidak memiliki alokasi otomatis seperti kalkulator ini. Setiap kegiatan harus dipilihkan satu mata kuliah secara manual, dan SKS yang dimasukkan akan terserap hingga mata kuliah tersebut terpenuhi. Sisanya akan muncul kembali untuk dialokasikan ke mata kuliah lain. Urutan pemilihan inilah yang menentukan kesesuaian hasil akhir dengan prediksi pada halaman ini. Ikuti langkah-langkah berikut sesuai urutannya.",
+    guideEmptyState: "Belum ada kegiatan tersimpan untuk dipandu konversinya. Tambahkan kegiatan terlebih dahulu di tab Kalkulator.",
+    guideTotalLabel: "Total",
+    guideStepPilih: "Pilih",
+    guideStepDoneSingle: (n) => `Seluruh ${n} SKS kegiatan ini langsung terserap di mata kuliah itu. Selesai.`,
+    guideStepRemainingNote: (n) => `Sisa ${n} SKS, lanjut ke langkah berikutnya.`,
+    guideStepDoneAll: "Sisa jadi 0 — kegiatan ini selesai dikonversi.",
+    guideWastedNote: (n) => `Sisa ${n} SKS dari kegiatan ini tidak bisa dikonversi ke mata kuliah manapun (semua mata kuliah yang berhak sudah penuh).`,
     editLabel: "Edit",
     editToast: "Silakan sesuaikan lalu simpan ulang",
     reviewHint: "Cek dulu, jangan asal ikut pilihan default",
@@ -1082,11 +1179,11 @@ const I18N = {
     trustBarText: "An independent student tool",
     identifyToggle: "How to recognise this",
     identify1Head: "Not part of Hasanuddin University",
-    identify1Text: "Built independently by a student to help predict credit (SKS) outcomes based on the Rubrik MKPK Edisi 3. Logging activity hours and filing an MKPK claim is still done through Sipakamase.",
+    identify1Text: "Built independently by a student, based on the Rubrik MKPK Edisi 3. Actual MKPK claims are still filed through Sipakamase.",
     identify2Head: "Your data stays on your own device",
-    identify2Text: "The activities you add are stored for you alone, in this browser. Nothing is sent or shared with the university's servers or any third party.",
+    identify2Text: "Activities you add are stored only in this browser, and are never sent anywhere.",
     exportBtn: "Export PDF",
-    subtitle: "Each activity is only eligible to convert into specific MKPK courses, per the official mapping table. Total credit is allocated automatically to whichever eligible course has the smallest remaining requirement, so more courses get completed overall. Results are predictions only; some courses cap how many similar activities may be claimed, so always check the detailed requirements in the rubric.",
+    subtitle: "Each activity can only convert into specific MKPK courses, based on the official mapping table. Credit gets allocated automatically to whichever eligible course needs the least amount first, so more courses end up complete. Just keep in mind this is only a prediction. Some courses cap how many similar activities count, so always double check the details in the rubric.",
     statMetLabel: "Courses completed",
     statSKSLabel: "Credits recognised",
     statSavedLabel: "Activities saved",
@@ -1099,7 +1196,7 @@ const I18N = {
     targetReached: "Target reached",
     toastAdded: "Activity added successfully",
     cardAddTitle: "Add an Activity",
-    labelCategory: "Group",
+    labelCategory: "Basis",
     labelActivity: "Category",
     itemSearchPlaceholder: "Search or select...",
     comboEmpty: "No matches found.",
@@ -1110,7 +1207,7 @@ const I18N = {
     labelSpesifik: "Specific Activity Title (optional)",
     spesifikPlaceholder: 'e.g. "Coursera: Data Analysis Specialization", "2nd Place, GEMASTIK Category V 2025"',
     spesifikHint: "This helps you tell your saved activities apart.",
-    labelNilai: "Estimated Grade (from the Assessment Rubric)",    docsLabel: "Supporting documents required",
+    labelNilai: "Estimated Grade",    docsLabel: "Supporting documents required",
     allocTitle: "Automatic Allocation to MKPK Courses",
     allocHint: "The system fills whichever eligible course has the smallest remaining requirement first, so more courses get completed and credit isn't overstacked into a single course. Courses that are already full are skipped automatically.",
     allocEmpty: "Every course this activity is eligible for has already been completed by other activities. There's nowhere left to allocate this credit.",
@@ -1119,7 +1216,7 @@ const I18N = {
     pendingFitOverlayTitle: "Reallocation Options for This Activity",
     pendingFitSummaryTemplate: (allocated, total) => `If this reallocation is applied, the activity you're adding could receive ${allocated} of ${total} credits.`,
     pendingFitApply: "Apply & Add Activity",
-    pendingFitNewActivity: "New activity you're adding",
+    pendingFitNewActivity: "The new activity you're adding",
     allocatedLabel: "Allocated",
     resultLabel: "Predicted total credit for this activity",
     addBtn: "Add to List",
@@ -1175,7 +1272,6 @@ const I18N = {
     nilaiWeightedResultTemplate: (val) => `Final estimated grade (weighted across the 4 stages above): ${val}`,
     metNoteTemplate: (names) => `Already complete (skipped): ${names}.`,
     recoLabel: "Allocation Recommendation",
-    recoNote: "Ordered from the smallest remaining requirement first, so more courses get completed sooner.",
     allocSudah: (already, req) => `${already} / ${req} credits`,
     allocWastedTemplate: (w) => `${w} credits unused (every eligible course is already complete)`,
     emptyCourseSummary: "No courses touched yet. Add an activity above first.",
@@ -1191,6 +1287,18 @@ const I18N = {
     resetBtn: "Clear all",
     resetConfirm: "Delete all saved activities? This cannot be undone.",
     resetToast: "All saved activities have been cleared",
+    siteNavCalc: "Calculator",
+    siteNavGuide: "Sipakamase Conversion Guide",
+    guideLinkBtn: "How to Convert in Sipakamase",
+    guidePageTitle: "Sipakamase Conversion Guide",
+    guidePageDesc: "Sipakamase does not have automatic allocation like this calculator. There, you need to select one course for each activity, and the credit entered will be absorbed until that course is complete. The remainder will reappear for allocation to another course. This selection order is what determines whether the final result matches the prediction on this page. Follow the steps below in the order shown.",
+    guideEmptyState: "No saved activities to guide the conversion for yet. Please add activities in the Calculator tab first.",
+    guideTotalLabel: "Total",
+    guideStepPilih: "Select",
+    guideStepDoneSingle: (n) => `All ${n} credits from this activity go straight into that course. Done.`,
+    guideStepRemainingNote: (n) => `${n} credits remain, continue to the next step.`,
+    guideStepDoneAll: "Remainder reaches 0 — this activity is fully converted.",
+    guideWastedNote: (n) => `${n} credits from this activity can't be converted into any course (every eligible course is already full).`,
     editLabel: "Edit",
     editToast: "Adjust the details, then save again",
     reviewHint: "Double-check this, don't just leave the default",
@@ -1215,6 +1323,7 @@ function applyStaticTranslations(){
   });
   el('langBtnId').classList.toggle('active', lang === 'id');
   el('langBtnEn').classList.toggle('active', lang === 'en');
+  el('langDropdownLabel').textContent = lang === 'id' ? 'Indonesia' : 'English';
   document.documentElement.lang = lang;
   if (typeof renderGuideSteps === 'function' && el('guideOverlay')?.classList.contains('show')) renderGuideSteps();
 }
@@ -1226,6 +1335,16 @@ let lang = localStorage.getItem('mkpk-lang') || 'id';
 let saved = JSON.parse(localStorage.getItem('mkpk-saved-v3') || '[]');
 // migrasi data lama yang belum punya field groupId eksplisit
 saved.forEach(e => { if (!e.groupId) e.groupId = String(e.id).replace(/-\d+$/, ''); });
+// urutan global groupId, dipakai buat panduan konversi manual ke Sipakamase
+// (karena Sipakamase nggak nerima input SKS bebas, cuma "pilih mata kuliah -> serap sampai cap",
+// urutan pemrosesan kegiatan & mata kuliah di dalamnya itu satu-satunya cara ngasilin hasil yang sama)
+let savedOrder = JSON.parse(localStorage.getItem('mkpk-saved-order') || '[]');
+// migrasi/sinkron: pastikan savedOrder mencakup semua groupId yang ada, hapus yang udah nggak ada lagi
+(function syncSavedOrder(){
+  const groupIdsInSaved = [...new Set(saved.map(e => e.groupId))];
+  savedOrder = savedOrder.filter(gid => groupIdsInSaved.includes(gid));
+  groupIdsInSaved.forEach(gid => { if (!savedOrder.includes(gid)) savedOrder.push(gid); });
+})();
 let coeffValues = {};
 let tambahan = 0;
 let tahapanLanjutValue = 0;
@@ -1260,6 +1379,7 @@ const resultValue = el('resultValue'), addBtn = el('addBtn');
 const courseSummaryArea = el('courseSummaryArea');
 const savedTitle = el('savedTitle'), tableArea = el('tableArea');
 const resetSavedBtn = el('resetSavedBtn');
+const guideLinkBtn = el('guideLinkBtn');
 const statMet = el('statMet'), statMetOf = el('statMetOf'), statSKS = el('statSKS'), statSaved = el('statSaved');
 const targetProgressBar = el('targetProgressBar'), targetDone = el('targetDone'), targetRemaining = el('targetRemaining');
 const customTargetInput = el('customTargetInput');
@@ -1449,8 +1569,7 @@ function renderItemDetails(){
           ${g.options.map(o => `<option value="${o.value}">${o.label} (×${o.value})</option>`).join('')}
         </select>
         <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-      </div>
-      ${needsReview ? `<div class="review-hint">${t('reviewHint')}</div>` : ''}`;
+      </div>`;
     wrap.querySelector('select').value = defaultVal;
     wrap.querySelector('select').addEventListener('change', e => {
       coeffValues[g.key] = Number(e.target.value);
@@ -1599,8 +1718,7 @@ function renderAllocationAndResult(){
       </div>`).join('');
     recoText.innerHTML = `
       <div class="reco-label">${t('recoLabel')}</div>
-      <div class="reco-list">${itemsHtml}</div>
-      <div class="reco-note">${t('recoNote')}</div>`;
+      <div class="reco-list">${itemsHtml}</div>`;
 
     allocList.innerHTML = elig.filter(c => (earned[c.id] || 0) < c.sksRequired).map(c => {
       const row = auto.rows.find(r => r.id === c.id);
@@ -1639,6 +1757,7 @@ function renderAllocationAndResult(){
 
 function persist(){
   localStorage.setItem('mkpk-saved-v3', JSON.stringify(saved));
+  localStorage.setItem('mkpk-saved-order', JSON.stringify(savedOrder));
   localStorage.setItem('mkpk-target-mode', targetMode);
   localStorage.setItem('mkpk-target-custom', String(customTarget));
 }
@@ -1675,6 +1794,7 @@ function addEntry(){
       courseRequired: r.sksRequired,
     });
   });
+  savedOrder.push(groupId); // tambahkan ke urutan global, di posisi paling akhir
 
   persist();
   renderAll();
@@ -1695,6 +1815,7 @@ function showToast(message){
 
 function removeGroup(groupId){
   saved = saved.filter(e => e.groupId !== groupId);
+  savedOrder = savedOrder.filter(gid => gid !== groupId);
   persist();
   renderAll();
 }
@@ -1778,7 +1899,7 @@ function bestMultiStartAllocation(groups){
     const result = simulateAllocation(groups, order);
     if (!best || result.completedCount > best.completedCount ||
         (result.completedCount === best.completedCount && result.wastedTotal < best.wastedTotal)){
-      best = result;
+      best = { ...result, winningOrder: order.map(g => g.groupId) };
     }
   }
   return best;
@@ -1833,7 +1954,7 @@ function computeGlobalReoptimization(){
     .filter(id => !currentSummary.some(c => c.id === id && c.met))
     .map(id => courseById(id).name);
 
-  return { changedGroups, newlyCompletedCourses, currentCompletedCount, newCompletedCount, newRowsByGroup, groups };
+  return { changedGroups, newlyCompletedCourses, currentCompletedCount, newCompletedCount, newRowsByGroup, groups, winningOrder: best.winningOrder };
 }
 
 // ===========================================================================
@@ -1865,6 +1986,8 @@ function computePendingFit(item, currentSKSVal){
     currentCompletedCount,
     newRowsByGroup: best.newRowsByGroup,
     groups: existingGroups, // cuma yang lama, buat ditampilkan "kegiatan mana yang perlu pindah"
+    winningOrder: best.winningOrder, // termasuk pendingGroupId di dalamnya
+    pendingGroupId,
   };
 }
 
@@ -1887,9 +2010,98 @@ function renderCourseSummary(){
   return summary;
 }
 
+// ===========================================================================
+// HALAMAN PANDUAN KONVERSI KE SIPAKAMASE
+// ===========================================================================
+function getGroupsInSavedOrder(){
+  return savedOrder.map(groupId => {
+    const entries = saved.filter(e => e.groupId === groupId); // urutan natural = urutan proses mata kuliah
+    if (entries.length === 0) return null;
+    const first = entries[0];
+    const totalAllocated = Math.round(entries.reduce((s, e) => s + e.sks, 0) * 100) / 100;
+    const groupTotalSKS = first.groupTotalSKS != null ? first.groupTotalSKS : totalAllocated;
+    const wasted = Math.round((groupTotalSKS - totalAllocated) * 100) / 100;
+    return {
+      groupId, entries, category: first.category, name: first.name, namaSpesifik: first.namaSpesifik,
+      totalAllocated, groupTotalSKS, wasted: wasted > 0.005 ? wasted : 0,
+    };
+  }).filter(Boolean);
+}
+
+function renderGuidePage(){
+  const groups = getGroupsInSavedOrder();
+  const content = el('guidePageContent');
+  if (groups.length === 0){
+    content.innerHTML = `<div class="empty-state">${t('guideEmptyState')}</div>`;
+    return;
+  }
+
+  content.innerHTML = groups.map((g, gIdx) => {
+    const headHtml = `
+      <div class="guide-activity-head">
+        <span class="guide-activity-name">${gIdx + 1}. ${g.name}</span>
+        <span class="guide-activity-total">${t('guideTotalLabel')} ${g.groupTotalSKS.toFixed(2)} SKS</span>
+      </div>
+      ${g.namaSpesifik ? `<div class="guide-activity-spesifik">${g.namaSpesifik}</div>` : ''}`;
+
+    // kegiatan yang cuma ke 1 mata kuliah: langsung selesai, ga perlu langkah bernomor
+    if (g.entries.length === 1 && g.wasted === 0){
+      const e = g.entries[0];
+      return `<div class="guide-activity-card">${headHtml}
+        <div class="guide-step-row" style="border-top:none; padding-top:12px;">
+          <div class="guide-step-num">1</div>
+          <div class="guide-step-body">
+            <div class="guide-step-action">${t('guideStepPilih')} <b>${e.courseName}</b></div>
+            <div class="guide-step-done">${t('guideStepDoneSingle', e.sks.toFixed(2))}</div>
+          </div>
+        </div>
+      </div>`;
+    }
+
+    // kegiatan yang kepecah ke beberapa mata kuliah: langkah bernomor + catatan sisa di tiap langkah
+    let running = g.groupTotalSKS;
+    const stepsHtml = g.entries.map((e, idx) => {
+      running = Math.round((running - e.sks) * 100) / 100;
+      const isLast = idx === g.entries.length - 1;
+      let noteHtml;
+      if (!isLast){
+        noteHtml = `<div class="guide-step-note">${t('guideStepRemainingNote', running.toFixed(2))}</div>`;
+      } else if (running <= 0.005){
+        noteHtml = `<div class="guide-step-done">${t('guideStepDoneAll')}</div>`;
+      } else {
+        noteHtml = ''; // sisa di langkah terakhir bakal ditulis sebagai guide-wasted-note di luar loop
+      }
+      return `<div class="guide-step-row">
+        <div class="guide-step-num">${idx + 1}</div>
+        <div class="guide-step-body">
+          <div class="guide-step-action">${t('guideStepPilih')} <b>${e.courseName}</b></div>
+          ${noteHtml}
+        </div>
+      </div>`;
+    }).join('');
+
+    const wastedHtml = g.wasted > 0
+      ? `<div class="guide-wasted-note">${t('guideWastedNote', g.wasted.toFixed(2))}</div>`
+      : '';
+
+    return `<div class="guide-activity-card">${headHtml}${stepsHtml}${wastedHtml}</div>`;
+  }).join('');
+}
+
+function switchPage(page){
+  const isGuide = page === 'guide';
+  el('pageCalculator').style.display = isGuide ? 'none' : 'block';
+  el('pageGuide').style.display = isGuide ? 'block' : 'none';
+  el('siteNavCalc').classList.toggle('active', !isGuide);
+  el('siteNavGuide').classList.toggle('active', isGuide);
+  if (isGuide) renderGuidePage();
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
 function renderTable(){
   savedTitle.textContent = t('savedTitleTemplate', saved.length);
   resetSavedBtn.style.display = saved.length > 0 ? 'flex' : 'none';
+  guideLinkBtn.style.display = saved.length > 0 ? 'flex' : 'none';
   if (saved.length === 0){
     tableArea.innerHTML = `<div class="empty-state">${t('emptyTable')}</div>`;
     return;
@@ -1972,6 +2184,15 @@ function renderStatsAndTarget(summary){
   targetProgressBar.style.width = pct + '%';
   targetDone.textContent = t('targetDoneTemplate', totalRecognized.toFixed(2), targetSKS.toFixed(2));
   targetRemaining.textContent = remaining > 0 ? t('targetRemainingShort', remaining.toFixed(2)) : t('targetReached');
+
+  // versi ringkas yang sama, buat ditampilkan di halaman Panduan Konversi
+  el('statMetGuide').childNodes[0].textContent = met.length;
+  el('statMetOfGuide').textContent = ` / ${summary.length}`;
+  el('statSKSGuide').textContent = totalRecognized.toFixed(2);
+  el('statSavedGuide').textContent = saved.length;
+  el('targetProgressBarGuide').style.width = pct + '%';
+  el('targetDoneGuide').textContent = t('targetDoneTemplate', totalRecognized.toFixed(2), targetSKS.toFixed(2));
+  el('targetRemainingGuide').textContent = remaining > 0 ? t('targetRemainingShort', remaining.toFixed(2)) : t('targetReached');
 }
 
 let reoptDismissedFor = null; // signature saved[] terakhir kali banner ini di-dismiss
@@ -2049,6 +2270,7 @@ function applyReoptimization(){
   });
 
   saved = newSaved;
+  savedOrder = result.winningOrder; // urutan global ikut tersimpan sesuai strategi yang menang
   persist();
   closeReoptOverlay();
   renderAll();
@@ -2133,6 +2355,8 @@ function applyPendingFit(){
   });
 
   saved = newSaved;
+  // urutan global: ambil dari hasil simulasi, ganti id sementara '__pending__' jadi groupId asli yang baru dibuat
+  savedOrder = pendingFit.winningOrder.map(gid => gid === pendingFit.pendingGroupId ? newGroupId : gid);
   persist();
   closePendingFitOverlay();
   renderAll();
@@ -2308,25 +2532,54 @@ customTargetInput.addEventListener('input', e => {
   renderStatsAndTarget(computeCourseSummary());
 });
 
+function refreshDynamicLabels(){
+  // teks-teks ini dinamis dari kamus terjemahan (bukan dari DATA), jadi perlu di-refresh
+  // manual pas ganti bahasa — tapi TANPA reset pilihan user (beda dari renderItemDetails penuh)
+  const item = currentItem();
+  if (!item) return;
+  if (item.tambahanMax > 0) tambahanLabel.textContent = t('tambahanLabelTemplate', item.tambahanMax);
+  if (Array.isArray(item.tambahanOptions)) updateTambahanFromChecklist();
+  if (Array.isArray(item.nilaiWeighted)) computeWeightedNilai();
+}
+
 function switchLang(newLang){
   if (newLang === lang) return;
   lang = newLang;
   localStorage.setItem('mkpk-lang', lang);
   applyStaticTranslations();
   renderAll();
+  refreshDynamicLabels();
 }
-el('langBtnId').addEventListener('click', () => switchLang('id'));
-el('langBtnEn').addEventListener('click', () => switchLang('en'));
+function closeLangDropdown(){
+  el('langDropdownMenu').style.display = 'none';
+  el('langDropdownBtn').setAttribute('aria-expanded', 'false');
+}
+el('langDropdownBtn').addEventListener('click', (e) => {
+  e.stopPropagation();
+  const menu = el('langDropdownMenu');
+  const isOpen = menu.style.display === 'block';
+  menu.style.display = isOpen ? 'none' : 'block';
+  el('langDropdownBtn').setAttribute('aria-expanded', String(!isOpen));
+});
+el('langBtnId').addEventListener('click', () => { switchLang('id'); closeLangDropdown(); });
+el('langBtnEn').addEventListener('click', () => { switchLang('en'); closeLangDropdown(); });
+document.addEventListener('click', (e) => { if (!e.target.closest('.lang-dropdown')) closeLangDropdown(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLangDropdown(); });
 
 resetSavedBtn.addEventListener('click', () => {
   if (saved.length === 0) return;
   if (confirm(t('resetConfirm'))){
     saved = [];
+    savedOrder = [];
     persist();
     renderAll();
     showToast(t('resetToast'));
   }
 });
+
+el('siteNavCalc').addEventListener('click', () => switchPage('calculator'));
+el('siteNavGuide').addEventListener('click', () => switchPage('guide'));
+guideLinkBtn.addEventListener('click', () => switchPage('guide'));
 
 // ===========================================================================
 // INIT
